@@ -1,13 +1,8 @@
-# for reproducibility, I suggest you use the 'renv' package. It handles package version control
-# you can install 'renv' once then you won't need to call it with the library function after
-install.packages("rms") # better to use the install function once rather than leave it in the script
-library(rms)
+#This file aims to predict the proportion of dental expenditure spent on periodontitis. This is reported for only 25 countries and 
+#unreported for the other 173 countries
+#This proportion above is saved as results in the csv
 
-install.packages("tidyverse") # see above
-library(ggplot2) # not necessary - ggplot2 is part of tidyverse
-library(tidyverse)
-read_csv("GBD.csv") # can remove, redundant to code below
-
+# to read csv into R
 GBD <- read_csv("GBD.csv",
   show_col_types = TRUE,
   col_types = list(
@@ -16,56 +11,78 @@ GBD <- read_csv("GBD.csv",
   )
 )
 
-GBD_sim <- column_to_rownames(GBD) %>%
-  select(-starts_with(c("Upper", "Lower"))) # I would leave this as a column, otherwise you can't subset easily
-
-view(GBD_sim) # I would leave this out of the script, another user may not want it
-
-
-dd <- datadist(GBD_sim)
+dd <- datadist(GBD)
 options(datadist = "dd")
-# when you have long function calls, it's helpful to split them up across multiple lines
-f_ignore <- ols(
-  results ~ direct + perio_prev + decid_caries + perm_caries + edent + 
-    diab_prev + diab_death + smoking_agest + dentists + dent_personnel + 
-    gdp_usd + dent_exp + dent_exppc + adv_coverage + coverage, 
-  data = GBD_sim)
 
+#f_ignore <- ols(
+#  results ~ direct + perio_prev + decid_caries + perm_caries + edent + 
+#    diab_prev + diab_death + smoking_agest + dentists + dent_personnel + 
+#    gdp_usd + dent_exp + dent_exppc + adv_coverage + coverage, 
+#  data = GBD)
+
+
+#This part involves exploratory analysis of the importance of periodontitis prevalence to the proportion of dental
+#expenditure spent on periodontitis
+#Periodontitis prevalence was expected to be the strongest predictor. However, this is not the case as seen below
+
+#Model f2 includes all predictors except periodontitis prevalence
 f2 <- ols(
   results ~ decid_caries + perm_caries + edent + diab_prev + diab_death + 
     smoking_agest + dentists + dent_personnel + gdp_usd + dent_exp + dent_exppc, 
-  data = GBD_sim, 
+  data = GBD, 
   x = TRUE, y = TRUE)
 
+#Model f includes all predictors, including periodontitis prevalence
 f <- ols(
   results ~ perio_prev + decid_caries + perm_caries + edent + diab_prev + diab_death + 
     smoking_agest + dentists + dent_personnel + gdp_usd + dent_exp + dent_exppc, 
-  data = GBD_sim, 
+  data = GBD, 
   x = TRUE, y = TRUE)
 
-
-anova(f)
-ggplot(Predict(f))
-anova(f2)
-summary(f)
-
+#Comparing the chi2 likelihood ratio test for f2 (18.83) vs the chi2 likelihood ratio test for f (19.68),
+#the effect of adding periodontitis prevalence as a predictor is only 0.85, which suggests
+#that periodontitis prevalence does not predict proportion spent on perio well
 f
 f2
+
+#This chart graphically shows the strength of the various predictors, and it appears from the slopes
+#that most predictors do not have a strong effect. However I have excluded it as the following chart
+#is able to demonstrate this more clearly
+#ggplot(Predict(f))
+
+#This chart graphically shows the strength of the various predictors, and number of dentists, dental expenditure,
+#prevalence of permanent caries, and number of dental personnel have a stronger effect, after which there is a
+#significant dropoff
 plot(anova(f))
+
+#This chart demonstrates the direction and magnitude of the effect of the various predictors as well.
+#The increased uncertainty and opposite direction of dentists and dental personnel, as well as a priori
+#the fact that dentists contribute to the number of dental personnel, suggests significant collinearity
+#and the need for dimensional reduction
 plot(summary(f))
-plot(f, which = 1)
 
-r <- residuals(f, type = "student")
-qqnorm(r)
-qqline(r)
+#These diagnostics investigate any misfit of the regression above but since we are not planning to use this as
+#the final regression, I have left them in comment form
+#plot(f, which = 1)
+#r <- residuals(f, type = "student")
+#qqnorm(r)
+#qqline(r)
 
-f3 <- ols(results ~ perm_caries + dentists + dent_personnel + dent_exppc, data = GBD_sim, x = TRUE)
-ggplot(Predict(f3))
-plot(summary(f3))
-plot(f3, which = 1)
+
+#This regression narrows down the predictors to the four predictors with the strongest effect, as selected
+#from the previous regression with a complete model
+f3 <- ols(results ~ perm_caries + dentists + dent_personnel + dent_exppc, data = GBD, x = TRUE)
 
 f3
 
+#These 2 charts graphically show the effect size of the various predictors across the interquartile range
+ggplot(Predict(f3))
+plot(summary(f3))
+
+#This diagnostic test shows normally distributed residuals around the fitted values
+plot(f3, which = 1)
+
+#This Q-Q plot does not demonstrate any clear abnormalities
 r2 <- residuals(f3, type = "student")
 qqnorm(r2)
 qqline(r2)
