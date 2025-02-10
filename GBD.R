@@ -2,16 +2,26 @@
 #unreported for the other 173 countries
 #This proportion above is saved as results in the csv
 
-# to read csv into R
-GBD <- read_csv("GBD.csv",
+#renv related commands for my convenience
+#renv::init()
+#renv::install("rms","tidyverse")
+#renv::status()
+renv::snapshot(type = "all")
+renv::restore()
+
+
+# to restore()# to read csv into R
+GBD <- readr::read_csv("GBD.csv",
+  col_names = TRUE,
   show_col_types = TRUE,
   col_types = list(
-    "direct" = col_factor(),
-    "adv_coverage" = col_factor()
+    "direct" = readr::col_factor(),
+    "adv_coverage" = readr::col_factor()
   )
-)
+) 
 
-dd <- datadist(GBD)
+
+dd <- rms::datadist(GBD)
 options(datadist = "dd")
 
 #f_ignore <- ols(
@@ -20,20 +30,19 @@ options(datadist = "dd")
 #    gdp_usd + dent_exp + dent_exppc + adv_coverage + coverage, 
 #  data = GBD)
 
-
 #This part involves exploratory analysis of the importance of periodontitis prevalence to the proportion of dental
 #expenditure spent on periodontitis
 #Periodontitis prevalence was expected to be the strongest predictor. However, this is not the case as seen below
 
 #Model f2 includes all predictors except periodontitis prevalence
-f2 <- ols(
+f2 <- rms::ols(
   results ~ decid_caries + perm_caries + edent + diab_prev + diab_death + 
     smoking_agest + dentists + dent_personnel + gdp_usd + dent_exp + dent_exppc, 
   data = GBD, 
   x = TRUE, y = TRUE)
 
 #Model f includes all predictors, including periodontitis prevalence
-f <- ols(
+f <- rms::ols(
   results ~ perio_prev + decid_caries + perm_caries + edent + diab_prev + diab_death + 
     smoking_agest + dentists + dent_personnel + gdp_usd + dent_exp + dent_exppc, 
   data = GBD, 
@@ -55,6 +64,9 @@ f2
 #significant dropoff
 plot(anova(f))
 
+#Testing variance inflation factors to detect collinearity
+rms::vif(f)
+
 #This chart demonstrates the direction and magnitude of the effect of the various predictors as well.
 #The increased uncertainty and opposite direction of dentists and dental personnel, as well as a priori
 #the fact that dentists contribute to the number of dental personnel, suggests significant collinearity
@@ -72,7 +84,6 @@ plot(summary(f))
 #This regression narrows down the predictors to the four predictors with the strongest effect, as selected
 #from the previous regression with a complete model
 f3 <- ols(results ~ perm_caries + dentists + dent_personnel + dent_exppc, data = GBD, x = TRUE)
-
 f3
 
 #These 2 charts graphically show the effect size of the various predictors across the interquartile range
@@ -86,3 +97,6 @@ plot(f3, which = 1)
 r2 <- residuals(f3, type = "student")
 qqnorm(r2)
 qqline(r2)
+
+
+#A more systematic approach
