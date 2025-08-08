@@ -68,15 +68,10 @@ print(results_df)
 # 2. Model Fitting
 # ------------------------------------------------------------------------
 
-library(tidyverse)
 library(rms)
-library(purrr)
 library(performance)
 library(see)
-library(readr)
 library(fuzzyjoin)
-library(stringr)
-library(dplyr)
 
 base_procedure_df <- read.csv("outputs/known_countries.csv") %>%
   dplyr::select(-Country_df2) %>%
@@ -230,7 +225,7 @@ wide_countries <- proc_preds %>%
   rename(Prophy = prophy_mean, Prophy_sd = prophy_sd)
 
 # Write to CSV
-write_csv(wide_countries, "predictions_from_rms.csv")
+write_csv(wide_countries, "./data/predictions_from_rms.csv")
 
 
 # ------------------------------------------------------------------------
@@ -282,4 +277,48 @@ cleaned_countries <- result %>%
   dplyr::select(-Country_df2)
 
 # Write to CSV
-write_csv(cleaned_countries, "monte_carlo_input_from_rms.csv")
+write_csv(cleaned_countries, "./data/monte_carlo_input_from_rms.csv")
+
+# ==============================================================================
+# Optional: cleaning and combining the dataset
+# ==============================================================================
+
+# Load both CSVs
+overwrite_df <- read_csv("./data/country_input.csv", col_types = cols())
+base_df <- read_csv("./data/monte_carlo_input_from_rms.csv", col_types = cols())
+
+# Combine: overwrite countries
+combined_df <- base_df %>%
+  filter(!Country %in% overwrite_df$Country) %>%
+  bind_rows(overwrite_df) %>%
+  arrange(Country)
+
+# Join back to base_df to restore missing cols
+final_df <- combined_df %>%
+  left_join(base_df, by = "Country", suffix = c("", "_base"))
+
+# Identify which columns are the base fallback
+base_cols <- names(final_df)[grepl("_base$", names(final_df))]
+
+# Coalesce each pair: new value if present, else fallback
+for (col_base in base_cols) {
+  col_orig <- sub("_base$", "", col_base)
+  final_df[[col_orig]] <- coalesce(final_df[[col_orig]], final_df[[col_base]])
+}
+
+# Drop the _base helper columns
+final_df <- final_df %>%
+  dplyr:::select(-all_of(base_cols))
+
+final_df_clean <- final_df %>%
+  dplyr::select(
+    -Pop_sd,
+    -Dent_exp_usd,
+    -Dent_exppc_usd,
+    -GDP_per_capita_PPP_2021,
+    -Conversion,
+    -`Dental Expenditure Per Capita`
+  )
+
+# Save
+write_csv(final_df_clean, "./data/combined_country_input.csv")
