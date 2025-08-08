@@ -11,10 +11,10 @@ library(tidyverse)
 # These are the candidates for the base procedure - simple, commonly used procedures with less variance
 base_candidates <- c("Extraction", "Consult_simple", "Prophy", "OPG", "PA", "Maintenance_simp")
 
-#Drop UK as its cost structure is too idiosyncratic to extend to other countries
+# Drop UK as its cost structure is too idiosyncratic to extend to other countries
 
 base_procedure_df <- read.csv("outputs/known_countries.csv") %>%
-  dplyr::select(- Country_df2) %>%
+  dplyr::select(-Country_df2) %>%
   rename(Country = Country_df1) %>%
   filter(Country != "United Kingdom")
 
@@ -33,24 +33,23 @@ procedure_names <- setdiff(
 
 # Main loop
 results <- purrr::map(base_candidates, function(base_proc) {
-  
   base_costs <- base_procedure_df[[base_proc]]
   base_cv <- sd(base_costs) / mean(base_costs)
-  
+
   others <- setdiff(procedure_names, base_proc)
-  
+
   ratio_df <- base_procedure_df %>%
     dplyr::select(all_of(others)) %>%
     dplyr::mutate(across(everything(), ~ .x / base_costs))
-  
+
   ratio_stats <- ratio_df %>%
     dplyr::summarise(across(everything(), list(mean_ratio = mean, sd_ratio = sd)))
-  
+
   avg_sd_ratio <- ratio_stats %>%
     dplyr::select(ends_with("sd_ratio")) %>%
     unlist() %>%
     mean()
-  
+
   tibble(
     base_procedure = base_proc,
     base_cv = base_cv,
@@ -80,7 +79,7 @@ library(stringr)
 library(dplyr)
 
 base_procedure_df <- read.csv("outputs/known_countries.csv") %>%
-  dplyr::select(- Country_df2) %>%
+  dplyr::select(-Country_df2) %>%
   rename(Country = Country_df1) %>%
   filter(Country != "United Kingdom")
 
@@ -108,9 +107,11 @@ ggsave(filename = "outputs/Prophy_model_diagnostics.pdf", plot = prophy_diag_plo
 # 2️⃣ Fit Prophy → each Procedure (original scale)
 # -------------------------------
 
-proc_means <- c("Consult_simple", "Consult_perio", "OPG", "PA", "RootDeb", 
-                "OHI", "Extraction", "OFD", "GTR", "Single_implant", "Implant_surgery", 
-                "Full_fixed", "Denture", "Denture_repair", "Maintenance_simp", "Maintenance_perio") 
+proc_means <- c(
+  "Consult_simple", "Consult_perio", "OPG", "PA", "RootDeb",
+  "OHI", "Extraction", "OFD", "GTR", "Single_implant", "Implant_surgery",
+  "Full_fixed", "Denture", "Denture_repair", "Maintenance_simp", "Maintenance_perio"
+)
 
 proc_models <- map(proc_means, function(proc) {
   mod <- ols(as.formula(paste0(proc, " ~ Prophy")), data = base_procedure_df)
@@ -128,10 +129,10 @@ names(proc_models) <- proc_means
 # -------------------------------
 
 
-#Start by data wrangling and cleaning data for predictors
+# Start by data wrangling and cleaning data for predictors
 
-df2 <- read_csv("gdp_ppp_manually_cleaned.csv") 
-df1 <- read_csv("gbd_dental_expenditure.csv")   
+df2 <- read_csv("./data/gdp_ppp_manually_cleaned.csv")
+df1 <- read_csv("./data/gbd_dental_expenditure.csv")
 
 clean_country <- function(x) {
   x %>%
@@ -159,8 +160,7 @@ result <- stringdist_left_join(
 # Keep only matched rows
 predict_countries <- result %>%
   filter(!is.na(Country_df2)) %>%
-  
-write_csv(predict_countries, "outputs/predict_countries.csv")
+  write_csv("outputs/predict_countries.csv") # THREW ERROR; OBJECT WASN'T CREATED YET
 
 # End of data wrangling
 
@@ -168,7 +168,7 @@ predict_countries <- read_csv("outputs/predict_countries.csv")
 
 predict_countries <- predict_countries %>%
   mutate(log_GDP = log(GDP_per_capita_PPP_2021)) %>%
-  dplyr::select (-Country_df2) %>%
+  dplyr::select(-Country_df2) %>%
   rename(Country = Country_df1)
 
 # Predict log(Prophy) + SE
@@ -177,7 +177,7 @@ log_prophy_preds <- predict(model_prophy, predict_countries, conf.int = 0.95)
 predict_countries <- predict_countries %>%
   mutate(
     mu_log_prophy = log_prophy_preds$linear.predictors,
-    sigma_log_prophy = (log_prophy_preds$upper - log_prophy_preds$lower)/(2 * qnorm(0.975)),
+    sigma_log_prophy = (log_prophy_preds$upper - log_prophy_preds$lower) / (2 * qnorm(0.975)),
     # Log-normal back-transform
     prophy_mean = exp(mu_log_prophy + 0.5 * sigma_log_prophy^2),
     prophy_var = (exp(sigma_log_prophy^2) - 1) * exp(2 * mu_log_prophy + sigma_log_prophy^2),
@@ -193,13 +193,13 @@ predict_proc <- function(proc_name, model, prophy_mean, prophy_var) {
   beta0 <- beta[1]
   beta1 <- beta[2]
   resid_sd <- model$stats["Sigma"]
-  
+
   # Predicted mean:
   pred_mean <- beta0 + beta1 * prophy_mean
-  
+
   # Delta Method variance:
   pred_var <- (beta1^2) * prophy_var + resid_sd^2
-  
+
   tibble(
     procedure = proc_name,
     Predicted_Cost = pred_mean,
@@ -209,10 +209,11 @@ predict_proc <- function(proc_name, model, prophy_mean, prophy_var) {
 
 # Do this for each procedure for each row
 proc_preds <- predict_countries %>%
-  mutate(procs = pmap(list(prophy_mean, prophy_var),
-                      function(pm, pv) {
-                        map_dfr(names(proc_models), ~ predict_proc(.x, proc_models[[.x]], pm, pv))
-                      }
+  mutate(procs = pmap(
+    list(prophy_mean, prophy_var),
+    function(pm, pv) {
+      map_dfr(names(proc_models), ~ predict_proc(.x, proc_models[[.x]], pm, pv))
+    }
   )) %>%
   unnest(procs)
 
@@ -226,7 +227,7 @@ wide_countries <- proc_preds %>%
     values_from = c(Predicted_Cost, SD),
     names_glue = "{procedure}{ifelse(.value == 'SD', '_sd', '')}"
   ) %>%
-  rename (Prophy = prophy_mean, Prophy_sd = prophy_sd)
+  rename(Prophy = prophy_mean, Prophy_sd = prophy_sd)
 
 # Write to CSV
 write_csv(wide_countries, "predictions_from_rms.csv")
@@ -240,7 +241,7 @@ write_csv(wide_countries, "predictions_from_rms.csv")
 df2 <- wide_countries %>%
   dplyr::select(-log_GDP, -mu_log_prophy, -sigma_log_prophy, -prophy_var)
 
-df1 <- read_csv("gbd_prevalence_population.csv")   
+df1 <- read_csv("./data/gbd_prevalence_population.csv")
 
 # ------------------------------------------------------------------------
 # 2. Pre-clean country names
@@ -278,7 +279,7 @@ result <- stringdist_left_join(
 cleaned_countries <- result %>%
   filter(!is.na(Country_df2)) %>%
   rename(Country = Country_df1) %>%
-  dplyr::select (-Country_df2)
+  dplyr::select(-Country_df2)
 
 # Write to CSV
 write_csv(cleaned_countries, "monte_carlo_input_from_rms.csv")

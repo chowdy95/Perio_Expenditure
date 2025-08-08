@@ -8,14 +8,14 @@ library(fuzzyjoin)
 library(stringr)
 library(dplyr)
 
-prediction_high<- read_csv("outputs/country_combined_high.csv") %>%
-  rename_with(~ paste0(.x, "_high"), -Country) #to better identify the source
+prediction_high <- read_csv("outputs/country_combined_high.csv") %>%
+  rename_with(~ paste0(.x, "_high"), -Country) # to better identify the source
 
 prediction_mid <- read_csv("outputs/country_combined_mid.csv") %>%
-  rename_with(~ paste0(.x, "_mid"), -Country) #to better identify the source
+  rename_with(~ paste0(.x, "_mid"), -Country) # to better identify the source
 
 prediction_low <- read_csv("outputs/country_combined_low.csv") %>%
-  rename_with(~ paste0(.x, "_low"), -Country) #to better identify the source
+  rename_with(~ paste0(.x, "_low"), -Country) # to better identify the source
 
 other_predictors <- read_csv("outputs/predict_countries.csv") %>%
   dplyr::select(-Country_df2) %>%
@@ -42,50 +42,43 @@ prediction_selection <- prediction_combined %>%
   rowwise() %>%
   mutate(
     fits_high = Mean_total_billions_high < 0.6 * Dent_exp_usd,
-    fits_mid  = Mean_total_billions_mid  < 0.6 * Dent_exp_usd,
-    fits_low  = Mean_total_billions_low  < 0.6 * Dent_exp_usd,
-    
+    fits_mid = Mean_total_billions_mid < 0.6 * Dent_exp_usd,
+    fits_low = Mean_total_billions_low < 0.6 * Dent_exp_usd,
     selected_Mean_total_billions = case_when(
       fits_high ~ Mean_total_billions_high,
-      fits_mid  ~ Mean_total_billions_mid,
-      fits_low  ~ Mean_total_billions_low,
-      TRUE      ~ Mean_total_billions_low
+      fits_mid ~ Mean_total_billions_mid,
+      fits_low ~ Mean_total_billions_low,
+      TRUE ~ Mean_total_billions_low
     ),
-    
     selected_SD_total_billions = case_when(
       selected_Mean_total_billions == Mean_total_billions_high ~ SD_total_billions_high,
-      selected_Mean_total_billions == Mean_total_billions_mid  ~ SD_total_billions_mid,
-      selected_Mean_total_billions == Mean_total_billions_low  ~ SD_total_billions_low
+      selected_Mean_total_billions == Mean_total_billions_mid ~ SD_total_billions_mid,
+      selected_Mean_total_billions == Mean_total_billions_low ~ SD_total_billions_low
     ),
-    
     selected_Mean_perio_billions = case_when(
       selected_Mean_total_billions == Mean_total_billions_high ~ Mean_perio_billions_high,
-      selected_Mean_total_billions == Mean_total_billions_mid  ~ Mean_perio_billions_mid,
-      selected_Mean_total_billions == Mean_total_billions_low  ~ Mean_perio_billions_low
+      selected_Mean_total_billions == Mean_total_billions_mid ~ Mean_perio_billions_mid,
+      selected_Mean_total_billions == Mean_total_billions_low ~ Mean_perio_billions_low
     ),
-    
     selected_SD_perio_billions = case_when(
       selected_Mean_total_billions == Mean_total_billions_high ~ SD_perio_billions_high,
-      selected_Mean_total_billions == Mean_total_billions_mid  ~ SD_perio_billions_mid,
-      selected_Mean_total_billions == Mean_total_billions_low  ~ SD_perio_billions_low
+      selected_Mean_total_billions == Mean_total_billions_mid ~ SD_perio_billions_mid,
+      selected_Mean_total_billions == Mean_total_billions_low ~ SD_perio_billions_low
     ),
-    
     selected_Mean_replace_billions = case_when(
       selected_Mean_total_billions == Mean_total_billions_high ~ Mean_replace_billions_high,
-      selected_Mean_total_billions == Mean_total_billions_mid  ~ Mean_replace_billions_mid,
-      selected_Mean_total_billions == Mean_total_billions_low  ~ Mean_replace_billions_low
+      selected_Mean_total_billions == Mean_total_billions_mid ~ Mean_replace_billions_mid,
+      selected_Mean_total_billions == Mean_total_billions_low ~ Mean_replace_billions_low
     ),
-    
     selected_SD_replace_billions = case_when(
       selected_Mean_total_billions == Mean_total_billions_high ~ SD_replace_billions_high,
-      selected_Mean_total_billions == Mean_total_billions_mid  ~ SD_replace_billions_mid,
-      selected_Mean_total_billions == Mean_total_billions_low  ~ SD_replace_billions_low
+      selected_Mean_total_billions == Mean_total_billions_mid ~ SD_replace_billions_mid,
+      selected_Mean_total_billions == Mean_total_billions_low ~ SD_replace_billions_low
     ),
-    
     selected_model = case_when(
       selected_Mean_total_billions == Mean_total_billions_high ~ "high",
-      selected_Mean_total_billions == Mean_total_billions_mid  ~ "mid",
-      selected_Mean_total_billions == Mean_total_billions_low  ~ "low"
+      selected_Mean_total_billions == Mean_total_billions_mid ~ "mid",
+      selected_Mean_total_billions == Mean_total_billions_low ~ "low"
     )
   ) %>%
   ungroup()
@@ -152,14 +145,14 @@ sev_combined <- sev_high %>%
   mutate(
     selected_Mean_total_billions = case_when(
       selected_model == "high" ~ Mean_total_billions_high,
-      selected_model == "mid"  ~ Mean_total_billions_mid,
-      selected_model == "low"  ~ Mean_total_billions_low,
+      selected_model == "mid" ~ Mean_total_billions_mid,
+      selected_model == "low" ~ Mean_total_billions_low,
       TRUE ~ NA_real_
     ),
     selected_SD_total_billions = case_when(
       selected_model == "high" ~ SD_total_billions_high,
-      selected_model == "mid"  ~ SD_total_billions_mid,
-      selected_model == "low"  ~ SD_total_billions_low,
+      selected_model == "mid" ~ SD_total_billions_mid,
+      selected_model == "low" ~ SD_total_billions_low,
       TRUE ~ NA_real_
     )
   ) %>%
@@ -188,14 +181,14 @@ proc_combined <- proc_high %>%
   mutate(
     selected_Mean_total_billions = case_when(
       selected_model == "high" ~ Mean_total_billions_high,
-      selected_model == "mid"  ~ Mean_total_billions_mid,
-      selected_model == "low"  ~ Mean_total_billions_low,
+      selected_model == "mid" ~ Mean_total_billions_mid,
+      selected_model == "low" ~ Mean_total_billions_low,
       TRUE ~ NA_real_
     ),
     selected_SD_total_billions = case_when(
       selected_model == "high" ~ SD_total_billions_high,
-      selected_model == "mid"  ~ SD_total_billions_mid,
-      selected_model == "low"  ~ SD_total_billions_low,
+      selected_model == "mid" ~ SD_total_billions_mid,
+      selected_model == "low" ~ SD_total_billions_low,
       TRUE ~ NA_real_
     )
   ) %>%
@@ -226,12 +219,15 @@ global_procedure <- proc_combined %>%
 # ---------------------------------------------------------
 # 10. Write outputs
 # ---------------------------------------------------------
-write_csv(sev_combined %>% dplyr::select(Country, Severity, selected_Mean_total_billions, selected_SD_total_billions),
-          "outputs/country_sev_selected.csv")
+write_csv(
+  sev_combined %>% dplyr::select(Country, Severity, selected_Mean_total_billions, selected_SD_total_billions),
+  "outputs/country_sev_selected.csv"
+)
 
-write_csv(proc_combined %>% dplyr::select(Country, Procedure, selected_Mean_total_billions, selected_SD_total_billions),
-          "outputs/procedure_selected.csv")
+write_csv(
+  proc_combined %>% dplyr::select(Country, Procedure, selected_Mean_total_billions, selected_SD_total_billions),
+  "outputs/procedure_selected.csv"
+)
 
 write_csv(global_severity, "outputs/global_severity.csv")
 write_csv(global_procedure, "outputs/global_procedure.csv")
-

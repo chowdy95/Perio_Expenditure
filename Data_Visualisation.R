@@ -1,11 +1,10 @@
-
 #------------------------------------------------------------------------------------------
 # Stacked bar chart of the top 30 countries by periodontal expenditure and the breakup; log transformation done as well
 #------------------------------------------------------------------------------------------
 
 library(tidyverse)
 
-country_totals<- read_csv("outputs/short_final_selected_output.csv") %>%
+country_totals <- read_csv("outputs/short_final_selected_output.csv") %>%
   mutate(Country = if_else(Country == "United Kingdom of Great Britain and Northern Ireland", "United Kingdom", Country))
 
 # Calculate residual cost (others)
@@ -58,7 +57,7 @@ my_plot <- ggplot(df_top20, aes(x = Country, y = Value, fill = Category)) +
     fill = "Expenditure Type"
   ) +
   scale_fill_brewer(palette = "Pastel1") +
-  theme_minimal(base_size = 14)+
+  theme_minimal(base_size = 14) +
   theme(
     plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
     plot.subtitle = element_text(hjust = 0.5, size = 14, face = "plain"),
@@ -77,7 +76,7 @@ ggsave("outputs/oral_health_costs_top20.pdf", my_plot, width = 20, height = 12, 
 # Log transforming the x axis to better see the differences in breakdown
 log_transformed_my_plot <- ggplot(df_top60, aes(x = Country, y = Value * 1e9, fill = Category)) +
   geom_bar(stat = "identity") +
-  scale_y_log10()+
+  scale_y_log10() +
   labs(
     title = "Breakdown of Oral Health Costs by Country, Log Transformed (Top 60)",
     x = "",
@@ -102,7 +101,7 @@ library(ggrepel)
 library(dplyr)
 library(ggpmisc)
 
-country_totals<- read_csv("outputs/short_final_selected_output.csv")
+country_totals <- read_csv("outputs/short_final_selected_output.csv")
 
 # 1. Filter top 30 by total predicted expenditure
 top30 <- country_totals %>%
@@ -123,14 +122,22 @@ plot_data <- bind_rows(
 # 4. Generate plot
 regression <- ggplot(plot_data, aes(x = Dent_exp_usd, y = selected_Mean_total_billions)) +
   # Error bars for all points
-  geom_errorbar(aes(ymin = selected_Mean_total_billions - selected_SD_total_billions,
-                    ymax = selected_Mean_total_billions + selected_SD_total_billions),
-                width = 0, color = "grey50", alpha = 0.5) +
+  geom_errorbar(
+    aes(
+      ymin = selected_Mean_total_billions - selected_SD_total_billions,
+      ymax = selected_Mean_total_billions + selected_SD_total_billions
+    ),
+    width = 0, color = "grey50", alpha = 0.5
+  ) +
   # Points: top30 colored by country, others neutral
-  geom_point(data = filter(plot_data, Group == "Top30"),
-             aes(color = Country), size = 3) +
-  geom_point(data = filter(plot_data, Group == "Other"),
-             color = "grey70", size = 2) +
+  geom_point(
+    data = filter(plot_data, Group == "Top30"),
+    aes(color = Country), size = 3
+  ) +
+  geom_point(
+    data = filter(plot_data, Group == "Other"),
+    color = "grey70", size = 2
+  ) +
   # Labels: only top30, matching point color, small, repel, no overlap
   ggrepel::geom_text_repel(
     data = filter(plot_data, Group == "Top30"),
@@ -175,7 +182,7 @@ regression <- ggplot(plot_data, aes(x = Dent_exp_usd, y = selected_Mean_total_bi
 
 #------------------------------------------------------------------------------------------
 # Plotting the best fit line showing that periodontal expenditure as predicted is a consistent and reasonable
-# proportion of total dental expenditure with inset graph 
+# proportion of total dental expenditure with inset graph
 #------------------------------------------------------------------------------------------
 
 library(ggplot2)
@@ -224,8 +231,10 @@ main_plot <- ggplot(main_data, aes(x = Dent_exp_usd, y = selected_Mean_total_bil
   # Add custom regression line
   geom_abline(intercept = 0.00451, slope = 0.336, color = "plum2", size = 1, alpha = 0.5) +
   # Add equation and R² as annotation in the top left
-  annotate("text", x = 1, y = 12, label = "y = 0.00451 + 0.336x\nR² = 0.99",
-           hjust = -0.05, vjust = 1.1, size = 5, color = "grey20") +
+  annotate("text",
+    x = 1, y = 12, label = "y = 0.00451 + 0.336x\nR² = 0.99",
+    hjust = -0.05, vjust = 1.1, size = 5, color = "grey20"
+  ) +
   scale_color_manual(values = scales::hue_pal()(length(unique(top30$Country)))) +
   scale_x_continuous(limits = xlim_zoom) +
   scale_y_continuous(limits = ylim_zoom) +
@@ -247,14 +256,16 @@ main_plot <- ggplot(main_data, aes(x = Dent_exp_usd, y = selected_Mean_total_bil
 # 7. Inset plot: full data, no labels
 inset_plot <- ggplot(inset_data, aes(x = Dent_exp_usd, y = selected_Mean_total_billions)) +
   # Add grey rectangle from (0,0) to (34,13)
-  annotate("rect", xmin = 0, xmax = 34, ymin = 0, ymax = 13, 
-           fill = NA, color = "grey50", size = 0.7, alpha = 0.5) +
+  annotate("rect",
+    xmin = 0, xmax = 34, ymin = 0, ymax = 13,
+    fill = NA, color = "grey50", size = 0.7, alpha = 0.5
+  ) +
   # Add points
   geom_point(data = filter(inset_data, Group == "Top30"), aes(color = Country), size = 1.5) +
   geom_point(data = filter(inset_data, Group == "Other"), color = "grey70", size = 1.5) +
   # Add data labels for China and USA
   ggrepel::geom_text_repel(
-    data = filter(inset_data, Country %in% c("United States of America", "China","Germany","Japan","Italy","Canada")),
+    data = filter(inset_data, Country %in% c("United States of America", "China", "Germany", "Japan", "Italy", "Canada")),
     aes(label = Country, color = Country),
     size = 2,
     box.padding = 0.25,
@@ -262,13 +273,17 @@ inset_plot <- ggplot(inset_data, aes(x = Dent_exp_usd, y = selected_Mean_total_b
     segment.color = NA
   ) +
   # Regression line
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, 
-              color = "plum2", alpha = 0.5, size = 0.8) +
+  geom_smooth(
+    method = "lm", formula = y ~ x, se = FALSE,
+    color = "plum2", alpha = 0.5, size = 0.8
+  ) +
   # Custom colors
   scale_color_manual(values = scales::hue_pal()(length(unique(top30$Country)))) +
   # Keep plot within limits
-  coord_cartesian(xlim = c(0, max(inset_data$Dent_exp_usd) * 1.05),
-                  ylim = c(0, max(inset_data$selected_Mean_total_billions) * 1.05)) +
+  coord_cartesian(
+    xlim = c(0, max(inset_data$Dent_exp_usd) * 1.05),
+    ylim = c(0, max(inset_data$selected_Mean_total_billions) * 1.05)
+  ) +
   coord_fixed(ratio = 1) +
   labs(
     title = "Predicted periodontal expenditure forms a consistent and reasonable proportion of dental expenditure",
@@ -277,11 +292,11 @@ inset_plot <- ggplot(inset_data, aes(x = Dent_exp_usd, y = selected_Mean_total_b
   ) +
   theme_minimal(base_size = 6) +
   theme(
-    plot.title = element_text(color = "grey20",hjust = 0.5, size = 6, face = "bold"),
+    plot.title = element_text(color = "grey20", hjust = 0.5, size = 6, face = "bold"),
     axis.title = element_text(color = "grey20"),
     legend.position = "none",
-    panel.background = element_rect(fill = "white", color = NA),  # plot area
-    plot.background  = element_rect(fill = "white", color = NA)   # entire ggplot area
+    panel.background = element_rect(fill = "white", color = NA), # plot area
+    plot.background = element_rect(fill = "white", color = NA) # entire ggplot area
   )
 
 # 8. Combine with patchwork
@@ -296,7 +311,7 @@ final_plot <- main_plot +
 ggsave("outputs/validation_regression_inset.pdf", final_plot, width = 18, height = 10, dpi = 300)
 
 #------------------------------------------------------------------------------------------
-# Plotting world map with direct expenditure                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+# Plotting world map with direct expenditure
 #------------------------------------------------------------------------------------------
 
 # Load libraries
@@ -307,7 +322,7 @@ library(rnaturalearthdata)
 library(countrycode)
 
 # Read your data
-country_totals<- read_csv("outputs/short_final_selected_output.csv")
+country_totals <- read_csv("outputs/short_final_selected_output.csv")
 
 # Add ISO codes
 country_totals <- country_totals %>%
@@ -323,11 +338,11 @@ map_data <- world %>%
 
 # Plot
 p <- ggplot(map_data) +
-  geom_sf(aes(fill = selected_Mean_total_billions * 1000)) +  # billions → millions
+  geom_sf(aes(fill = selected_Mean_total_billions * 1000)) + # billions → millions
   scale_fill_viridis_c(
     trans = "log10",
     option = "plasma",
-    begin = 0.15,    # skew lighter: higher begin shifts scale lighter
+    begin = 0.15, # skew lighter: higher begin shifts scale lighter
     end = 1,
     direction = -1, # higher = darker
     breaks = scales::trans_breaks("log10", function(x) 10^x),
@@ -348,18 +363,19 @@ p <- ggplot(map_data) +
 
 # Save with suitable dimensions for world map
 ggsave("outputs/world_periodontal_expenditure_map.pdf",
-       plot = p,
-       width = 12, height = 6, dpi = 300)
+  plot = p,
+  width = 12, height = 6, dpi = 300
+)
 
 
 #------------------------------------------------------------------------------------------
-# Creating a stacked area chart to breakdown cost components between countries (after normalising total)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+# Creating a stacked area chart to breakdown cost components between countries (after normalising total)
 #------------------------------------------------------------------------------------------
 
 library(tidyverse)
 library(forcats)
 
-country_totals<- read_csv("outputs/short_final_selected_output.csv")
+country_totals <- read_csv("outputs/short_final_selected_output.csv")
 
 # Step 1: Preprocess data
 df <- country_totals %>%
@@ -385,7 +401,7 @@ df <- country_totals %>%
   )
 
 stacked_data <- df %>%
-  filter(!is.na(Value) & Value > 0) %>%  # Remove NA or 0
+  filter(!is.na(Value) & Value > 0) %>% # Remove NA or 0
   group_by(Country) %>%
   mutate(
     Total = sum(Value, na.rm = TRUE),
@@ -426,15 +442,17 @@ stacked_area_plot <- ggplot(stacked_data, aes(x = Proportion, y = y, fill = Cate
     subtitle = "Composition varies widely between countries, with tooth replacement proportion declining alongside overall expenditure",
     fill = "Cost category"
   ) +
-  annotate("rect", xmin = 0, xmax = 1, ymin = 1, ymax = 40, 
-           fill = NA, color = "grey50", size = 1.5, alpha = 0.5) +
+  annotate("rect",
+    xmin = 0, xmax = 1, ymin = 1, ymax = 40,
+    fill = NA, color = "grey50", size = 1.5, alpha = 0.5
+  ) +
   theme_minimal(base_size = 12) +
   theme(
     panel.grid.major.y = element_blank(),
     axis.text.y = element_blank(),
     legend.position = "bottom",
-    plot.title = element_text(color = "grey20",hjust = 0.5, size = 16, face = "bold"),
-    plot.subtitle = element_text(color = "grey20",hjust = 0.5, size = 10, face = "bold"),
+    plot.title = element_text(color = "grey20", hjust = 0.5, size = 16, face = "bold"),
+    plot.subtitle = element_text(color = "grey20", hjust = 0.5, size = 10, face = "bold"),
     plot.margin = margin(t = 10, r = 40, b = 10, l = 40)
   )
 
@@ -443,20 +461,20 @@ stacked_area_plot <- ggplot(stacked_data, aes(x = Proportion, y = y, fill = Cate
 #       width = 12, height = 12, dpi = 300)
 
 #------------------------------------------------------------------------------------------
-# Creating a stacked bar chart to break down cost components between countries (after normalising total)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+# Creating a stacked bar chart to break down cost components between countries (after normalising total)
 #------------------------------------------------------------------------------------------
 
 library(tidyverse)
 library(forcats)
 
-country_totals<- read_csv("outputs/short_final_selected_output.csv")
+country_totals <- read_csv("outputs/short_final_selected_output.csv")
 
 # Step 1: Preprocess data
 df <- country_totals %>%
   filter(Country != "Global", selected_Mean_total_billions > 0) %>%
   mutate(Country = if_else(Country == "United Kingdom of Great Britain and Northern Ireland", "United Kingdom", Country)) %>%
   arrange(desc(selected_Mean_total_billions)) %>%
-  slice_head(n=40) %>%
+  slice_head(n = 40) %>%
   mutate(
     Others = selected_Mean_total_billions - selected_Mean_perio_billions - selected_Mean_replace_billions
   ) %>%
@@ -478,14 +496,14 @@ df <- country_totals %>%
   )
 
 stacked_data <- df %>%
-  filter(!is.na(Value) & Value > 0) %>%  # Remove NA or 0
+  filter(!is.na(Value) & Value > 0) %>% # Remove NA or 0
   group_by(Country) %>%
   mutate(
     Total = sum(Value, na.rm = TRUE),
     Proportion = Value / Total
   ) %>%
   ungroup()
-    
+
 # Step 2: Rank countries by total spending
 country_order <- stacked_data %>%
   distinct(Country, selected_Mean_total_billions) %>%
@@ -505,7 +523,7 @@ stacked_chart_plot <- ggplot(stacked_data, aes(x = Proportion, y = Country, fill
     y = NULL,
     title = "Top 40 countries, expenditure composition by country",
     subtitle = "Expenditure composition varies widely even across the highest spending countries"
-#    fill = "Cost category"
+    #    fill = "Cost category"
   ) +
   scale_x_continuous(
     labels = scales::percent_format(accuracy = 1),
@@ -516,8 +534,8 @@ stacked_chart_plot <- ggplot(stacked_data, aes(x = Proportion, y = Country, fill
     axis.ticks.y = element_blank(),
     panel.grid.major.y = element_blank(),
     legend.position = "bottom",
-    plot.title = element_text(color = "grey20",hjust = 0.5, size = 16, face = "bold"),
-    plot.subtitle = element_text(color = "grey20",hjust = 0.5, size = 10, face = "bold"),
+    plot.title = element_text(color = "grey20", hjust = 0.5, size = 16, face = "bold"),
+    plot.subtitle = element_text(color = "grey20", hjust = 0.5, size = 10, face = "bold"),
     plot.margin = margin(t = 10, r = 70, b = 10, l = 40)
   )
 
@@ -527,24 +545,24 @@ stacked_chart_plot <- ggplot(stacked_data, aes(x = Proportion, y = Country, fill
 
 
 #------------------------------------------------------------------------------------------
-# Combining stacked area with stacked bar plot   
+# Combining stacked area with stacked bar plot
 #------------------------------------------------------------------------------------------
 
 library(cowplot)
 
-combined_stacked_plot <- plot_grid(stacked_chart_plot, stacked_area_plot, nrow = 1, rel_widths = c(1,1))
+combined_stacked_plot <- plot_grid(stacked_chart_plot, stacked_area_plot, nrow = 1, rel_widths = c(1, 1))
 final_combined_stacked_plot <- ggdraw(combined_stacked_plot) +
   draw_line(
-    x = c(0.465,0.523),
-    y = c(0.095,0.095),
+    x = c(0.465, 0.523),
+    y = c(0.095, 0.095),
     color = "grey30",
     size = 1,
     alpha = 0.7,
     linetype = "dashed"
   ) +
   draw_line(
-    x = c(0.464,0.5225),
-    y = c(0.937,0.27),
+    x = c(0.464, 0.5225),
+    y = c(0.937, 0.27),
     color = "grey30",
     size = 1,
     alpha = 0.7,
@@ -552,13 +570,14 @@ final_combined_stacked_plot <- ggdraw(combined_stacked_plot) +
   )
 
 ggsave("outputs/combined_stacked_plot.pdf",
-       plot = final_combined_stacked_plot,
-       width = 24, height = 12, dpi = 300)
+  plot = final_combined_stacked_plot,
+  width = 24, height = 12, dpi = 300
+)
 
 
 
 #------------------------------------------------------------------------------------------
-# Tree Map by Procedure   
+# Tree Map by Procedure
 #------------------------------------------------------------------------------------------
 
 library(tidyverse)
@@ -568,28 +587,30 @@ library(treemapify)
 df <- read_csv("outputs/global_procedure.csv") %>%
   mutate(
     Procedure = recode(Procedure,
-                       "Consult_perio" = "Consult (severe periodontitis)",
-                       "Consult_simple" = "Consult (healthy/mild periodontitis)",
-                       "Denture" = "Denture Fabrication",
-                       "Denture_repair" = "Denture Repair",
-                       "Full_fixed" = "Full-arch Fixed Prosthesis",
-                       "GTR" = "Regenerative Surgery",
-                       "Implant_surgery" = "Implant Surgery (full-arch prostheses)",
-                       "Maintenance_perio" = "Maintenance (severe periodontitis)",
-                       "Maintenance_simp" = "Maintenance (healthy/mild periodontitis)",
-                       "OFD" = "Access Flap Surgery",
-                       "OHI" = "Oral Hygiene Education",
-                       "OPG" = "Panoramic Radiograph",
-                       "PA" = "Periapicals",
-                       "Prophy" = "Prophylaxis",
-                       "RootDeb" = "Root Surface Debridement",
-                       "Single_implant" = "Single Implant (prosthesis + placement)"
+      "Consult_perio" = "Consult (severe periodontitis)",
+      "Consult_simple" = "Consult (healthy/mild periodontitis)",
+      "Denture" = "Denture Fabrication",
+      "Denture_repair" = "Denture Repair",
+      "Full_fixed" = "Full-arch Fixed Prosthesis",
+      "GTR" = "Regenerative Surgery",
+      "Implant_surgery" = "Implant Surgery (full-arch prostheses)",
+      "Maintenance_perio" = "Maintenance (severe periodontitis)",
+      "Maintenance_simp" = "Maintenance (healthy/mild periodontitis)",
+      "OFD" = "Access Flap Surgery",
+      "OHI" = "Oral Hygiene Education",
+      "OPG" = "Panoramic Radiograph",
+      "PA" = "Periapicals",
+      "Prophy" = "Prophylaxis",
+      "RootDeb" = "Root Surface Debridement",
+      "Single_implant" = "Single Implant (prosthesis + placement)"
     ),
     Group = case_when(
       Procedure %in% c("Prophylaxis", "Consult (healthy/mild periodontitis)", "Maintenance (healthy/mild periodontitis)") ~ "Preventive",
       Procedure %in% c("Panoramic Radiograph", "Periapicals") ~ "Diagnostic",
-      Procedure %in% c("Oral Hygiene Education", "Root Surface Debridement", "Regenerative Surgery",
-                       "Access Flap Surgery", "Maintenance (severe periodontitis)", "Consult (severe periodontitis)") ~ "Periodontal treatment",
+      Procedure %in% c(
+        "Oral Hygiene Education", "Root Surface Debridement", "Regenerative Surgery",
+        "Access Flap Surgery", "Maintenance (severe periodontitis)", "Consult (severe periodontitis)"
+      ) ~ "Periodontal treatment",
       Procedure == "Extraction" ~ "Extractions",
       TRUE ~ "Tooth replacement"
     ),
@@ -618,18 +639,19 @@ treemap <- ggplot(df, aes(
   theme_minimal(base_size = 14) +
   theme(
     legend.position = "bottom",
-    plot.title = element_text(color = "grey20",hjust = 0.5, size = 16, face = "bold"),
-    plot.subtitle = element_text(color = "grey20",hjust = 0.5, size = 10, face = "bold"),
+    plot.title = element_text(color = "grey20", hjust = 0.5, size = 16, face = "bold"),
+    plot.subtitle = element_text(color = "grey20", hjust = 0.5, size = 10, face = "bold"),
     plot.margin = margin(t = 20, r = 40, b = 20, l = 40)
   )
 
 
 ggsave("outputs/treemap.pdf",
-       plot = treemap,
-       width = 10, height = 10, dpi = 300)
+  plot = treemap,
+  width = 10, height = 10, dpi = 300
+)
 
 #------------------------------------------------------------------------------------------
-# Line chart showing periodontal expenditure by scenario   
+# Line chart showing periodontal expenditure by scenario
 #------------------------------------------------------------------------------------------
 
 library(tidyverse)
@@ -637,8 +659,10 @@ library(RColorBrewer)
 
 # Load data
 df <- read_csv("outputs/final_selected_output.csv") %>%
-  filter (!Country %in% c("United States of America", "China","Global","India"),
-          selected_Mean_total_billions != 0)
+  filter(
+    !Country %in% c("United States of America", "China", "Global", "India"),
+    selected_Mean_total_billions != 0
+  )
 
 
 # Create rank by selected total
@@ -653,10 +677,12 @@ names(colors) <- scenario_levels
 
 # Reshape to long format for the first 3 layers (high, mid, low)
 df_long <- df_ranked %>%
-  select(CountryRank,
-         Mean_total_billions_high,
-         Mean_total_billions_mid,
-         Mean_total_billions_low) %>%
+  select(
+    CountryRank,
+    Mean_total_billions_high,
+    Mean_total_billions_mid,
+    Mean_total_billions_low
+  ) %>%
   pivot_longer(
     cols = starts_with("Mean_total_billions_"),
     names_to = "Scenario",
@@ -680,9 +706,11 @@ p <- ggplot() +
   # Fourth layer: selected scenario
   geom_point(
     data = df_ranked,
-    aes(x = CountryRank, y = selected_Mean_total_billions,
-        shape = selected_model,
-        color = selected_model),
+    aes(
+      x = CountryRank, y = selected_Mean_total_billions,
+      shape = selected_model,
+      color = selected_model
+    ),
     size = 1.5,
     stroke = 1.1,
     position = position_jitter(width = 0.3)
@@ -695,7 +723,7 @@ p <- ggplot() +
   ) +
   scale_shape_manual(
     name = "Selected Dental Utilisation",
-    values = c(high = 17, mid = 18, low = 15),  # triangle, diamond, square
+    values = c(high = 17, mid = 18, low = 15), # triangle, diamond, square
     labels = c("High Dental Utilisation", "Medium Dental Utilisation", "Low Dental Utilisation")
   ) +
   labs(
@@ -729,7 +757,7 @@ ggsave(
 
 
 #------------------------------------------------------------------------------------------
-# Validation chart showing that estimated periodontal expenditure forms a reasonable proportion of dental expenditure  
+# Validation chart showing that estimated periodontal expenditure forms a reasonable proportion of dental expenditure
 #------------------------------------------------------------------------------------------
 
 library(tidyverse)
@@ -740,18 +768,19 @@ df <- read_csv("outputs/short_final_selected_output.csv")
 
 # Create proportion, median and rank
 df <- df %>%
-  filter (Country != "Global", selected_Mean_total_billions != 0) %>%
+  filter(Country != "Global", selected_Mean_total_billions != 0) %>%
   mutate(
     PerioProp = selected_Mean_total_billions / Dent_exp_usd,
     median_value = median(PerioProp),
     Rank = rank(selected_Mean_total_billions),
     selected_model = factor(selected_model, levels = c("high", "mid", "low")),
     ModelLabel = recode(selected_model,
-                        high = "High Utilisation",
-                        mid = "Medium Utilisation",
-                        low = "Low Utilisation")
+      high = "High Utilisation",
+      mid = "Medium Utilisation",
+      low = "Low Utilisation"
+    )
   ) %>%
-  filter (PerioProp < 1)
+  filter(PerioProp < 1)
 
 # Define shapes and colors
 shapes <- c(high = 17, mid = 18, low = 15)
@@ -776,7 +805,7 @@ p <- ggplot(df, aes(x = Rank, y = PerioProp * 100, color = selected_model, shape
     name = "Dental Expenditure Per Capita (USD)",
     range = c(0.05, 5),
     labels = scales::dollar
-  )+ 
+  ) +
   labs(
     title = "Estimated Periodontal Expenditure as a Share of Total Dental Spending",
     subtitle = "Across countries, periodontal expenditure forms a reasonable proportion of total dental spending,\nincreasing with dental expenditure per capita, supporting the plausibility of the estimation model",
@@ -800,29 +829,30 @@ ggsave(
   plot = p,
   width = 10,
   height = 6.5,
-  device = cairo_pdf  # Ensures font rendering works well with showtext
+  device = cairo_pdf # Ensures font rendering works well with showtext
 )
 
 
 #------------------------------------------------------------------------------------------
-# Graph investigating the effect of dental expenditure per capita on utilisation  
+# Graph investigating the effect of dental expenditure per capita on utilisation
 #------------------------------------------------------------------------------------------
 
 library(tidyverse)
 
 # Load data
-df <- read_csv("outputs/short_final_selected_output.csv")   %>%
-  filter (Country != "Global", selected_Mean_total_billions != 0) %>%
+df <- read_csv("outputs/short_final_selected_output.csv") %>%
+  filter(Country != "Global", selected_Mean_total_billions != 0) %>%
   mutate(
     PerioProp = selected_Mean_total_billions / Dent_exp_usd,
     median_value = median(PerioProp),
     Rank = rank(selected_Mean_total_billions),
     selected_model = factor(selected_model, levels = c("high", "mid", "low")),
     ModelLabel = recode(selected_model,
-                        high = "High Utilisation",
-                        mid = "Medium Utilisation",
-                        low = "Low Utilisation")
-  ) 
+      high = "High Utilisation",
+      mid = "Medium Utilisation",
+      low = "Low Utilisation"
+    )
+  )
 
 
 jitter_plot <- ggplot(df, aes(x = selected_model, y = Dent_exppc_usd, color = selected_model)) +
@@ -863,4 +893,3 @@ ggplot(df, aes(x = selected_model, y = GDP_per_capita_PPP_2021, color = selected
     title = "Per-Capita Dental Expenditure by Utilisation Scenario"
   ) +
   theme_minimal()
-
