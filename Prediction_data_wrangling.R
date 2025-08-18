@@ -26,7 +26,7 @@ other_predictors <- read_csv("outputs/predict_countries.csv") %>%
 # 2. Joining all the tibbles together
 # ------------------------------------------------------------------------
 
-prediction_combined <- prediction_high %>%
+prediction_combined <- prediction_high %>% # SUGGEST REPLACING WITH PURRR::REDUCE()
   left_join(prediction_mid, by = "Country") %>%
   left_join(prediction_low, by = "Country") %>%
   left_join(other_predictors, by = "Country")
@@ -137,7 +137,7 @@ sev_low <- read_csv("outputs/country_sev_combined_low.csv") %>%
 # ---------------------------------------------------------
 # 5. Combine severity data
 # ---------------------------------------------------------
-sev_combined <- sev_high %>%
+sev_combined <- sev_high %>% # TRY PURRR::REDUCE()
   left_join(sev_mid, by = c("Country", "Severity")) %>%
   left_join(sev_low, by = c("Country", "Severity")) %>%
   left_join(prediction_selection %>% dplyr::select(Country, selected_model), by = "Country") %>%
@@ -173,7 +173,7 @@ proc_low <- read_csv("outputs/procedure_combined_low.csv") %>%
 # ---------------------------------------------------------
 # 7. Combine procedure data
 # ---------------------------------------------------------
-proc_combined <- proc_high %>%
+proc_combined <- proc_high %>% # REDUCE()
   left_join(proc_mid, by = c("Country", "Procedure")) %>%
   left_join(proc_low, by = c("Country", "Procedure")) %>%
   left_join(prediction_selection %>% dplyr::select(Country, selected_model), by = "Country") %>%

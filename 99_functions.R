@@ -186,7 +186,7 @@ run_cost_model <- function(
   # Summarise costs by different slices
   # ============================================================================
   message("Summarising costs ...")
-  results <- sim_costed %>%
+  results <- sim_costed %>% # THE NEGATIVE COSTS HERE SUM UP TO PRETTY BIG DECREMENTS. SHOULD CONSIDER POSITIVE RIGHT SKEW DISTS
     group_by(Country, sim, Severity, Treatment) %>%
     summarise(Cost = sum(Total_cost, na.rm = TRUE), .groups = "drop") %>%
     group_by(Country, sim) %>%
@@ -235,7 +235,7 @@ run_cost_model <- function(
       SD_total_billions = sd(Total_cost) / 1e9
     )
   
-  procedure_combined <- sim_costed %>%
+  procedure_combined <- sim_costed %>% # THIS IS THE FUNCTION CAUSING THE SLOWDOWN. CONSIDER A data.table ALTERNATIVE FOR SPEED
     group_by(Country, Procedure, sim) %>%
     summarise(Procedure_cost = sum(Total_cost, na.rm = TRUE), .groups = "drop") %>%
     group_by(Country, Procedure) %>%

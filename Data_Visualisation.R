@@ -3,6 +3,7 @@
 #------------------------------------------------------------------------------------------
 
 library(tidyverse)
+library(patchwork)
 
 country_totals <- read_csv("outputs/short_final_selected_output.csv") %>%
   mutate(Country = if_else(Country == "United Kingdom of Great Britain and Northern Ireland", "United Kingdom", Country))
@@ -46,31 +47,36 @@ df_top20 <- df %>%
 df_top60 <- df %>%
   filter(rank <= 60)
 
-# Plot with original scale
+# Plot with original scale and per capita
 my_plot <- ggplot(df_top20, aes(x = Country, y = Value, fill = Category)) +
   geom_bar(stat = "identity") +
-  labs(
-    title = "Top 20 countries by periodontal expenditure",
-    subtitle = "Periodontal spending is geographically concentrated, and substantially driven by preventive care, tooth replacement, and ancillary procedures",
+  labs( # NOTE THAT JOURNALS DON'T TYPICALLY LIKE PLOT TITLES OR SUBTITLES
+    #title = "Top 20 countries by periodontal expenditure",
+    #subtitle = "Periodontal spending is geographically concentrated, and substantially driven by preventive care, tooth replacement, and ancillary procedures",
     x = "",
     y = "Mean Cost (Billions USD)",
     fill = "Expenditure Type"
   ) +
-  scale_fill_brewer(palette = "Pastel1") +
+  scale_fill_brewer(palette = "Pastel1") + # SUGGEST A COLOURBLIND-FRIENDLY PALETTE LIKE OKABE-ITO OR VIRIDIS
   theme_minimal(base_size = 14) +
   theme(
     plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
     plot.subtitle = element_text(hjust = 0.5, size = 14, face = "plain"),
-    axis.text.x = element_blank(),
-    axis.ticks.x = element_blank(),
     legend.position = "bottom",
     legend.box = "vertical",
     legend.title = element_text(size = 14),
     legend.text = element_text(size = 12),
-    plot.margin = margin(t = 30, r = 40, b = 20, l = 40)
+    plot.margin = margin(t = 30, r = 40, b = 20, l = 40),
+    panel.grid.minor = element_blank()
   ) +
+  scale_y_continuous(limits = c(0, 140), breaks = seq(0, 140, 20)) +
   coord_flip()
+my_plot
 
+# NOTE: IT MIGHT BE ILLUSTRATIVE TO ALSO PLOT THE PER CAPITA EXPENDITURE IN A SEPARATE PANEL USING THE patchwork PACKAGE
+# FORMAT IS EASY - FIRST CREATE A RANKED LIST OF TOP 20 PER CAPITA, MAKE AN IDENTICAL PLOT, AND ADD THEM USING GGPLOT SYNTAX
+# E.G. my_plot + my_plot_per_capita + plot_annotation(tag_levels = 'A'), see https://patchwork.data-imaginist.com/articles/guides/annotation.html
+  
 ggsave("outputs/oral_health_costs_top20.pdf", my_plot, width = 20, height = 12, dpi = 300)
 
 # Log transforming the x axis to better see the differences in breakdown
@@ -87,6 +93,7 @@ log_transformed_my_plot <- ggplot(df_top60, aes(x = Country, y = Value * 1e9, fi
   theme_minimal(base_size = 14) +
   coord_flip()
 
+log_transformed_my_plot # INTERESTING CONCEPT BUT NOT SURE IT ADDS MUCH
 # ggsave("outputs/oral_health_costs_log_transformed_top60.png", log_transformed_my_plot, width = 20, height = 12, dpi = 300)
 
 
@@ -96,9 +103,9 @@ log_transformed_my_plot <- ggplot(df_top60, aes(x = Country, y = Value * 1e9, fi
 # proportion of total dental expenditure
 #------------------------------------------------------------------------------------------
 
-library(ggplot2)
+library(ggplot2) # PART OF TIDYVERSE
 library(ggrepel)
-library(dplyr)
+library(dplyr) # PART OF TIDYVERSE
 library(ggpmisc)
 
 country_totals <- read_csv("outputs/short_final_selected_output.csv")
@@ -160,7 +167,7 @@ regression <- ggplot(plot_data, aes(x = Dent_exp_usd, y = selected_Mean_total_bi
     size = 4
   ) +
   # Scale and axis limits
-  scale_x_continuous(limits = c(0, max(plot_data$Dent_exp_usd) * 1.05)) +
+  scale_x_continuous(limits = c(0, max(plot_data$Dent_exp_usd) * 1.05)) + # STILL NOT LOVING THE MISMATCHED AXES
   scale_y_continuous(limits = c(0, 60)) +
   coord_fixed(ratio = 1) +
   # Nice pastel palette for countries
@@ -175,6 +182,7 @@ regression <- ggplot(plot_data, aes(x = Dent_exp_usd, y = selected_Mean_total_bi
     x = "Total Dental Expenditure (Billions USD)",
     y = "Predicted Periodontal Expenditure (Billions USD)"
   )
+regression
 
 # Or save bigger for clarity
 # ggsave("outputs/validation_regression.png", regression, width = 25, height = 12, dpi = 300)
@@ -185,9 +193,7 @@ regression <- ggplot(plot_data, aes(x = Dent_exp_usd, y = selected_Mean_total_bi
 # proportion of total dental expenditure with inset graph
 #------------------------------------------------------------------------------------------
 
-library(ggplot2)
 library(ggrepel)
-library(dplyr)
 library(ggpmisc)
 library(patchwork)
 library(readr)
@@ -252,6 +258,7 @@ main_plot <- ggplot(main_data, aes(x = Dent_exp_usd, y = selected_Mean_total_bil
     axis.title = element_text(color = "grey20"),
     legend.position = "none"
   )
+main_plot
 
 # 7. Inset plot: full data, no labels
 inset_plot <- ggplot(inset_data, aes(x = Dent_exp_usd, y = selected_Mean_total_billions)) +
