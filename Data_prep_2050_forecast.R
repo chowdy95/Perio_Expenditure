@@ -121,3 +121,52 @@ combined_country_input_2050 <-  joined_forecast %>%
   select(!(year_id)) %>%
   right_join(existing_input_stripped) %>%
   write_csv("data/combined_country_input_2050.csv")
+
+
+
+# ==============================================================================
+# Converting the GBD super-region, region and location hierarchy into a wide format
+# ==============================================================================
+
+library(tidyverse)
+
+# Step 1: Read the CSV
+df <- read_csv("data/GBD_location_hierarchy.csv")
+
+# Step 2 & 3: Join hierarchy
+df_wide <- df %>%
+  select(Location_ID = `Location ID`,
+         Parent_ID   = `Parent ID`,
+         Level,
+         Location_Name = `Location Name`) %>%
+  mutate(Level = as.integer(Level)) %>%
+  {
+    countries <- filter(., Level == 3)
+    regions   <- filter(., Level == 2)
+    supers    <- filter(., Level == 1)
+    
+    # Join countries to regions
+    countries %>%
+      left_join(regions,
+                by = c("Parent_ID" = "Location_ID"),
+                suffix = c("_country", "_region")) %>%
+      rename(Country = Location_Name_country,
+             Region  = Location_Name_region,
+             Region_Parent_ID = Parent_ID_region) %>%
+      
+      # Join regions to superregions
+      left_join(supers,
+                by = c("Region_Parent_ID" = "Location_ID")) %>%
+      rename(Superregion = Location_Name)
+  } %>%
+  select(Country, Region, Superregion) %>%
+  arrange(Superregion, Region, Country)
+
+# Step 4: Save to CSV
+write_csv(df_wide, "data/GBD_location_hierarchy_wide.csv")
+
+# Step 5: Quick check
+df_wide %>%
+  group_by(Superregion, Region) %>%
+  slice_head(n = 3) %>%
+  print(n = 20)
