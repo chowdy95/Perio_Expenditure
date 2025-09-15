@@ -29,7 +29,10 @@ other_predictors <- read_csv("outputs/predict_countries.csv") %>%
 prediction_combined <- prediction_high %>% # SUGGEST REPLACING WITH PURRR::REDUCE()
   left_join(prediction_mid, by = "Country") %>%
   left_join(prediction_low, by = "Country") %>%
-  left_join(other_predictors, by = "Country")
+  left_join(other_predictors, by = "Country") %>%
+  mutate(Country = ifelse(Country == "Micronesia",             # Micronesia is the only country that is not captured by the countrycodes package
+                          "Micronesia (Federated States of)", 
+                          Country))
 
 
 # ------------------------------------------------------------------------
@@ -100,7 +103,6 @@ global_row <- prediction_selection %>%
   )
 
 # Bind to main
-# Bind to main
 prediction_selection <- prediction_selection %>%
   bind_rows(global_row)
 
@@ -117,9 +119,63 @@ prediction_selection_short <- prediction_selection %>%
     Dent_exp_usd,
     Dent_exppc_usd,
     GDP_per_capita_PPP_2021
+  ) %>%
+  mutate(iso3c = countrycode(Country, origin = "country.name", destination = "iso3c"))  #matching with ISO code for country names
+
+hier <- read_csv("data/GBD_location_hierarchy_wide.csv", locale = locale(encoding = "Latin1")) %>% #read GBD hierarchy
+  mutate(iso3c = countrycode(Country, origin = "country.name", destination = "iso3c"))  #matching with ISO code for country names
+
+prediction_selection_short_joined <- hier %>%
+  full_join(prediction_selection_short, by = "iso3c") %>%
+  filter(!is.na(Country.y)) %>%
+  mutate(Country = coalesce(Country.y, Country.x)) %>%
+  select(-Country.x, -Country.y)
+
+regions <- prediction_selection_short_joined %>%
+  filter(!is.na(Superregion)) %>%
+  group_by(Region) %>%
+  summarise(
+    Superregion = first(Superregion),
+    selected_Mean_total_billions = sum(selected_Mean_total_billions, na.rm = TRUE),
+    selected_SD_total_billions = sqrt(sum(selected_SD_total_billions^2, na.rm = TRUE)),
+    selected_Mean_perio_billions = sum(selected_Mean_perio_billions, na.rm = TRUE),
+    selected_SD_perio_billions = sqrt(sum(selected_SD_perio_billions^2, na.rm = TRUE)),
+    selected_Mean_replace_billions = sum(selected_Mean_replace_billions, na.rm = TRUE),
+    selected_SD_replace_billions = sqrt(sum(selected_SD_replace_billions^2, na.rm = TRUE)),
   )
 
-write_csv(prediction_selection_short, "outputs/short_final_selected_output.csv")
+superregions <- prediction_selection_short_joined %>%
+  filter(!is.na(Superregion)) %>%
+  group_by(Superregion) %>%
+  summarise(
+    selected_Mean_total_billions = sum(selected_Mean_total_billions, na.rm = TRUE),
+    selected_SD_total_billions = sqrt(sum(selected_SD_total_billions^2, na.rm = TRUE)),
+    selected_Mean_perio_billions = sum(selected_Mean_perio_billions, na.rm = TRUE),
+    selected_SD_perio_billions = sqrt(sum(selected_SD_perio_billions^2, na.rm = TRUE)),
+    selected_Mean_replace_billions = sum(selected_Mean_replace_billions, na.rm = TRUE),
+    selected_SD_replace_billions = sqrt(sum(selected_SD_replace_billions^2, na.rm = TRUE)),
+  )
+
+prediction_selection_short_hier <- bind_rows(prediction_selection_short_joined, regions, superregions) %>%
+  mutate(
+    Level = case_when(
+      Country == "Global" ~ 0,
+      is.na(Country) & is.na(Region) ~ 1,
+      is.na(Country) & !is.na(Region) ~ 2,
+      TRUE ~ 3
+    ),
+    # Create Location Header with indentation
+    LocationHeader = case_when(
+      Level == 0 ~ paste(Country),               # no indent
+      Level == 1 ~ paste0(Superregion),             # no indent
+      Level == 2 ~ paste0("  ", Region),           # 2 spaces
+      Level == 3 ~ paste0("    ", Country)         # 4 spaces
+    )
+  ) %>%
+  select(LocationHeader, everything()) %>%
+  arrange(desc(LocationHeader == "Global"), Superregion, !is.na(Region), Region, !is.na(Country))
+
+write_csv(prediction_selection_short_hier, "outputs/short_final_selected_output.csv")
 write_csv(prediction_selection, "outputs/final_selected_output.csv")
 
 # ---------------------------------------------------------

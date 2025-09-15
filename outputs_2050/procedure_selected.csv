@@ -1835,23 +1835,23 @@ Mexico,PA,0.05810244981529441,0.10466492194367474
 Mexico,Prophy,0.17632310664346082,0.1872765333792111
 Mexico,RootDeb,0.1914415436325463,0.368438321512584
 Mexico,Single_implant,0.4507007201920399,0.7143845606755416
-Micronesia (Federated States of),Consult_perio,NA,NA
-Micronesia (Federated States of),Consult_simple,NA,NA
-Micronesia (Federated States of),Denture,NA,NA
-Micronesia (Federated States of),Denture_repair,NA,NA
-Micronesia (Federated States of),Extraction,NA,NA
-Micronesia (Federated States of),Full_fixed,NA,NA
-Micronesia (Federated States of),GTR,NA,NA
-Micronesia (Federated States of),Implant_surgery,NA,NA
-Micronesia (Federated States of),Maintenance_perio,NA,NA
-Micronesia (Federated States of),Maintenance_simp,NA,NA
-Micronesia (Federated States of),OFD,NA,NA
-Micronesia (Federated States of),OHI,NA,NA
-Micronesia (Federated States of),OPG,NA,NA
-Micronesia (Federated States of),PA,NA,NA
-Micronesia (Federated States of),Prophy,NA,NA
-Micronesia (Federated States of),RootDeb,NA,NA
-Micronesia (Federated States of),Single_implant,NA,NA
+Micronesia (Federated States of),Consult_perio,5.092131491280229e-7,4.390673466993314e-6
+Micronesia (Federated States of),Consult_simple,2.883389469253222e-6,5.819051535466161e-5
+Micronesia (Federated States of),Denture,-2.4778015203848316e-8,1.4506199309697826e-6
+Micronesia (Federated States of),Denture_repair,6.500558019527739e-8,1.6975425152531843e-6
+Micronesia (Federated States of),Extraction,3.007610092741817e-7,8.855697157646524e-6
+Micronesia (Federated States of),Full_fixed,6.92940652436536e-8,1.0551899505976868e-6
+Micronesia (Federated States of),GTR,3.6032893082501464e-8,1.8390526705307886e-7
+Micronesia (Federated States of),Implant_surgery,1.77883454798901e-7,1.8836399219138225e-6
+Micronesia (Federated States of),Maintenance_perio,2.01336567445512e-6,1.2995719120658504e-5
+Micronesia (Federated States of),Maintenance_simp,6.468729166806678e-6,5.602061753850728e-5
+Micronesia (Federated States of),OFD,2.942440824206665e-9,1.1019597943046061e-7
+Micronesia (Federated States of),OHI,8.308558941832629e-8,1.545145297392928e-6
+Micronesia (Federated States of),OPG,8.8949355894269e-8,1.019816395907776e-6
+Micronesia (Federated States of),PA,7.138465885404715e-8,1.1171193005354157e-6
+Micronesia (Federated States of),Prophy,5.19592089528412e-6,1.9124143895631913e-5
+Micronesia (Federated States of),RootDeb,2.718492203747125e-7,3.902130144134129e-6
+Micronesia (Federated States of),Single_implant,2.453970718096862e-7,1.5639138742472043e-6
 Monaco,Consult_perio,0,0
 Monaco,Consult_simple,0,0
 Monaco,Denture,0,0

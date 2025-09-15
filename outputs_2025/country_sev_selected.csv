@@ -539,11 +539,11 @@ Mexico,Stage_III_IVT1_2,0.6664437479496221,0.8385662025833684
 Mexico,Stage_IVT3,0.17824016218342428,0.39980244213164023
 Mexico,Stage_IVT4,0.23582122837904873,0.5282595182774684
 Mexico,Stage_I_II,0.3520379672210587,0.43042459583545833
-Micronesia (Federated States of),Health,NA,NA
-Micronesia (Federated States of),Stage_III_IVT1_2,NA,NA
-Micronesia (Federated States of),Stage_IVT3,NA,NA
-Micronesia (Federated States of),Stage_IVT4,NA,NA
-Micronesia (Federated States of),Stage_I_II,NA,NA
+Micronesia (Federated States of),Health,4.603543714743556e-6,4.187580951387201e-5
+Micronesia (Federated States of),Stage_III_IVT1_2,1.2766892446780473e-6,7.6052375487319405e-6
+Micronesia (Federated States of),Stage_IVT3,2.274289150858831e-7,1.847537562523348e-6
+Micronesia (Federated States of),Stage_IVT4,4.089591240710227e-7,3.2892993705203654e-6
+Micronesia (Federated States of),Stage_I_II,6.927657199624315e-6,6.550041977198168e-5
 Monaco,Health,0,0
 Monaco,Stage_III_IVT1_2,0,0
 Monaco,Stage_IVT3,0,0
