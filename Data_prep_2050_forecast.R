@@ -74,7 +74,7 @@ combined_country_input_2025 <-  joined_forecast %>%
   filter(year_id ==2025) %>%
   select(!(year_id)) %>%
   right_join(existing_input_stripped) %>%
-  write_csv("data/combined_country_inputs_2025.csv")
+  write_csv("data/combined_country_input_2025.csv")
 
 # Regarding estimate for medical inflation, would refer to Dunn et al. (2016) (https://pmc.ncbi.nlm.nih.gov/articles/PMC5785315/)
 # Based on CPI-U vs the Medical Care component of CPI, the medical care component has been broadly in line with real inflation
@@ -87,7 +87,7 @@ combined_country_input_2030 <-  joined_forecast %>%
   filter(year_id ==2030) %>%
   select(!(year_id)) %>%
   right_join(existing_input_stripped) %>%
-  write_csv("data/combined_country_inputs_2030.csv")
+  write_csv("data/combined_country_input_2030.csv")
 
 # Prepare 2035 file
 
@@ -95,7 +95,7 @@ combined_country_input_2035 <-  joined_forecast %>%
   filter(year_id ==2035) %>%
   select(!(year_id)) %>%
   right_join(existing_input_stripped)  %>%
-  write_csv("data/combined_country_inputs_2035.csv")
+  write_csv("data/combined_country_input_2035.csv")
 
 # Prepare 2040 file
 
@@ -103,7 +103,7 @@ combined_country_input_2040 <-  joined_forecast %>%
   filter(year_id ==2040) %>%
   select(!(year_id)) %>%
   right_join(existing_input_stripped) %>%
-  write_csv("data/combined_country_inputs_2040.csv")
+  write_csv("data/combined_country_input_2040.csv")
 
 # Prepare 2045 file
 
@@ -111,7 +111,7 @@ combined_country_input_2045 <-  joined_forecast %>%
   filter(year_id ==2045) %>%
   select(!(year_id)) %>%
   right_join(existing_input_stripped) %>%
-  write_csv("data/combined_country_inputs_2045.csv")
+  write_csv("data/combined_country_input_2045.csv")
 
 
 # Prepare 2050 file
@@ -120,4 +120,4 @@ combined_country_input_2050 <-  joined_forecast %>%
   filter(year_id ==2050) %>%
   select(!(year_id)) %>%
   right_join(existing_input_stripped) %>%
-  write_csv("data/combined_country_inputs_2050.csv")
+  write_csv("data/combined_country_input_2050.csv")

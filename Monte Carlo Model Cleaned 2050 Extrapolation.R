@@ -12,11 +12,11 @@ library(tidyverse)
 library(MCMCpack)
 
 # ==============================================================================
-# Calling the function
+# Calling the function for 2025
 # ==============================================================================
 
 # Example file paths (adjust if needed)
-countries_path <- "./data/combined_country_input.csv"
+countries_path <- "./data/combined_country_input_2025.csv"
 procedure_lookup_high_path <- "./data/procedure_lookup.csv"
 procedure_lookup_mid_path <- "./data/procedure_lookup.csv"
 #  procedure_lookup_high_path <- "./data/procedure_lookup_increased_maintenance.csv"   #for various scenarios
@@ -29,7 +29,7 @@ tx_split_low_path <- "./data/tx_split_low_scenario.csv"
 severity_split_path <- "./data/severity_split.csv"
 
 # Where to write outputs
-output_dir <- "outputs"
+output_dir <- "outputs_2025"
 
 n_sims = 3000
 
@@ -38,7 +38,7 @@ run_cost_model_scenarios(
   countries_path = countries_path,
   procedure_lookup_high_path = procedure_lookup_high_path,
   procedure_lookup_mid_path = procedure_lookup_mid_path,
-  procedure_lookup_low_path = procedure_lookup_low_path,
+  procedure_lookup_low_path = procedure_lookup_low_path, 
   tx_split_high_path = tx_split_high_path,
   tx_split_mid_path = tx_split_mid_path,
   tx_split_low_path = tx_split_low_path,
@@ -48,4 +48,199 @@ run_cost_model_scenarios(
   scenarios = c("low", "mid", "high"), # same as before
   slice_size = 999
 )
+
+
+# ==============================================================================
+# Calling the function for 2030
+# ==============================================================================
+
+# Example file paths (adjust if needed)
+countries_path <- "./data/combined_country_input_2030.csv"
+procedure_lookup_high_path <- "./data/procedure_lookup.csv"
+procedure_lookup_mid_path <- "./data/procedure_lookup.csv"
+#  procedure_lookup_high_path <- "./data/procedure_lookup_increased_maintenance.csv"   #for various scenarios
+#  procedure_lookup_mid_path  <- "./data/procedure_lookup_increased_maintenance.csv"
+procedure_lookup_low_path <- "./data/procedure_lookup_low_scenario.csv"
+#  procedure_lookup_low_path  <- "./data/procedure_lookup_low_scenario_increased_maintenance.csv"
+tx_split_high_path <- "./data/tx_split.csv"
+tx_split_mid_path <- "./data/tx_split_mid_scenario.csv"
+tx_split_low_path <- "./data/tx_split_low_scenario.csv"
+severity_split_path <- "./data/severity_split.csv"
+
+# Where to write outputs
+output_dir <- "outputs_2030"
+
+n_sims = 3000
+
+# Call the new scenario runner
+run_cost_model_scenarios(
+  countries_path = countries_path,
+  procedure_lookup_high_path = procedure_lookup_high_path,
+  procedure_lookup_mid_path = procedure_lookup_mid_path,
+  procedure_lookup_low_path = procedure_lookup_low_path, 
+  tx_split_high_path = tx_split_high_path,
+  tx_split_mid_path = tx_split_mid_path,
+  tx_split_low_path = tx_split_low_path,
+  severity_split_path = severity_split_path,
+  n_sims = n_sims,
+  output_dir = output_dir,
+  scenarios = c("low", "mid", "high"), # same as before
+  slice_size = 999
+)
+
+
+# ==============================================================================
+# Calling the function for 2035
+# ==============================================================================
+
+# Example file paths (adjust if needed)
+countries_path <- "./data/combined_country_input_2035.csv"
+procedure_lookup_high_path <- "./data/procedure_lookup.csv"
+procedure_lookup_mid_path <- "./data/procedure_lookup.csv"
+#  procedure_lookup_high_path <- "./data/procedure_lookup_increased_maintenance.csv"   #for various scenarios
+#  procedure_lookup_mid_path  <- "./data/procedure_lookup_increased_maintenance.csv"
+procedure_lookup_low_path <- "./data/procedure_lookup_low_scenario.csv"
+#  procedure_lookup_low_path  <- "./data/procedure_lookup_low_scenario_increased_maintenance.csv"
+tx_split_high_path <- "./data/tx_split.csv"
+tx_split_mid_path <- "./data/tx_split_mid_scenario.csv"
+tx_split_low_path <- "./data/tx_split_low_scenario.csv"
+severity_split_path <- "./data/severity_split.csv"
+
+# Where to write outputs
+output_dir <- "outputs_2035"
+
+n_sims = 3000
+
+# Call the new scenario runner
+run_cost_model_scenarios(
+  countries_path = countries_path,
+  procedure_lookup_high_path = procedure_lookup_high_path,
+  procedure_lookup_mid_path = procedure_lookup_mid_path,
+  procedure_lookup_low_path = procedure_lookup_low_path, 
+  tx_split_high_path = tx_split_high_path,
+  tx_split_mid_path = tx_split_mid_path,
+  tx_split_low_path = tx_split_low_path,
+  severity_split_path = severity_split_path,
+  n_sims = n_sims,
+  output_dir = output_dir,
+  scenarios = c("low", "mid", "high"), # same as before
+  slice_size = 999
+)
+
+
+# ==============================================================================
+# Calling the function for 2040
+# ==============================================================================
+
+# Example file paths (adjust if needed)
+countries_path <- "./data/combined_country_input_2040.csv"
+procedure_lookup_high_path <- "./data/procedure_lookup.csv"
+procedure_lookup_mid_path <- "./data/procedure_lookup.csv"
+#  procedure_lookup_high_path <- "./data/procedure_lookup_increased_maintenance.csv"   #for various scenarios
+#  procedure_lookup_mid_path  <- "./data/procedure_lookup_increased_maintenance.csv"
+procedure_lookup_low_path <- "./data/procedure_lookup_low_scenario.csv"
+#  procedure_lookup_low_path  <- "./data/procedure_lookup_low_scenario_increased_maintenance.csv"
+tx_split_high_path <- "./data/tx_split.csv"
+tx_split_mid_path <- "./data/tx_split_mid_scenario.csv"
+tx_split_low_path <- "./data/tx_split_low_scenario.csv"
+severity_split_path <- "./data/severity_split.csv"
+
+# Where to write outputs
+output_dir <- "outputs_2040"
+
+n_sims = 3000
+
+# Call the new scenario runner
+run_cost_model_scenarios(
+  countries_path = countries_path,
+  procedure_lookup_high_path = procedure_lookup_high_path,
+  procedure_lookup_mid_path = procedure_lookup_mid_path,
+  procedure_lookup_low_path = procedure_lookup_low_path, 
+  tx_split_high_path = tx_split_high_path,
+  tx_split_mid_path = tx_split_mid_path,
+  tx_split_low_path = tx_split_low_path,
+  severity_split_path = severity_split_path,
+  n_sims = n_sims,
+  output_dir = output_dir,
+  scenarios = c("low", "mid", "high"), # same as before
+  slice_size = 999
+)
+
+# ==============================================================================
+# Calling the function for 2045
+# ==============================================================================
+
+# Example file paths (adjust if needed)
+countries_path <- "./data/combined_country_input_2045.csv"
+procedure_lookup_high_path <- "./data/procedure_lookup.csv"
+procedure_lookup_mid_path <- "./data/procedure_lookup.csv"
+#  procedure_lookup_high_path <- "./data/procedure_lookup_increased_maintenance.csv"   #for various scenarios
+#  procedure_lookup_mid_path  <- "./data/procedure_lookup_increased_maintenance.csv"
+procedure_lookup_low_path <- "./data/procedure_lookup_low_scenario.csv"
+#  procedure_lookup_low_path  <- "./data/procedure_lookup_low_scenario_increased_maintenance.csv"
+tx_split_high_path <- "./data/tx_split.csv"
+tx_split_mid_path <- "./data/tx_split_mid_scenario.csv"
+tx_split_low_path <- "./data/tx_split_low_scenario.csv"
+severity_split_path <- "./data/severity_split.csv"
+
+# Where to write outputs
+output_dir <- "outputs_2045"
+
+n_sims = 3000
+
+# Call the new scenario runner
+run_cost_model_scenarios(
+  countries_path = countries_path,
+  procedure_lookup_high_path = procedure_lookup_high_path,
+  procedure_lookup_mid_path = procedure_lookup_mid_path,
+  procedure_lookup_low_path = procedure_lookup_low_path, 
+  tx_split_high_path = tx_split_high_path,
+  tx_split_mid_path = tx_split_mid_path,
+  tx_split_low_path = tx_split_low_path,
+  severity_split_path = severity_split_path,
+  n_sims = n_sims,
+  output_dir = output_dir,
+  scenarios = c("low", "mid", "high"), # same as before
+  slice_size = 999
+)
+
+
+# ==============================================================================
+# Calling the function for 2050
+# ==============================================================================
+
+# Example file paths (adjust if needed)
+countries_path <- "./data/combined_country_input_2050.csv"
+procedure_lookup_high_path <- "./data/procedure_lookup.csv"
+procedure_lookup_mid_path <- "./data/procedure_lookup.csv"
+#  procedure_lookup_high_path <- "./data/procedure_lookup_increased_maintenance.csv"   #for various scenarios
+#  procedure_lookup_mid_path  <- "./data/procedure_lookup_increased_maintenance.csv"
+procedure_lookup_low_path <- "./data/procedure_lookup_low_scenario.csv"
+#  procedure_lookup_low_path  <- "./data/procedure_lookup_low_scenario_increased_maintenance.csv"
+tx_split_high_path <- "./data/tx_split.csv"
+tx_split_mid_path <- "./data/tx_split_mid_scenario.csv"
+tx_split_low_path <- "./data/tx_split_low_scenario.csv"
+severity_split_path <- "./data/severity_split.csv"
+
+# Where to write outputs
+output_dir <- "outputs_2050"
+
+n_sims = 3000
+
+# Call the new scenario runner
+run_cost_model_scenarios(
+  countries_path = countries_path,
+  procedure_lookup_high_path = procedure_lookup_high_path,
+  procedure_lookup_mid_path = procedure_lookup_mid_path,
+  procedure_lookup_low_path = procedure_lookup_low_path, 
+  tx_split_high_path = tx_split_high_path,
+  tx_split_mid_path = tx_split_mid_path,
+  tx_split_low_path = tx_split_low_path,
+  severity_split_path = severity_split_path,
+  n_sims = n_sims,
+  output_dir = output_dir,
+  scenarios = c("low", "mid", "high"), # same as before
+  slice_size = 999
+)
+
 
