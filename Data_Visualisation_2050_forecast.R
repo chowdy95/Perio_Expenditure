@@ -1,6 +1,8 @@
-#------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------
 # Assessment of prevalent counts around the world over time
-#------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------
 
 # Load files and data prep
 
@@ -26,6 +28,8 @@ perio_prevalence_counts_forecast <- read_csv("data/GBD_prev_perio_count_forecast
   relocate("2021", .before = "2025") %>%
   left_join(hier, by =) %>%
   arrange(Level)
+
+write_csv(perio_prevalence_counts_forecast, "outputs_forecast/perio_prevalence_count_2021_2050")
 
 #-----------------------------------------------------------------------------------------------------------------
 
@@ -132,6 +136,7 @@ plot_top20_exp_ex_China <- ggplot(top_20_count_df_ex_China, aes(x = Year, y = co
 
 
 #Select top 20 countries by perio case counts to assess population changes
+
 top_20_perio_df <- perio_prevalence_counts_forecast %>%
   filter(Level == 3) %>%
   arrange(desc(.data[["2050"]])) %>%
@@ -154,6 +159,7 @@ plot_top20_pop <- ggplot(top_20_perio_df, aes(x = Year, y = count, group = locat
   )
 
 #Select top 20 countries by perio case counts to assess population changes excluding India and China
+
 top_20_perio_df_ex_India_China <- perio_prevalence_counts_forecast %>%
   filter(Level == 3) %>%
   arrange(desc(.data[["2050"]])) %>%
@@ -184,12 +190,176 @@ ggsave("outputs_forecast/patchwork_population.pdf", plot_patchwork_pop, width = 
 
 
 
-#------------------------------------------------------------------------------------------
-# Assessment of prevalent counts around the world over time
-#------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------
+# Assessment of expenditure around the world over time (parallel to before)
+#-----------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------
 
 # Load files and data prep
 
 library(tidyverse)
 library(patchwork)
 library(countrycode)
+
+perio_expenditure <- read_csv("outputs_forecast/expenditure_summary_forecast.csv") %>%
+  rename(location_name = LocationHeader)
+
+
+#-----------------------------------------------------------------------------------------------------------------
+
+# Assess perio expenditure changes for each superregion
+superregion_cost_df <- perio_expenditure %>%
+  filter(Level == 1) %>%
+  mutate(location_name = fct_reorder(location_name, selected_Mean_total_billions)) %>%
+  mutate(location_name = fct_rev(location_name))
+
+plot_superregion_cost <- ggplot(data = superregion_cost_df, aes(x = Year, y = selected_Mean_total_billions, 
+                                                                group = location_name)) +
+  geom_line(aes(color = location_name))+
+  geom_point() +
+  geom_ribbon(aes(ymin = selected_Mean_total_billions - selected_SD_total_billions, 
+                    ymax = selected_Mean_total_billions + selected_SD_total_billions, fill = location_name), 
+              alpha = 0.1) +
+  theme_minimal() +
+  theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40)) +
+  labs(
+    y = "Total Periodontitis Expenditure (billions)",
+    color = "GBD Superregions (in descending order)"
+  ) +
+  scale_fill_discrete(guide = "none")  
+
+# plot_superregion_cost
+
+#-----------------------------------------------------------------------------------------------------------------
+
+# Assess perio expenditure changes globally
+global_cost_df <- perio_expenditure %>%
+  filter(Level == 0)
+  
+plot_global_cost <- ggplot(data = global_cost_df, aes(x = Year, y = selected_Mean_total_billions, group = location_name)) +
+  geom_line(aes(color = location_name))+
+  geom_point() +
+  geom_ribbon(aes(ymin = selected_Mean_total_billions - selected_SD_total_billions, 
+                  ymax = selected_Mean_total_billions + selected_SD_total_billions, fill = location_name), 
+              alpha = 0.1) +
+  scale_y_continuous(limits = c(0,NA)) +
+  theme_minimal() +
+  theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40)) +
+  labs(
+    y = "Total Periodontitis Expenditure (millions)",
+    color = "Global"
+  ) +
+  scale_fill_discrete(guide = "none")  
+
+# plot_global_cost
+
+#-----------------------------------------------------------------------------------------------------------------
+
+# Select top 20 countries by current perio expenditure 
+
+perio_expenditure_wide <- read_csv("outputs_forecast/expenditure_summary_forecast_wide.csv") %>%
+  filter(Level ==3) %>%
+  arrange(desc(selected_Mean_total_billions_2021)) %>%
+  slice(1:20) %>%
+  select(iso3c)
+
+top_20_expenditure_df <- perio_expenditure %>%
+  inner_join(perio_expenditure_wide, by = "iso3c") %>%
+  mutate(location_name = fct_reorder(location_name, selected_Mean_total_billions)) %>%
+  mutate(location_name = fct_rev(location_name))
+
+plot_top20_exp <- ggplot(top_20_expenditure_df, aes(x = Year, y = selected_Mean_total_billions, group = location_name)) +
+  geom_line(aes(color = location_name))+
+  geom_point() +
+  geom_ribbon(aes(ymin = selected_Mean_total_billions - selected_SD_total_billions, 
+                  ymax = selected_Mean_total_billions + selected_SD_total_billions, fill = location_name), 
+              alpha = 0.1) +
+  theme_minimal() +
+  theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40)) +
+  labs(
+    y = "Total Periodontitis Expenditure (millions)",
+    color = "Country (top 20 in 2025 periodontitis expenditure) "
+  ) +
+  scale_fill_discrete(guide = "none")  
+
+# Select top 20 countries by 2025 excluding China and USA
+
+top_20_expenditure_df_ex_USA_China <- top_20_expenditure_df %>%
+  filter(!iso3c %in% c("USA","CHN"))
+
+plot_top20_exp_ex_USA_China <- ggplot(top_20_expenditure_df_ex_USA_China, aes(x = Year, y = selected_Mean_total_billions, group = location_name)) +
+  geom_line(aes(color = location_name))+
+  geom_point() +
+  geom_ribbon(aes(ymin = selected_Mean_total_billions - selected_SD_total_billions, 
+                  ymax = selected_Mean_total_billions + selected_SD_total_billions, fill = location_name), 
+              alpha = 0.1) +
+  theme_minimal() +
+  theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40)) +
+  labs(
+    y = "Total Periodontitis Expenditure (millions)",
+    color = "Country (top 20 in 2025 periodontitis expenditure) ex USA, CHN "
+  ) +
+  scale_fill_discrete(guide = "none")  
+
+#-----------------------------------------------------------------------------------------------------------------
+
+# Select top 20 countries by 2050 periodontitis counts to assess population changes
+
+
+#Select top 20 countries by perio case counts to assess population changes
+
+top_20_perio_count_df <- read_csv("outputs_forecast/perio_prevalence_count_2021_2050") %>%
+  filter(Level == 3) %>%
+  arrange(desc(.data[["2050"]])) %>%
+  slice(1:20) %>%
+  mutate(iso3c = countrycode(location_name, origin = "country.name", destination = "iso3c")) %>%
+  select(iso3c)
+
+top_20_count_df_joined <- perio_expenditure %>%
+  inner_join(top_20_perio_count_df, by = "iso3c") %>%
+  mutate(location_name = fct_reorder(location_name, selected_Mean_total_billions)) %>%
+  mutate(location_name = fct_rev(location_name))
+
+
+plot_top20_pop <- ggplot(top_20_count_df_joined, aes(x = Year, y = selected_Mean_total_billions, group = location_name)) +
+  geom_line(aes(color = location_name))+
+  geom_point() +
+  geom_ribbon(aes(ymin = selected_Mean_total_billions - selected_SD_total_billions, 
+                  ymax = selected_Mean_total_billions + selected_SD_total_billions, fill = location_name), 
+              alpha = 0.1) +
+  theme_minimal() +
+  theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40)) +
+  labs(
+    y = "Prevalence counts (millions)",
+    color = "Country (top 20 in periodontitis prevalence counts by 2050)"
+  ) +
+  scale_fill_discrete(guide = "none")  
+
+#Select top 20 countries by perio case counts to assess population changes excluding USA and China
+
+top_20_count_df_joined_USA_China <- top_20_count_df_joined %>%
+  filter(!iso3c %in% c("USA","CHN"))
+
+plot_top20_pop_ex_USA_China <- ggplot(top_20_count_df_joined_USA_China, aes(x = Year, y = selected_Mean_total_billions, group = location_name)) +
+  geom_line(aes(color = location_name))+
+  geom_point() +
+  geom_ribbon(aes(ymin = selected_Mean_total_billions - selected_SD_total_billions, 
+                  ymax = selected_Mean_total_billions + selected_SD_total_billions, fill = location_name), 
+              alpha = 0.1) +
+  theme_minimal() +
+  theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40)) +
+  labs(
+    y = "Prevalence counts (millions)",
+    color = "Country (top 20 in periodontitis prevalence counts) ex USA, CHN"
+  ) +
+  scale_fill_discrete(guide = "none")  
+
+plot_patchwork_exp <- (plot_global_cost + plot_superregion_cost + plot_top20_exp + plot_top20_exp_ex_USA_China + plot_top20_pop + plot_top20_pop_ex_USA_China) +
+  plot_layout(ncol = 2, nrow = 3)
+
+# plot_patchwork_pop
+
+ggsave("outputs_forecast/patchwork_expenditure.pdf", plot_patchwork_exp, width = 25, height = 20, dpi = 300)
+
+

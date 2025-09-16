@@ -1,3 +1,10 @@
+# ------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------------------
+# Individual year forecasts 2025-2030
+# ------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------------------
+
+
 # -----------------------------------------------------------------------------------------
 # 1. Forecast for 2025
 # -----------------------------------------------------------------------------------------
@@ -1747,3 +1754,49 @@ write_csv(
 
 write_csv(global_severity, "outputs_2050/global_severity.csv")
 write_csv(global_procedure, "outputs_2050/global_procedure.csv")
+
+
+
+
+
+# ------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------------------
+# 1. Bind all rows for forecast
+# ------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------
+# 1. Load Packages and Data
+# ------------------------------------------------------------------------
+
+library(tidyverse)
+
+summary_2021 <- read_csv("outputs/short_final_selected_output.csv") %>%
+  mutate(Year = 2021)
+summary_2025 <- read_csv("outputs_2025/short_final_selected_output.csv") %>%
+  mutate(Year = 2025)
+summary_2030 <- read_csv("outputs_2030/short_final_selected_output.csv") %>%
+  mutate(Year = 2030)
+summary_2035 <- read_csv("outputs_2035/short_final_selected_output.csv") %>%
+  mutate(Year = 2035)
+summary_2040 <- read_csv("outputs_2040/short_final_selected_output.csv") %>%
+  mutate(Year = 2040)
+summary_2045 <- read_csv("outputs_2045/short_final_selected_output.csv") %>%
+  mutate(Year = 2045)
+summary_2050 <- read_csv("outputs_2050/short_final_selected_output.csv") %>%
+  mutate(Year = 2050)
+
+full_forecast <- bind_rows(summary_2021, summary_2025, summary_2030, summary_2035, summary_2040,
+                           summary_2045, summary_2050)
+
+full_forecast_wide <- full_forecast %>%
+  pivot_wider (
+    names_from = Year,
+    values_from = c(selected_Mean_total_billions, selected_SD_total_billions,
+                     selected_Mean_perio_billions, selected_SD_perio_billions,
+                     selected_Mean_replace_billions, selected_SD_replace_billions)
+) %>%
+  relocate(starts_with("selected"), .after = Superregion)
+
+write_csv(full_forecast, "outputs_forecast/expenditure_summary_forecast.csv")
+write_csv(full_forecast_wide, "outputs_forecast/expenditure_summary_forecast_wide.csv")
