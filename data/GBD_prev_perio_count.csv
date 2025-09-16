@@ -1,0 +1,817 @@
+measure_id,measure_name,location_id,location_name,sex_id,sex_name,age_id,age_name,cause_id,cause_name,metric_id,metric_name,year,val,upper,lower
+5,Prevalence,18,Thailand,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,11829054.229428316,14514573.328668157,9466031.639681166
+5,Prevalence,17,Sri Lanka,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2022140.0081243156,2658731.293793852,1481668.043668462
+5,Prevalence,34,Azerbaijan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1218877.9319455351,1573231.0773707458,911907.8016619352
+5,Prevalence,33,Armenia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,356734.3549206412,449692.6432873411,268781.4514037744
+5,Prevalence,16,Philippines,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3805439.044476523,4688830.898583628,3031749.8469987605
+5,Prevalence,14,Maldives,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,38396.23512268613,53524.45492993615,27295.020075920336
+5,Prevalence,32,Central Asia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,9005490.523662504,11750808.893595964,6640328.869494569
+5,Prevalence,15,Myanmar,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3646236.089230822,4849842.425703391,2617287.417141048
+5,Prevalence,30,Vanuatu,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,4406.541021224334,6319.458425809198,3146.570449366164
+5,Prevalence,13,Malaysia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2488546.7641415675,3271223.615920742,1849045.0704609607
+5,Prevalence,31,"Central Europe, Eastern Europe, and Central Asia",3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,57497012.64771173,71821054.7960777,44610397.10146046
+5,Prevalence,29,Tonga,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1985.0021867950848,2721.813194973816,1417.771131222573
+5,Prevalence,12,Lao People's Democratic Republic,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,338619.1064870389,459101.2632204176,232033.63849526792
+5,Prevalence,10,Cambodia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1518824.344654632,1995925.722732027,1081626.5920248851
+5,Prevalence,27,Samoa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3780.9089624143207,5161.84746095268,2646.318391766993
+5,Prevalence,11,Indonesia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,41014678.70060799,50701864.73757552,30942525.68459981
+5,Prevalence,28,Solomon Islands,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,8940.06924158529,12919.12513363446,6147.526071940744
+5,Prevalence,9,Southeast Asia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,74747686.27608113,88527198.07615823,61840624.03096129
+5,Prevalence,26,Papua New Guinea,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,150395.5108319093,217155.69235739764,104032.55567305388
+5,Prevalence,25,Micronesia (Federated States of),3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1835.1066464273592,2612.5444134687878,1271.9345275428643
+5,Prevalence,8,Taiwan (Province of China),3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3658321.93062322,4587873.180192793,2748684.265139795
+5,Prevalence,24,Marshall Islands,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,974.8496625673162,1365.68167913531,672.1341440963754
+5,Prevalence,40,Turkmenistan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,498871.3882053186,665196.7371811138,371763.4580067588
+5,Prevalence,7,Democratic People's Republic of Korea,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2234849.090171946,3078491.9781878386,1539659.7712725797
+5,Prevalence,5,East Asia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,226131458.3922714,265720506.27502567,187514178.059008
+5,Prevalence,6,China,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,220238287.3714764,258996015.0875743,183074952.70579475
+5,Prevalence,23,Kiribati,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1727.5776684386346,2481.9846429532063,1188.902726127766
+5,Prevalence,38,Mongolia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,294869.21525133983,397811.3367930869,212748.50416070787
+5,Prevalence,22,Fiji,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,22928.828767146897,31775.016780574668,16119.496407574765
+5,Prevalence,39,Tajikistan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,622468.2115643811,846846.4848649283,441108.78841128846
+5,Prevalence,20,Viet Nam,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,7737647.004764401,10253345.422132846,5575959.751113877
+5,Prevalence,19,Timor-Leste,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,61249.604984270285,82017.77438356951,45002.63134392553
+5,Prevalence,4,"Southeast Asia, East Asia, and Oceania",3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,301103997.60157233,355769094.7196895,248681440.73226956
+5,Prevalence,50,Montenegro,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,78581.38889618158,99766.4266534433,59505.622937000175
+5,Prevalence,35,Georgia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,463108.7035288333,579376.7151334907,356754.75599996943
+5,Prevalence,1,Global,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1066953744.4798794,1234839286.7091706,896546186.1376615
+5,Prevalence,49,North Macedonia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,277591.086516268,355661.1042554828,206270.31922687253
+5,Prevalence,37,Kyrgyzstan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,482441.5922511532,645597.4343281663,349760.2418739145
+5,Prevalence,48,Hungary,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,702307.4510080535,948708.9268884512,506776.786031433
+5,Prevalence,36,Kazakhstan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2066326.1616487063,2674206.9917936423,1538303.957211278
+5,Prevalence,21,Oceania,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,224852.9332194477,320104.6494558061,159646.96650374142
+5,Prevalence,65,High-income Asia Pacific,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,27856862.95443087,33670443.30525837,21561597.60375955
+5,Prevalence,66,Brunei Darussalam,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,42460.55838389541,56484.28683161449,31483.739399625105
+5,Prevalence,44,Bosnia and Herzegovina,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,438060.6631532163,556906.9310711579,324671.80148475704
+5,Prevalence,46,Croatia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,788907.6308057742,953029.3473607928,641461.5097641471
+5,Prevalence,64,High-income,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,151681708.91426423,179049064.96941215,122811454.48585176
+5,Prevalence,47,Czechia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1637567.385475599,2043346.0620436904,1267225.64066347
+5,Prevalence,63,Ukraine,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,6409560.230748839,7913929.910739125,4889199.8094825
+5,Prevalence,62,Russian Federation,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,22296854.638843928,27588890.15746929,17493527.60604713
+5,Prevalence,43,Albania,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,320795.41722554143,411139.29215172434,243473.64617176453
+5,Prevalence,42,Central Europe,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,16809304.95461332,20827562.690349694,13162272.57051104
+5,Prevalence,45,Bulgaria,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,791513.4497193216,1025194.401460864,575355.9990571019
+5,Prevalence,61,Republic of Moldova,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,485261.9698671553,619601.5459948053,355226.09227102686
+5,Prevalence,41,Uzbekistan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3001792.964346597,3979809.447110569,2151242.859404497
+5,Prevalence,57,Belarus,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1463364.883161896,1810726.5523020152,1122186.5868751977
+5,Prevalence,59,Latvia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,325777.4398359621,395585.6053501586,254100.03956109344
+5,Prevalence,60,Lithuania,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,481973.82194117375,582910.4899976928,383992.6229764195
+5,Prevalence,58,Estonia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,219424.18503696355,267022.55036031525,174808.96531948965
+5,Prevalence,78,Denmark,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1564149.868946124,1768362.5361514743,1364941.3821895183
+5,Prevalence,77,Cyprus,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,162787.11440626948,215533.8924095064,118608.51409830824
+5,Prevalence,56,Eastern Europe,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,31682217.16943593,39210887.94781246,24748360.909574647
+5,Prevalence,76,Belgium,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2309493.9418638423,2709725.0068578776,1880742.877353748
+5,Prevalence,75,Austria,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1198999.7533980566,1536564.2952678143,902424.635409947
+5,Prevalence,74,Andorra,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,13470.13980845141,17233.44969795364,10076.554276285457
+5,Prevalence,55,Slovenia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,402911.0780136095,487531.6998571953,323899.8087973652
+5,Prevalence,73,Western Europe,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,59818460.75973,72065116.18852022,47909448.83636239
+5,Prevalence,68,Republic of Korea,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,6953476.998674784,8693851.591284972,5220188.882348215
+5,Prevalence,53,Serbia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1166040.763919062,1477556.797051781,880901.6234088904
+5,Prevalence,81,Germany,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,19878956.982279304,23129256.93737955,16669883.26946886
+5,Prevalence,79,Finland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1043319.5310506176,1253181.5807225988,847688.0032839054
+5,Prevalence,82,Greece,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1391412.4908040352,1816223.176002311,1051524.4255518806
+5,Prevalence,72,New Zealand,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,843240.5164314323,1021498.2257502448,669929.8848323688
+5,Prevalence,52,Romania,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2766674.9974600817,3458630.24687499,2119248.38154937
+5,Prevalence,71,Australia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3136689.8612380344,4056205.2250732826,2327566.9170474983
+5,Prevalence,54,Slovakia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,779838.0953139114,981511.9000771224,594307.0570091722
+5,Prevalence,80,France,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,6879080.797008914,8954565.829285935,5123976.360449368
+5,Prevalence,69,Singapore,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,788837.3093658206,1008013.8419453228,594423.4186330088
+5,Prevalence,51,Poland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,6413850.318150769,7872761.987126494,5057859.891168607
+5,Prevalence,70,Australasia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3979930.377669469,5074698.031982101,3016540.66619299
+5,Prevalence,67,Japan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,20072088.08800633,24356032.09880431,15783256.983394288
+5,Prevalence,98,Chile,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3253543.595925125,3955132.713794413,2579964.37492892
+5,Prevalence,97,Argentina,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,6260215.927709746,7951423.847302804,4673548.322687784
+5,Prevalence,94,Switzerland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1305038.5857333725,1644448.4342064604,995938.846218552
+5,Prevalence,96,Southern Latin America,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,10195931.039253527,12687198.014771895,7826310.911777349
+5,Prevalence,95,United Kingdom,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,5448250.443400851,6875270.070698967,4267900.069390707
+5,Prevalence,114,Haiti,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1157289.9736009054,1609318.1726009778,821740.70609104
+5,Prevalence,113,Guyana,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,102094.24509885068,128120.26868718569,77967.17635274385
+5,Prevalence,93,Sweden,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1551094.9381592846,1877129.8997873687,1201076.559209634
+5,Prevalence,112,Grenada,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,17082.834124987658,20885.66276493868,13439.865580684307
+5,Prevalence,92,Spain,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1689390.7454360542,2332685.3533082763,1217257.4384185392
+5,Prevalence,110,Dominica,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,11171.571650976512,13712.799997601112,8822.533566554272
+5,Prevalence,91,Portugal,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1413273.112368001,1829112.6344790035,1062822.3647582566
+5,Prevalence,111,Dominican Republic,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1591604.3194029522,1960891.3766551972,1245522.3913508873
+5,Prevalence,109,Cuba,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2149315.8634445947,2630178.137981603,1706330.444649927
+5,Prevalence,90,Norway,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1117575.7849956302,1313952.7683590562,912862.8618026266
+5,Prevalence,89,Netherlands,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2179195.9711743523,2819983.3440934345,1631692.514363404
+5,Prevalence,88,Malta,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,61176.12143277487,77774.07841573728,46914.62578001359
+5,Prevalence,108,Belize,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,53008.9731326889,66921.66395691081,40292.90821519597
+5,Prevalence,107,Barbados,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,58897.6941661933,69999.20892373179,47612.249180178565
+5,Prevalence,87,Luxembourg,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,90679.88382972416,114975.64802004903,67604.40403209472
+5,Prevalence,105,Antigua and Barbuda,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,16880.43019230605,20203.37242325452,13341.608657085184
+5,Prevalence,86,Italy,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,9146806.597944405,11464359.229308218,7017498.5979432855
+5,Prevalence,85,Israel,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,900798.271224299,1165768.7314757733,673677.6606179379
+5,Prevalence,106,Bahamas,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,70351.95134792267,85246.2942250248,56029.89424828945
+5,Prevalence,83,Iceland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,42367.45933029037,53715.06234013267,31887.37886025686
+5,Prevalence,84,Ireland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,366284.8212751814,491133.7001216483,263943.6922938775
+5,Prevalence,103,Latin America and Caribbean,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,85327652.45602283,99739379.7211329,71337113.21891585
+5,Prevalence,104,Caribbean,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,7100122.6440919535,8746368.575652177,5546934.016475839
+5,Prevalence,99,Uruguay,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,681608.7958065652,806843.2159053123,555560.7990359939
+5,Prevalence,102,United States of America,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,42434308.29832275,50221307.20976495,34984164.987678684
+5,Prevalence,100,High-income North America,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,49830523.78318026,58185120.62770468,41176016.11567672
+5,Prevalence,129,Honduras,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1034410.4938609876,1363781.7086866095,772534.6475960031
+5,Prevalence,130,Mexico,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,19952694.20054634,23108434.223091908,16658934.426997548
+5,Prevalence,101,Canada,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,7387513.344535938,8803878.559364887,6106135.14981339
+5,Prevalence,126,Costa Rica,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,791415.3892510951,962588.5318539238,628709.8024790202
+5,Prevalence,128,Guatemala,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1740575.828516585,2198936.438235321,1318297.7570322924
+5,Prevalence,127,El Salvador,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,823631.3151600831,1027697.7768412968,633110.279742741
+5,Prevalence,146,Lebanon,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,710801.9697019081,932772.818890568,533485.3078066711
+5,Prevalence,125,Colombia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,7959558.2579596285,9705112.709211528,6240567.704943557
+5,Prevalence,115,Jamaica,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,427609.9036657156,534358.9018802982,328887.2118372405
+5,Prevalence,145,Kuwait,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,808329.8302864871,1042827.8751022592,617317.5889969078
+5,Prevalence,144,Jordan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1226573.7796648997,1628195.8462140472,890254.5411113633
+5,Prevalence,124,Central Latin America,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,38015444.98286872,44833315.8511599,31266039.50677924
+5,Prevalence,122,Ecuador,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2128515.095821606,2681556.680020457,1617151.8813496782
+5,Prevalence,123,Peru,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,4291795.894327363,5484063.569730576,3315284.9082976244
+5,Prevalence,140,Bahrain,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,239785.9780652389,311862.9417535956,178969.48874984868
+5,Prevalence,116,Saint Lucia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,33010.45910233665,40367.15001103682,25886.743228301217
+5,Prevalence,143,Iraq,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,4058385.967840565,5421997.676267743,2976363.774389538
+5,Prevalence,117,Saint Vincent and the Grenadines,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,19070.73068633364,23268.975221600187,14942.099990140414
+5,Prevalence,118,Suriname,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,93896.23452104378,113454.629668592,73252.6060665794
+5,Prevalence,121,Bolivia (Plurinational State of),3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1215094.847038315,1593127.151854519,902350.8296596817
+5,Prevalence,142,Iran (Islamic Republic of),3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,11963221.80695825,14461388.854182228,9411959.35881339
+5,Prevalence,141,Egypt,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,9941893.96291807,13260646.596135436,7255242.744428312
+5,Prevalence,139,Algeria,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,5119711.744500701,6708009.481549788,3817959.60540961
+5,Prevalence,138,North Africa and Middle East,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,69332502.55798236,86046285.40209188,54652561.54199995
+5,Prevalence,120,Andean Latin America,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,7635405.837187279,9742368.880367856,5817557.573698087
+5,Prevalence,134,Tropical Latin America,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,32576678.991874915,38858743.73379071,26186797.076099604
+5,Prevalence,119,Trinidad and Tobago,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,279988.0749371448,333050.0974224346,224730.03691040425
+5,Prevalence,136,Paraguay,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,819556.3047056021,1063180.74841318,611708.948922551
+5,Prevalence,135,Brazil,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,31757122.68716929,38026130.21272856,25420508.146878023
+5,Prevalence,133,Venezuela (Bolivarian Republic of),3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,4263516.064805544,5221137.881495229,3325335.9972282667
+5,Prevalence,151,Qatar,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,543947.1059828217,706824.6928847361,399866.5638682472
+5,Prevalence,137,North Africa and Middle East,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,69332502.55798236,86046285.40209188,54652561.54199995
+5,Prevalence,152,Saudi Arabia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3389775.8136177068,4872664.569828945,2286391.5805657087
+5,Prevalence,162,Bhutan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,152537.66911428643,180845.7603592882,122026.4527936216
+5,Prevalence,158,South Asia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,313142938.9102758,362379652.2672551,260920583.1743265
+5,Prevalence,161,Bangladesh,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,30518640.826063085,36675109.91963574,24018937.99683868
+5,Prevalence,149,Palestine,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,375812.4453540229,510138.6411093911,271230.9301266726
+5,Prevalence,131,Nicaragua,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,775270.40629689,994726.2449154488,585604.067440329
+5,Prevalence,132,Panama,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,674373.0264715502,820862.9214718344,539001.7481025015
+5,Prevalence,160,Afghanistan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1432631.8243276954,2004967.5666264943,997496.6019554234
+5,Prevalence,156,United Arab Emirates,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2016734.2741167948,2647908.6815834614,1475007.140844454
+5,Prevalence,159,South Asia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,313142938.9102758,362379652.2672551,260920583.1743265
+5,Prevalence,153,Syrian Arab Republic,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1478696.3217467463,1915018.733448874,1102691.5059393423
+5,Prevalence,155,Türkiye,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,12670144.619769208,15822488.916440343,9968430.322704216
+5,Prevalence,150,Oman,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,615680.5874973849,838583.1799216331,435480.6768759609
+5,Prevalence,157,Yemen,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2203511.5229242267,3050862.2168520084,1569855.2615545266
+5,Prevalence,147,Libya,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,834968.2942105451,1121239.0896834063,609499.1001385266
+5,Prevalence,154,Tunisia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1611847.252046877,2073891.952782625,1215482.351652815
+5,Prevalence,178,Eritrea,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,452056.2229867384,649698.7655107937,315086.10413081216
+5,Prevalence,148,Morocco,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,5470005.114540824,6716680.797679285,4294194.286307916
+5,Prevalence,177,Djibouti,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,119958.96039767293,167720.7130844533,82676.93304062005
+5,Prevalence,176,Comoros,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,67331.90023624565,91747.2183469872,48673.729363071936
+5,Prevalence,175,Burundi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,660630.7399744887,934510.2870392784,459206.4911559152
+5,Prevalence,174,Eastern Sub-Saharan Africa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,33791770.43833627,41126306.86356984,27088782.97503175
+5,Prevalence,173,Gabon,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,190323.24069927688,248648.5110820169,137803.6461076603
+5,Prevalence,172,Equatorial Guinea,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,130973.96534133196,174534.4180187668,95952.2015193478
+5,Prevalence,171,Democratic Republic of the Congo,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,4687390.51888179,6591349.2150766775,3220153.7512408243
+5,Prevalence,170,Congo,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,476336.3744761232,653090.824072434,336307.2450346764
+5,Prevalence,168,Angola,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2222931.960623467,3014744.152747649,1604817.8927993034
+5,Prevalence,191,Zambia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1329334.7417361776,1859576.7185958908,918538.0920883112
+5,Prevalence,192,Southern Sub-Saharan Africa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3929519.8301529433,4999650.599315193,3029724.14669054
+5,Prevalence,166,Sub-Saharan Africa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,88867931.39205062,105026553.2929093,73305040.12067759
+5,Prevalence,189,United Republic of Tanzania,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,4050068.691186382,5520820.865531421,2897251.004071947
+5,Prevalence,195,Namibia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,117594.7008302537,158839.70406050642,80420.08774224894
+5,Prevalence,190,Uganda,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2407142.285581619,3379812.3906656303,1712740.2748549748
+5,Prevalence,169,Central African Republic,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,281303.57452475175,402754.37274262,193534.80096251937
+5,Prevalence,184,Mozambique,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1628725.308373333,2260738.436360857,1172515.5684322696
+5,Prevalence,186,Seychelles,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,10534.845133557646,13747.077355064666,7757.604067752874
+5,Prevalence,164,Nepal,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3504886.4327219604,4633496.657102935,2532661.56870969
+5,Prevalence,167,Central Sub-Saharan Africa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,7989259.634546732,11025202.635542523,5587544.547595443
+5,Prevalence,194,Lesotho,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,68995.2937325827,92695.55582159178,47378.66360395575
+5,Prevalence,187,Somalia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,687293.0138055045,988086.4611743914,471761.4662787812
+5,Prevalence,185,Rwanda,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,961840.2815076635,1337342.6056964886,671185.3533237036
+5,Prevalence,193,Botswana,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,92047.502320011,130283.8208509123,62616.2600003913
+5,Prevalence,165,Pakistan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,40838387.01605196,47244424.98952344,33813784.757817745
+5,Prevalence,180,Kenya,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,6444965.738363791,7846618.680609225,5052434.141648749
+5,Prevalence,181,Madagascar,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,711061.3738792305,1011469.1057700902,494250.4581214988
+5,Prevalence,183,Mauritius,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,132063.09305068533,170977.36200774796,96636.2179515169
+5,Prevalence,182,Malawi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1057443.3374276203,1506385.7835534858,749778.5441431496
+5,Prevalence,163,India,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,238128486.9663244,274680069.5990852,198522214.3339479
+5,Prevalence,210,Liberia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,871727.5586457636,1055948.9882650084,678239.7623861546
+5,Prevalence,211,Mali,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3371384.717507725,4022980.722144638,2637761.6306826486
+5,Prevalence,179,Ethiopia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,12587645.176111933,15455462.137205156,9588925.107814576
+5,Prevalence,209,Guinea-Bissau,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,232221.36198167247,296041.9726755307,175467.0519821312
+5,Prevalence,208,Guinea,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2029047.422214966,2423991.763559458,1608793.468473414
+5,Prevalence,206,Gambia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,431119.578472712,499940.0581631027,359149.32864928164
+5,Prevalence,207,Ghana,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,6550037.630533327,7684181.59293206,5391886.572310573
+5,Prevalence,204,Chad,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1699563.0937202785,2174717.444466628,1297314.7669719649
+5,Prevalence,205,Côte d'Ivoire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3726629.747495429,4599866.774446666,2890924.7320701405
+5,Prevalence,261,Southern Africa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,10167955.178313527,13456732.125226803,7560505.795115588
+5,Prevalence,254,Northern Africa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,23548196.16761678,30540409.43683277,17800938.646032326
+5,Prevalence,198,Zimbabwe,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,457883.29995925113,613583.5680358585,309754.0423981459
+5,Prevalence,203,Cabo Verde,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,140190.53401015903,160640.0886200398,119245.77649511628
+5,Prevalence,248,Eastern Africa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,31784191.078733493,37799484.6608272,26100429.762003813
+5,Prevalence,242,Sub-Saharan Africa - WB,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,91416023.63786907,107865446.1056321,75520105.87303048
+5,Prevalence,197,Eswatini,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,50785.248153058215,69524.27295411885,35376.88986533848
+5,Prevalence,199,Western Sub-Saharan Africa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,43157381.489014775,49756993.20014541,36619999.191533536
+5,Prevalence,200,Benin,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1556702.6939554017,1938717.8172536269,1200599.393175139
+5,Prevalence,202,Cameroon,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,5235971.553991871,6211402.11755346,4255673.845538789
+5,Prevalence,244,South Asia - WB,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,316636106.97785044,366469643.6181516,263612097.12803975
+5,Prevalence,201,Burkina Faso,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3394559.413073991,4050578.249864471,2708332.147046972
+5,Prevalence,196,South Africa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3142213.785157784,4064806.5625553736,2339728.816440603
+5,Prevalence,243,Middle East & North Africa - WB,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,53691617.12502874,67027918.10449927,42135353.8606972
+5,Prevalence,217,Sierra Leone,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1715067.1841992252,1966810.0788284384,1496565.8915810045
+5,Prevalence,241,Latin America & Caribbean - WB,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,95265909.33918092,111439047.50674242,79324667.76677619
+5,Prevalence,216,Senegal,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2103346.865605223,2617243.781419245,1650641.8417039146
+5,Prevalence,218,Togo,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1067984.7483185865,1333776.7988380785,810238.4210128351
+5,Prevalence,240,Europe & Central Asia - WB,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,128161771.09709564,156470215.9661257,101719113.4598799
+5,Prevalence,239,East Asia & Pacific - WB,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,330917297.4272617,387596172.6767575,274372330.469986
+5,Prevalence,214,Nigeria,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,7420694.124049625,10490208.785851495,5185844.457729549
+5,Prevalence,396,San Marino,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,4870.822994694119,6183.650707209965,3704.898903751384
+5,Prevalence,215,Sao Tome and Principe,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,32361.930699262823,40012.69203365783,25497.5079707973
+5,Prevalence,213,Niger,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1008497.9694470438,1422843.5214170106,717976.786441829
+5,Prevalence,212,Mauritania,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,569769.7993997753,699363.621853986,448059.5401246075
+5,Prevalence,393,Saint Kitts and Nevis,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,11685.385141775168,14229.830654185009,9287.721226673084
+5,Prevalence,367,Monaco,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,7318.8447504059,8831.023509617238,5824.251627979048
+5,Prevalence,369,Nauru,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,202.84217705737595,290.9921970308826,137.43415907767667
+5,Prevalence,385,Puerto Rico,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,729776.9050306969,853168.527988984,603641.0351462376
+5,Prevalence,374,Niue,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,56.58983217899986,78.53884928289946,39.86852562887708
+5,Prevalence,376,Northern Mariana Islands,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1921.648833467492,2685.618585405773,1309.648353621193
+5,Prevalence,380,Palau,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,699.3052164762022,975.0748834774332,484.9124599592508
+5,Prevalence,263,Western Africa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,35619211.54951083,41249296.50069784,30096574.452363007
+5,Prevalence,305,Bermuda,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,16835.4781498904,19408.40909035343,14032.91013895884
+5,Prevalence,351,Guam,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,7222.254782262064,9655.57513057944,5114.638772777336
+5,Prevalence,320,Cook Islands,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,784.7976009538482,1089.0244186680757,552.3840795713529
+5,Prevalence,298,American Samoa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,6625.530563575183,8167.45871003105,5062.371283698457
+5,Prevalence,489,Northern Cape,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,79056.9664478242,107384.86324512024,55882.54790873872
+5,Prevalence,488,North-West,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,256368.87211239105,333610.10430192726,182701.41506060827
+5,Prevalence,349,Greenland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,7920.72938046365,10082.828845267402,6031.908590580708
+5,Prevalence,487,Mpumalanga,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,380673.7173066933,490879.3633164271,270875.86805105326
+5,Prevalence,486,Limpopo,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,236481.15637179805,318021.34621885023,168530.492442704
+5,Prevalence,484,Gauteng,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,851616.3645255617,1186717.3458805014,586303.616061371
+5,Prevalence,485,KwaZulu-Natal,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,489067.2215479681,675080.5125544181,347455.42220826674
+5,Prevalence,482,Eastern Cape,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,294995.3824244701,401496.8125868755,210259.16065114568
+5,Prevalence,435,South Sudan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,596853.9020473176,826296.5445685006,421788.63820560335
+5,Prevalence,483,Free State,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,147543.4978089412,203462.93291109655,103265.78681877944
+5,Prevalence,433,Northern Ireland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,129099.380723365,174528.17894466955,93550.33184960284
+5,Prevalence,478,World Bank Regions,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1065927382.725296,1233605169.683796,895790774.0575085
+5,Prevalence,479,WHO region,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1061756915.06332,1229076990.564984,891663358.2992785
+5,Prevalence,434,Scotland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,388322.65563977184,526758.5445854452,278478.785837459
+5,Prevalence,422,United States Virgin Islands,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,20275.658561184817,23563.59133493751,16893.123670644905
+5,Prevalence,416,Tuvalu,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,235.62230193798885,327.16400772744043,165.55764242629527
+5,Prevalence,413,Tokelau,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,34.68206237664927,47.04006060123099,24.502647075367268
+5,Prevalence,537,Indiana,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,784573.3183094858,996276.6005880232,590685.2319557299
+5,Prevalence,536,Illinois,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1559447.31775248,1982782.5364027647,1180743.1383154672
+5,Prevalence,534,Hawaii,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,187022.91823036305,233602.3666689117,144126.40071955882
+5,Prevalence,535,Idaho,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,206503.5831898571,260606.22630385016,156791.08777916376
+5,Prevalence,490,Western Cape,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,406410.6066121364,554203.4257531686,284731.1455146811
+5,Prevalence,533,Georgia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1205496.6910435746,1522935.972506789,910541.60504078
+5,Prevalence,531,District of Columbia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,90810.44653907116,113721.05593391634,68649.05385159179
+5,Prevalence,530,Delaware,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,126118.6057421814,157618.59440547437,96265.9567955462
+5,Prevalence,553,New Jersey,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1209172.5592877218,1522948.232311593,917785.2843138538
+5,Prevalence,529,Connecticut,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,527711.3422830574,657630.9945897884,405925.4963333701
+5,Prevalence,524,Alaska,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,90882.6589984358,113554.84291598389,69182.08860311988
+5,Prevalence,522,Sudan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2555375.594445141,3380796.790012326,1823065.0707632692
+5,Prevalence,532,Florida,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3044172.366731349,3789527.851873775,2276362.3280237284
+5,Prevalence,552,New Hampshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,205158.68643840228,255107.7844872897,157218.03514765037
+5,Prevalence,527,California,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,5204288.262057344,6471208.301818185,3907138.856666423
+5,Prevalence,551,Nevada,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,365137.28280461166,469523.65793012746,273819.9578636737
+5,Prevalence,525,Arizona,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,919950.2589481006,1154589.725758405,694066.5014630791
+5,Prevalence,528,Colorado,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,768761.1259996182,949638.6095563428,580145.697820341
+5,Prevalence,550,Nebraska,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,228897.32972500083,287815.6218520752,174971.22099153337
+5,Prevalence,523,Alabama,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,623135.9782020473,786024.0475006081,465498.6355329732
+5,Prevalence,526,Arkansas,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,369308.29664021527,465349.60497919365,277200.5769575096
+5,Prevalence,549,Montana,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,146897.83167523623,183772.12661425225,111499.1842109284
+5,Prevalence,548,Missouri,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,726097.160019236,922897.127437204,547164.1106291332
+5,Prevalence,546,Minnesota,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,717813.2824195295,900567.0371769583,542915.1608865532
+5,Prevalence,547,Mississippi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,319004.1957259737,413119.2303888215,235508.92187724667
+5,Prevalence,545,Michigan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1249580.8896137483,1596981.8558814053,944814.4613467172
+5,Prevalence,544,Massachusetts,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,933347.932761636,1163501.0204385794,707280.5070167296
+5,Prevalence,541,Louisiana,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,562958.5871959296,709520.2334940792,420988.1586923111
+5,Prevalence,542,Maine,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,181772.21476167665,229032.32115058484,138636.37662613275
+5,Prevalence,543,Maryland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,775458.9283714556,987266.6969602038,587060.6259602366
+5,Prevalence,540,Kentucky,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,502358.7692926797,639367.1398909253,373489.3701435512
+5,Prevalence,539,Kansas,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,366301.4485435561,454729.72455135896,279558.1922409729
+5,Prevalence,558,Ohio,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1433940.8080064151,1811026.89234454,1093821.8022023863
+5,Prevalence,568,Vermont,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,92760.48435573834,116790.80653648169,69757.10323583483
+5,Prevalence,567,Utah,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,320146.782915858,411798.8383690658,240467.22379627608
+5,Prevalence,538,Iowa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,338528.4863908332,493825.2728629366,209652.69988489116
+5,Prevalence,566,Texas,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3524571.1267916057,4421619.396270178,2646059.7494944283
+5,Prevalence,569,Virginia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1069536.5736913988,1350068.9451429602,809475.3146515271
+5,Prevalence,562,Rhode Island,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,143770.4131551434,181112.57074524843,108878.1911240856
+5,Prevalence,565,Tennessee,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,785193.3194329999,991790.8442227204,581930.2961015983
+5,Prevalence,560,Oregon,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,542922.7233278881,681939.955860215,411313.0154438344
+5,Prevalence,557,North Dakota,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,93293.92983172716,116724.10783167485,71547.13637038649
+5,Prevalence,563,South Carolina,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,609254.7409863167,780273.7778969808,465621.0350576424
+5,Prevalence,564,South Dakota,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,104575.7411221652,130829.55845362798,79921.43232353401
+5,Prevalence,559,Oklahoma,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,475751.3647207232,600180.6006511021,358193.2227766037
+5,Prevalence,556,North Carolina,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1448478.1004811702,1782267.0770697058,1108644.6449233214
+5,Prevalence,561,Pennsylvania,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1772233.4497007793,2204573.200523831,1341600.2925406448
+5,Prevalence,4644,Baja California,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,620574.0184798129,765028.8337695779,484118.3520636642
+5,Prevalence,554,New Mexico,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,247555.37673937363,312268.2546682842,188765.1547659711
+5,Prevalence,4643,Aguascalientes,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,212560.4219019024,262573.7130193111,165213.858550791
+5,Prevalence,555,New York,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3391636.685166717,4070892.782877985,2726906.4341945
+5,Prevalence,4636,Wales,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,225460.05023956168,303166.65013599454,165173.97644450708
+5,Prevalence,4625,South East England,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,917771.2633620416,1223154.037661994,647313.0155548546
+5,Prevalence,4626,South West England,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,524397.1830769825,645500.9806302486,406124.5132271363
+5,Prevalence,4624,Greater London,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,691245.1896974023,886752.0572372631,524551.8368932919
+5,Prevalence,4623,East of England,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,517184.53476445575,675016.2057526576,383297.1456835873
+5,Prevalence,4621,East Midlands,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,386633.28993474174,507208.63451697485,280913.8017106047
+5,Prevalence,4619,North West England,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,575682.0793709765,761674.5819659708,421129.93721336056
+5,Prevalence,4622,West Midlands,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,454442.7690760313,596911.4893625575,332952.15672426
+5,Prevalence,4620,Yorkshire and the Humber,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,428837.00167732633,561823.7172759168,313788.9615471516
+5,Prevalence,4657,México,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2663100.0014587594,3275445.3556577293,2090448.0700153236
+5,Prevalence,4659,Morelos,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,311251.8294402006,379741.4829463327,244681.3458269515
+5,Prevalence,4655,Hidalgo,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,466141.65469479415,574837.1609278133,364182.6936966362
+5,Prevalence,573,Wyoming,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,75324.21322636901,92921.62909848128,57176.99393347222
+5,Prevalence,4656,Jalisco,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1301948.9358530226,1583095.9265160984,1023122.9182974251
+5,Prevalence,4652,Durango,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,267038.7049212668,329104.1364133623,209682.40990128665
+5,Prevalence,4658,Michoacán de Ocampo,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,690052.0052295391,844780.982535944,544814.5230561765
+5,Prevalence,4654,Guerrero,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,475135.9648544789,590230.7663418334,369479.7929098507
+5,Prevalence,571,West Virginia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,207850.21403037655,265763.30393423967,155293.40570520514
+5,Prevalence,4618,North East England,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,209175.04583818972,275668.9867877282,153253.9421032604
+5,Prevalence,4660,Nayarit,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,195985.83664529945,226661.93408204956,164689.63016066008
+5,Prevalence,4651,Mexico City,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1738419.7122321916,2107043.352938614,1378592.1707031073
+5,Prevalence,4653,Guanajuato,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,955649.3746430348,1097858.3022627395,806641.4739001938
+5,Prevalence,572,Wisconsin,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,584699.1695362913,866878.8452601141,385675.88893780776
+5,Prevalence,570,Washington,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,974144.3254092676,1231892.3202401337,736843.1712946221
+5,Prevalence,4650,Chihuahua,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,587575.0565457138,721212.2645182996,455220.8677615232
+5,Prevalence,4648,Colima,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,118513.29703874837,145627.7649292229,92151.68640287092
+5,Prevalence,4649,Chiapas,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,681887.7848220143,863186.8156579395,524439.9323764913
+5,Prevalence,4647,Coahuila,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,510045.7868089201,590843.1434382664,430829.8096047555
+5,Prevalence,4710,North Sumatra,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2129093.2732936563,2665845.1107367417,1586940.9849564224
+5,Prevalence,4646,Campeche,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,143636.1381881346,174984.55302999268,111736.43337044696
+5,Prevalence,4709,Aceh,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,749504.8586291445,934711.5480939802,562039.0659748858
+5,Prevalence,4674,Zacatecas,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,246599.9743422545,301904.16006765305,189776.39020782892
+5,Prevalence,4645,Baja California Sur,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,137503.1827286789,168750.45427142095,105830.65112011248
+5,Prevalence,4673,Yucatán,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,387973.4760137376,474222.17894015234,294816.24677950103
+5,Prevalence,4672,Veracruz de Ignacio de la Llave,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1327116.7641846004,1618759.4139860566,1012829.1856198407
+5,Prevalence,4671,Tlaxcala,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,205492.0078516917,252142.3866568658,155733.9270619275
+5,Prevalence,4669,Tabasco,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,378535.5183443976,464605.573949732,289960.38283396
+5,Prevalence,4726,Bali,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,683393.3084052643,842999.4656697973,514136.4337782565
+5,Prevalence,4670,Tamaulipas,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,602015.7658918418,729106.203182404,475531.7253391348
+5,Prevalence,4668,Sonora,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,505138.20410379657,612865.5260426856,392523.4218331474
+5,Prevalence,4725,Banten,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1704702.2412946187,2139378.385724753,1256759.1112314966
+5,Prevalence,4667,Sinaloa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,510407.58818840166,618504.1409020219,400955.21817912254
+5,Prevalence,4724,East Java,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,6645772.680449073,8212522.621689185,5133495.186505626
+5,Prevalence,4722,Central Java,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,5596490.413473216,6915568.065081671,4219899.037248052
+5,Prevalence,4664,Querétaro,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,399956.2159522945,490393.0188791053,309338.830841922
+5,Prevalence,4723,Yogyakarta,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,583323.7615883186,719799.7357585786,449596.8691119662
+5,Prevalence,4665,Quintana Roo,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,309769.8996298689,380912.7988482887,236120.97920562048
+5,Prevalence,4666,San Luis Potosí,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,448678.43650972086,550445.9272667185,343365.12180599786
+5,Prevalence,4662,Oaxaca,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,612194.1485336444,746863.994391988,466006.9840126105
+5,Prevalence,4663,Puebla,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,985303.2123130304,1209798.8499572235,752580.5027699657
+5,Prevalence,4720,Jakarta,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1938967.8193590164,2343855.500879379,1525489.524576012
+5,Prevalence,4661,Nuevo León,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,956493.2822005362,1163814.941729602,755340.7203593287
+5,Prevalence,4719,North Kalimantan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,126228.09773434052,152992.74039861688,98703.41478541234
+5,Prevalence,4718,Riau Islands,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,336999.0602322448,418948.6191650992,258480.8497653561
+5,Prevalence,4721,West Java,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,7319783.622456628,9111197.081770342,5554314.824031463
+5,Prevalence,4716,Lampung,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1304053.4709381305,1638853.729595691,960125.2926718874
+5,Prevalence,4717,Bangka-Belitung Islands,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,223080.23466542817,278229.5257542562,166217.3910505562
+5,Prevalence,4714,South Sumatra,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1263483.619649654,1564210.085851431,962029.1275478536
+5,Prevalence,4713,Jambi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,513116.8321143917,641783.8001535726,379614.44534474966
+5,Prevalence,4715,Bengkulu,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,278443.73966766166,349574.2738870841,205163.08468711784
+5,Prevalence,4742,Papua,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,667260.8967615356,838053.2533820753,494680.66267117474
+5,Prevalence,4712,Riau,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1036151.0132382744,1260657.2191626653,789229.3880997491
+5,Prevalence,4741,West Papua,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,175461.07198795915,218285.8069417037,131158.74870989157
+5,Prevalence,4738,West Sulawesi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,178256.96410258778,225656.5948858203,129131.90452508508
+5,Prevalence,4740,North Maluku,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,151374.17833503446,194072.43767743872,110269.5108636817
+5,Prevalence,4737,Gorontalo,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,152767.60024304222,193741.72030113297,112440.07326102308
+5,Prevalence,4730,Central Kalimantan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,396439.3911440896,494239.1965546375,294166.6187785759
+5,Prevalence,4739,Maluku,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,221976.58153291084,283567.5124941198,159106.0041607378
+5,Prevalence,4736,Southeast Sulawesi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,346853.5313071954,435227.2700368542,256515.9224506268
+5,Prevalence,4729,West Kalimantan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,767006.4679730233,954147.0883764448,567891.6201293359
+5,Prevalence,4711,West Sumatra,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,816114.8452365942,1010820.958355761,621996.2538875819
+5,Prevalence,4728,East Nusa Tenggara,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,625530.3404868122,796636.3544536557,461135.6916999408
+5,Prevalence,4734,Central Sulawesi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,410537.4358334888,514748.9079906866,304313.5446641409
+5,Prevalence,4732,East Kalimantan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,673570.4150588134,814632.8527621455,529171.7496352114
+5,Prevalence,4733,North Sulawesi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,400761.6926086192,492575.8901410457,304103.64707059134
+5,Prevalence,4731,South Kalimantan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,578819.6855437193,721896.029729955,433091.8543017496
+5,Prevalence,4761,Mato Grosso do Sul,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,423445.19760428136,530496.8806916045,323195.6403935667
+5,Prevalence,4762,Mato Grosso,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,547215.5185019,681445.3676454965,420844.1925351509
+5,Prevalence,4735,South Sulawesi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1301439.7332215928,1609310.7717360929,971300.3006986412
+5,Prevalence,4727,West Nusa Tenggara,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,717919.8220418801,898733.2274230241,534639.6048409989
+5,Prevalence,4760,Minas Gerais,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3306164.44878327,4130817.811386307,2512189.3896616874
+5,Prevalence,4759,Maranhão,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,890954.077237627,1135359.0764020449,661931.5372050186
+5,Prevalence,4757,Espírito Santo,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,637509.0147365282,793695.7252457491,488635.9307143471
+5,Prevalence,4758,Goiás,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1040543.2876057052,1300766.2874786044,787350.8592642919
+5,Prevalence,4756,Distrito Federal,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,525814.2032232225,638576.7960472703,408893.6522832214
+5,Prevalence,4755,Ceará,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1292250.499199983,1635214.5459615267,971039.7958085848
+5,Prevalence,4751,Alagoas,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,444173.2082982138,563767.1688396161,331219.6764387235
+5,Prevalence,4754,Bahia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2153806.7234432856,2714753.4590110206,1624825.2643237452
+5,Prevalence,4753,Amapá,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,102370.95348366669,130145.135991533,75155.82611896578
+5,Prevalence,4749,England,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,4705368.356798146,5846272.794832015,3722148.2611516095
+5,Prevalence,4752,Amazonas,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,521261.69519434986,651736.4125376516,388632.9915090923
+5,Prevalence,4750,Acre,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,107838.23431745624,136898.89673484289,79366.34859679204
+5,Prevalence,4842,Arunachal Pradesh,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,251857.54394517865,309902.67056224577,193796.55946815835
+5,Prevalence,4774,Sergipe,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,314414.847729249,373550.5862215189,254337.55166483964
+5,Prevalence,4841,Andhra Pradesh,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,10321984.076129902,12405508.299713934,8134753.690381301
+5,Prevalence,4775,São Paulo,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,6788763.713911356,8043361.143687231,5588260.2137753
+5,Prevalence,4771,Roraima,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,68193.95848522933,89458.06938093592,50561.30700719949
+5,Prevalence,4770,Rondônia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,236216.99070163767,302170.92639783013,180756.6832011409
+5,Prevalence,4773,Santa Catarina,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1130073.8737998777,1422988.8094983436,879606.2623741403
+5,Prevalence,4743,European Union,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,66236848.52413815,79761549.21744584,53035739.73203592
+5,Prevalence,4776,Tocantins,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,199220.86686601775,260439.4850052917,148515.7508870226
+5,Prevalence,4745,League of Arab States,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,44646191.233300135,57547489.97312956,33585038.6476898
+5,Prevalence,4772,Rio Grande do Sul,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1930365.0707724744,2348525.1972248224,1536683.7290844847
+5,Prevalence,4768,Rio de Janeiro,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3277461.4971726323,3930026.204805985,2621728.9812999936
+5,Prevalence,4766,Pernambuco,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1360948.7855395605,1711104.575427095,1011608.2909282922
+5,Prevalence,4767,Piaui,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,447972.981221419,575557.8547662713,327601.29101263755
+5,Prevalence,4769,Rio Grande do Norte,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,509341.0685077989,638190.1631486351,375196.2686988177
+5,Prevalence,4763,Pará,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1123431.813432512,1418669.2432042034,839325.354307238
+5,Prevalence,4861,Manipur,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,568703.2284964616,698364.9991430268,436060.4575501998
+5,Prevalence,4862,Meghalaya,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,506443.3800689985,600872.8777737063,403249.7376618326
+5,Prevalence,4765,Paraná,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1809965.1896180685,2231931.934330913,1387879.6592589323
+5,Prevalence,4860,Maharashtra,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,24811905.2514376,28563448.499151096,21149462.45005258
+5,Prevalence,4859,Madhya Pradesh,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,14333849.117801622,16732003.238505132,11680121.55197815
+5,Prevalence,4764,Paraíba,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,567404.9677820099,723630.9818399518,425207.6578833783
+5,Prevalence,4854,Jammu & Kashmir and Ladakh,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2252169.177005386,2774406.9040623745,1738222.268641243
+5,Prevalence,4856,Karnataka,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,13466919.671722582,15483319.705449495,11375075.309680646
+5,Prevalence,4857,Kerala,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,7457048.203083387,8814195.456224333,6039745.615355093
+5,Prevalence,4855,Jharkhand,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,5893327.401473484,6879063.631523842,4761946.976553946
+5,Prevalence,4926,Nordland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,50328.66913512972,59436.3363976243,41124.16526538236
+5,Prevalence,4923,Møre og Romsdal,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,55279.09584755012,64642.33593186999,45236.83016238103
+5,Prevalence,4920,Rogaland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,96533.25331524183,114595.40491301008,78518.7910540408
+5,Prevalence,4852,Haryana,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,5926748.747907752,6895094.00413182,4834117.839309687
+5,Prevalence,4853,Himachal Pradesh,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1619108.009125804,1912511.3837784224,1306451.053939893
+5,Prevalence,4850,Goa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,330890.9577181869,389933.1741985851,268649.2271449982
+5,Prevalence,4849,Delhi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3620557.111207101,4345804.866908863,2858190.4180436158
+5,Prevalence,4910,Oslo,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,142298.24894587373,171900.07737912942,113482.98599826616
+5,Prevalence,4875,West Bengal,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,18060068.801496096,21876975.301161245,14164394.912978852
+5,Prevalence,4846,Chhattisgarh,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,5354984.76380962,6258216.557555558,4341238.610402901
+5,Prevalence,4873,Uttar Pradesh,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,34048390.59440594,40396250.26066595,27764631.62104377
+5,Prevalence,4851,Gujarat,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,12307385.832224311,14880468.734303504,9734714.557620589
+5,Prevalence,4872,Tripura,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,714705.0248160898,872850.4879784398,559562.8961263573
+5,Prevalence,4874,Uttarakhand,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2133970.2727894937,2453788.790997207,1791825.6495184912
+5,Prevalence,4868,Rajasthan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,12579236.934537131,14733520.143597212,10427727.20619376
+5,Prevalence,4870,Tamil Nadu,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,16419432.077760693,18707759.808308203,14083576.265970446
+5,Prevalence,4843,Assam,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,5713471.092255565,6670547.512645041,4690190.52268742
+5,Prevalence,4871,Telangana,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,7202372.082885194,8723470.190647557,5678675.838726671
+5,Prevalence,4844,Bihar,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,16474640.530970726,20045347.98980847,12745967.25403686
+5,Prevalence,4869,Sikkim,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,136011.78554048442,155216.5588219969,116530.96075375457
+5,Prevalence,4865,Odisha,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,8059311.759926162,9773778.209301766,6326282.44488702
+5,Prevalence,4867,Punjab,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,6273384.72791795,7172917.094438515,5322383.724856722
+5,Prevalence,4863,Mizoram,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,217693.52758101423,250911.7369663593,180754.6727943949
+5,Prevalence,35432,Tochigi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,314824.6954926452,380919.70116950985,248045.50760944805
+5,Prevalence,4864,Nagaland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,295620.6822675482,342992.91263395967,248828.96977428973
+5,Prevalence,35431,Ibaraki,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,468348.676287798,570368.2337995428,370341.6738075095
+5,Prevalence,35430,Fukushima,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,301469.8303027298,365032.2335964859,235935.2032039369
+5,Prevalence,35429,Yamagata,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,175538.85559585076,214020.58240174575,139067.68455821794
+5,Prevalence,35428,Akita,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,163659.48746429483,199161.69153644767,129738.6953720984
+5,Prevalence,35427,Miyagi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,340466.60404502257,420049.7466982149,266944.6575906909
+5,Prevalence,35424,Hokkaidō,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,850025.0547338297,1034688.9693786677,665404.9714865652
+5,Prevalence,35426,Iwate,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,199925.2985772513,242283.50778105005,157841.6642729994
+5,Prevalence,35425,Aomori,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,204832.259187552,248845.01484383555,160247.61602756806
+5,Prevalence,35448,Shiga,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,219502.695579711,269237.9587238665,173218.19176994325
+5,Prevalence,35446,Aichi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1189325.1622321703,1457375.4529864509,939545.2628302088
+5,Prevalence,4940,Sweden except Stockholm,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1203014.4483618732,1456151.3484353342,937812.949596119
+5,Prevalence,4944,Stockholm,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,348080.4897974095,433148.3960941484,267280.11557793955
+5,Prevalence,35445,Shizuoka,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,600746.2552944925,727833.788433902,467898.635756733
+5,Prevalence,35447,Mie,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,290425.08540721104,354018.94498841587,232101.2093617553
+5,Prevalence,35444,Gifu,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,316387.912854877,389321.9737662443,247429.3936284802
+5,Prevalence,35442,Yamanashi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,132094.76739954323,160045.7279954899,103360.64802049668
+5,Prevalence,35443,Nagano,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,337592.40223659674,411691.983697411,264999.0926939662
+5,Prevalence,35441,Fukui,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,124267.40851112288,151783.4717833047,98211.67842721668
+5,Prevalence,35439,Toyama,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,172510.4221213517,211449.13554744484,136490.0936487047
+5,Prevalence,35438,Niigata,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,368734.66463309247,446291.8438072908,291481.977111486
+5,Prevalence,35440,Ishikawa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,179914.4266581187,218525.8394549228,141870.04877313523
+5,Prevalence,35436,Tōkyō,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2304630.221495345,2794911.4412697963,1795196.6989486276
+5,Prevalence,35434,Saitama,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1124282.695935562,1369851.6053125055,877504.3369880298
+5,Prevalence,35461,Ehime,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,217930.1223806297,266950.5669334985,170685.36299712933
+5,Prevalence,35437,Kanagawa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1434428.706057207,1750423.1665224712,1110560.3999306965
+5,Prevalence,35462,Kōchi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,113440.5786999174,137683.90929385854,89647.31538695996
+5,Prevalence,35457,Hiroshima,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,442484.6862998832,542372.5693273917,351343.2964374509
+5,Prevalence,35433,Gunma,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,317591.6098867181,387069.16452267,248075.603606864
+5,Prevalence,35464,Saga,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,125438.48496359053,153767.62325020146,97545.37548047087
+5,Prevalence,35460,Kagawa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,154524.3314855231,187477.50303087127,123545.9737151876
+5,Prevalence,35435,Chiba,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,971017.1898376972,1183735.033440394,756184.3275708298
+5,Prevalence,35459,Tokushima,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,120340.07032195384,146098.8694882288,95181.41835803752
+5,Prevalence,35458,Yamaguchi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,223115.16998071485,273807.62570427783,177666.98784450535
+5,Prevalence,35463,Fukuoka,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,780566.416020615,948842.1472249962,614072.9418333934
+5,Prevalence,35456,Okayama,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,299140.3812706794,364009.68217083777,236419.76946489984
+5,Prevalence,35453,Wakayama,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,151774.31873683256,184997.26946460837,119966.09718598828
+5,Prevalence,35455,Shimane,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,109204.41205756812,132274.93213838403,86813.30631491102
+5,Prevalence,35454,Tottori,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,86934.74311223332,106478.17132983512,68211.61611040906
+5,Prevalence,35452,Nara,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,206107.85993711196,253985.74942939205,162992.03522253857
+5,Prevalence,35503,Toscana,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,595435.3819740898,736819.6033523954,465437.6575175972
+5,Prevalence,35450,Ōsaka,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1389210.7807297276,1709494.161378804,1094858.1958646355
+5,Prevalence,35502,Emilia-Romagna,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,725208.466697451,897086.8524049926,555492.697555618
+5,Prevalence,35501,Friuli-Venezia Giulia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,194423.3645702288,239876.2311179543,150716.0560648173
+5,Prevalence,35449,Kyōto,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,405985.48127848713,493808.8843607332,322462.8866181488
+5,Prevalence,35451,Hyōgo,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,860041.1846001013,1054233.8685818464,671467.8484362074
+5,Prevalence,35497,Lombardia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1572747.4782685805,1950393.42924506,1199624.198631368
+5,Prevalence,35500,Veneto,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,775247.8826068753,967985.1240674662,607158.9853697573
+5,Prevalence,35499,Provincia autonoma di Trento,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,84877.74902000636,106334.04858119792,64576.46536525088
+5,Prevalence,35498,Provincia autonoma di Bolzano,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,80627.0665990576,100179.9126519567,61608.51402538965
+5,Prevalence,35496,Liguria,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,253218.4168254805,311739.7004130023,196105.60424391087
+5,Prevalence,35495,Valle d'Aosta,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,20178.7646679102,25115.5223087575,15560.748271175598
+5,Prevalence,35494,Piemonte,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,688670.2145538693,862194.0165135266,531767.938552139
+5,Prevalence,35621,Elgeyo-Marakwet,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,54731.10248950592,67396.76021707176,41871.51296166907
+5,Prevalence,35619,Bungoma,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,202051.5789475637,251876.35175731892,155827.42485818846
+5,Prevalence,35469,Kagoshima,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,251888.0997157572,307076.131824564,198997.1777087191
+5,Prevalence,35620,Busia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,106501.708308079,130638.28712285755,84093.77235017656
+5,Prevalence,35470,Okinawa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,202047.313354146,250723.64808898355,154926.79761133168
+5,Prevalence,35468,Miyazaki,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,168948.12994128818,207301.15165320123,133049.36215379328
+5,Prevalence,35511,Basilicata,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,82402.94471413367,102286.33615315586,62919.045280681166
+5,Prevalence,35514,Sardegna,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,251449.7029250182,317292.3583557349,191579.4859206238
+5,Prevalence,35617,Baringo,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,73455.97535513324,90806.56790503408,56897.58097664336
+5,Prevalence,35618,Bomet,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,106392.19638422728,131660.33526734257,83538.66862329171
+5,Prevalence,35465,Nagasaki,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,208855.64533176352,253949.7028403908,163462.70894649503
+5,Prevalence,35466,Kumamoto,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,269476.2188533144,329464.08233120025,213077.3671720973
+5,Prevalence,35513,Sicilia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,690124.3773454722,874348.7623824829,527051.8503785465
+5,Prevalence,35467,Ōita,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,182091.27110672108,221882.0741807719,142566.0696018606
+5,Prevalence,35512,Calabria,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,266663.8102332857,337148.7584157933,206875.29925417347
+5,Prevalence,35509,Campania,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,772804.1198381294,995244.7517755082,577711.7844319721
+5,Prevalence,35510,Puglia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,573152.2907184846,725730.3123155627,434545.0040311674
+5,Prevalence,35506,Lazio,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,895473.0014518296,1111096.7911463447,690174.4930318664
+5,Prevalence,35507,Abruzzo,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,199717.68007279356,249631.17090188537,154243.59434033342
+5,Prevalence,35508,Molise,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,44798.85998268462,57228.34865257077,34621.41681129177
+5,Prevalence,35504,Umbria,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,139188.8056669144,173009.38908451656,107009.23449599132
+5,Prevalence,35637,Lamu,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,20176.13173085323,24777.20771407865,15817.07495939328
+5,Prevalence,35635,Kwale,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,106992.19164854044,132387.69156296493,83142.50768266522
+5,Prevalence,35636,Laikipia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,77426.13117208153,94198.83481752,61558.093276484666
+5,Prevalence,35505,Marche,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,240396.2192121053,299491.29194399755,186092.2831869893
+5,Prevalence,35634,Kitui,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,149713.8364036994,180961.7400809744,118919.26231920428
+5,Prevalence,35633,Kisumu,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,148798.4665055854,183632.1104778408,114429.75531606891
+5,Prevalence,35631,Kirinyaga,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,110952.65678978986,132474.73099365807,87851.3587135008
+5,Prevalence,35632,Kisii,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,172045.36141458026,211785.3067913337,133486.66341877717
+5,Prevalence,35629,Kiambu,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,397346.7869594159,497870.84614538617,306015.68910019903
+5,Prevalence,35652,Nyeri,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,130246.28712203828,156095.53132637692,103439.34416637964
+5,Prevalence,35622,Embu,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,102002.27544121035,122096.91935638472,81296.38807330633
+5,Prevalence,35628,Kericho,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,127414.75477681147,157943.11069414264,99322.06760868868
+5,Prevalence,35630,Kilifi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,185819.84782880332,229794.79278089333,144673.75307154696
+5,Prevalence,35653,Samburu,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,30180.14742476724,38287.76309144193,22859.19786638811
+5,Prevalence,35624,Homa Bay,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,137044.2897383023,169728.54571583332,104613.48202321993
+5,Prevalence,35650,Nyamira,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,90013.23149612283,109050.04861824072,70037.29737240424
+5,Prevalence,35627,Kakamega,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,222008.7087498713,271241.5948942997,174752.20238502056
+5,Prevalence,35626,Kajiado,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,167278.21610353768,205190.0122802414,126614.56119719034
+5,Prevalence,35651,Nyandarua,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,95087.60936856136,114508.80568629155,75386.63996531842
+5,Prevalence,35649,Narok,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,116267.77718864828,145306.6515953535,88633.09866860053
+5,Prevalence,35644,Mombasa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,181847.55451716777,226602.58592072976,140268.81574034342
+5,Prevalence,35647,Nakuru,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,298010.9573628238,366415.85117377865,230696.9978820521
+5,Prevalence,35648,Nandi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,115959.00439788008,141656.96618214756,90186.11731795306
+5,Prevalence,35625,Isiolo,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,31200.91691318525,39632.49087303139,23483.22974483326
+5,Prevalence,35646,Nairobi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,709685.7826106898,868866.2568566062,543226.6170261977
+5,Prevalence,35645,Murang'a,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,176547.93753588223,210611.8334532292,140390.36813228362
+5,Prevalence,35623,Garissa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,90590.63439493296,113519.07738475905,68298.94015620096
+5,Prevalence,35643,Migori,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,124856.39760519809,154879.606158646,96362.46226651577
+5,Prevalence,35641,Marsabit,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,49431.865067244784,62274.99975832975,37831.930971301525
+5,Prevalence,35642,Meru,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,227592.5181932516,276219.6870117851,180243.61966588272
+5,Prevalence,35640,Mandera,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,63437.39100852083,81018.23116962114,47348.76140183464
+5,Prevalence,35638,Machakos,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,230764.8838470862,280567.0535465126,181131.4377951131
+5,Prevalence,35639,Makueni,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,143188.9984142158,172799.18370309996,112825.19451276035
+5,Prevalence,35661,Vihiga,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,78385.19420885056,93647.33439404314,62832.02781880517
+5,Prevalence,35660,Uasin Gishu,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,161665.57427441247,200746.81212883996,124877.55607462372
+5,Prevalence,44561,Asia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,684742467.033426,789391279.5637186,585462506.2536154
+5,Prevalence,35663,West Pokot,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,57248.77468165737,71000.42123626062,43378.91749555779
+5,Prevalence,35657,Tharaka Nithi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,73500.62528067327,88385.1446216331,57939.13100685201
+5,Prevalence,35655,Taita Taveta,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,52500.55213464774,63487.40194091731,41552.57639251884
+5,Prevalence,44560,America,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,144337678.41844776,168169222.16588527,121259563.52334976
+5,Prevalence,35662,Wajir,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,73091.83522152988,93250.977908689,54531.77294864942
+5,Prevalence,44559,Africa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,114514408.96648388,135832038.1909752,93696587.50677654
+5,Prevalence,35658,Trans Nzoia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,119840.92583752278,145937.98472852004,93296.70703114546
+5,Prevalence,35659,Turkana,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,93905.29982593095,118245.63870053402,70391.92680713917
+5,Prevalence,35654,Siaya,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,129160.00678855204,157541.74438901388,100072.15545834418
+5,Prevalence,35656,Tana River,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,32604.83889420647,40557.41396473658,24914.89390293327
+5,Prevalence,44538,Other Union Territories,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,776294.5980169505,929258.996312529,616829.3657633946
+5,Prevalence,44536,Commonwealth Middle Income,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,308513346.2839407,355276735.8515623,257247298.23170227
+5,Prevalence,44537,Commonwealth Low Income,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,48783893.65270275,58762717.84611566,37989858.91262308
+5,Prevalence,44535,Commonwealth High Income,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,18319293.650113937,22170308.38173421,14746368.025741078
+5,Prevalence,44590,Four World Regions,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1065423192.4053864,1233057638.7487278,895334288.0340028
+5,Prevalence,44534,Commonwealth,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,375616533.58675694,435805268.3625737,311696612.0104996
+5,Prevalence,44587,African Union,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,114514408.96648388,135832038.1909752,93696587.50677653
+5,Prevalence,44586,G20,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,750519650.2695403,865192857.0113944,638985281.8609378
+5,Prevalence,44584,OECD Countries,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,195934492.92565915,230929381.59337413,160424599.04789755
+5,Prevalence,44568,Western Pacific Region,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,268457979.7354691,314996957.37843055,222598845.29315248
+5,Prevalence,44566,European Region,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,129393415.8468886,158046927.7942832,102661859.41567484
+5,Prevalence,44565,South-East Asia Region,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,333151155.8518941,383097373.4148732,279610550.07039464
+5,Prevalence,44567,Eastern Mediterranean Region,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,93123618.43650132,110036597.6115953,75902003.02433848
+5,Prevalence,44651,Middlesbrough,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,9693.692834701167,12895.076500375017,7028.541576413165
+5,Prevalence,44562,Europe,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,121828637.98702864,148011517.64491212,97123140.58145006
+5,Prevalence,44650,Gateshead,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,17060.98230376789,22559.48872830234,12449.14947762187
+5,Prevalence,44564,Region of the Americas,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,144337678.41844776,168169222.16588527,121259563.52334976
+5,Prevalence,44647,North Tyneside,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,17329.933455974307,22977.89418122936,12803.103632523853
+5,Prevalence,44649,County Durham,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,41612.81338189362,55123.72092689909,30353.076102711915
+5,Prevalence,44648,Redcar and Cleveland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,10504.981158720542,13857.133330570185,7733.045275251072
+5,Prevalence,44563,African Region,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,93293066.77411924,109879663.66268174,76820564.25785962
+5,Prevalence,44642,Nordic Region,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,5326428.311862413,6178897.793813985,4420600.77508302
+5,Prevalence,44639,Middle SDI,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,346971125.4950561,402356717.059693,294753120.6412376
+5,Prevalence,44644,Northumberland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,27015.653599121044,35588.92169932349,19752.77965380985
+5,Prevalence,44643,Darlington,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,9353.469436375926,12305.192697330936,6834.245721275376
+5,Prevalence,44646,Newcastle upon Tyne,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,20539.40380574456,27378.319558087063,15227.088065827302
+5,Prevalence,44645,Stockton-on-Tees,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,15445.292304659806,20474.273785742826,11355.31467064366
+5,Prevalence,44667,Oldham,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,15853.62815350372,21230.10869420225,11561.526781850454
+5,Prevalence,44666,Warrington,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,18336.546535708407,24096.220804935365,13429.03612675918
+5,Prevalence,44665,St Helens,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,13731.257273611014,18125.08577868984,9960.631017005931
+5,Prevalence,44638,North America,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,49838657.12100855,58191791.341037184,41183871.58166438
+5,Prevalence,44637,Low SDI,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,101686260.63105768,119217455.6281541,84910681.54585004
+5,Prevalence,44636,Low-middle SDI,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,267767359.9897418,311663136.46748465,222364185.61965647
+5,Prevalence,44634,High-middle SDI,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,190563436.13878608,224654753.3807717,155170166.58815297
+5,Prevalence,44635,High SDI,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,159217667.6266656,186552251.4308859,131067145.649835
+5,Prevalence,44663,Wirral,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,25487.29801388718,33682.684263317045,18592.632684171025
+5,Prevalence,44664,Bury,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,14320.90136010133,18972.027641635832,10473.278011954497
+5,Prevalence,44662,Bolton,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,21224.42478802816,28121.52975105621,15651.297232506447
+5,Prevalence,44661,Cumbria,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,45652.65372916578,60715.73699350848,33924.74971552826
+5,Prevalence,44660,Lancashire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,96226.89294440512,127876.29454666136,69840.82053776989
+5,Prevalence,44657,Trafford,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,20867.77797213112,27349.1499621368,15217.794302124945
+5,Prevalence,44659,Sefton,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,21642.45089250194,28552.32388657477,15708.49683114597
+5,Prevalence,44658,Cheshire West and Chester,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,29667.137967130875,39400.028078402174,21749.04217571453
+5,Prevalence,44653,Sunderland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,22111.423421031683,29043.05684419977,16239.180003935944
+5,Prevalence,44656,Stockport,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,23753.290226534817,31313.114364408502,17449.90334988878
+5,Prevalence,44683,North Lincolnshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,14960.65920579146,19608.09064564235,11008.913963497173
+5,Prevalence,44654,Hartlepool,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,7143.596067547571,9579.700304115362,5158.61340045406
+5,Prevalence,44652,South Tyneside,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,11363.804068651469,15163.018354319458,8292.515880505543
+5,Prevalence,44655,Cheshire East,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,36161.08057795293,47311.19161139634,26590.604314533903
+5,Prevalence,44676,Blackpool,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,10795.082351198258,14513.639317580684,7862.955625111371
+5,Prevalence,44681,North East Lincolnshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,13056.401133914487,17439.445495552132,9708.73060722787
+5,Prevalence,44682,Calderdale,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,17323.721796606715,23206.302140431028,12763.722959343288
+5,Prevalence,44675,Knowsley,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,11511.276682180069,15430.322657844546,8404.278646637482
+5,Prevalence,44680,York,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,16540.186793647525,21898.890684919013,12222.88977292684
+5,Prevalence,44674,Blackburn with Darwen,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,10834.051747829846,14782.297692232403,7937.55868819834
+5,Prevalence,44673,Salford,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,18370.780085830997,24673.79097421024,13417.143558271182
+5,Prevalence,44672,Tameside,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,16993.536417874155,22470.60177623976,12348.33700213633
+5,Prevalence,44671,Liverpool,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,36067.85543341279,48305.16094833375,26463.45504474385
+5,Prevalence,44679,East Riding of Yorkshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,30808.21754962219,40400.97744656011,22841.679556639603
+5,Prevalence,44669,Wigan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,24995.086929020243,33638.03201124929,18129.610510752624
+5,Prevalence,44670,Halton,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,10934.655521893668,14332.799845240284,8016.539718806651
+5,Prevalence,44668,Rochdale,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,15202.36585759044,20268.962457644207,11034.34642002984
+5,Prevalence,44678,North Yorkshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,55381.31078461031,71973.79942474849,41334.58196463832
+5,Prevalence,44677,Manchester,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,37052.04790948343,50307.948211681,26648.5089058339
+5,Prevalence,44695,Lincolnshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,64430.337537128245,85242.82510834397,47608.03873318394
+5,Prevalence,44693,Northamptonshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,60632.87637158981,80669.46514289774,44550.00829235671
+5,Prevalence,44692,Barnsley,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,18728.31813352757,24927.24238396121,13559.859541857442
+5,Prevalence,44689,Rotherham,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,20605.278991334933,27297.532139046158,15102.623406136485
+5,Prevalence,44694,Leicestershire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,57794.20247818726,75572.86110380312,42027.219677999885
+5,Prevalence,44690,Doncaster,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,23881.303306362784,31583.92322029278,17323.07025525144
+5,Prevalence,44688,Wakefield,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,27211.92720779026,36045.07318655863,19669.661457379545
+5,Prevalence,44686,Leeds,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,58754.82432211272,77632.37099452433,42862.14591028217
+5,Prevalence,44691,"Kingston upon Hull, City of",3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,18828.56332785151,25202.87562444529,13739.55151858813
+5,Prevalence,44685,Kirklees,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,33199.91351613287,44161.06334448727,24096.267201158906
+5,Prevalence,44687,Sheffield,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,41331.45733120302,54691.74598689665,30227.050971592504
+5,Prevalence,44684,Bradford,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,38224.91827681773,50858.71856919315,27640.421638656808
+5,Prevalence,44699,Nottinghamshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,66159.14329589016,88553.67598651728,47956.130378195616
+5,Prevalence,44696,Rutland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3423.972215038001,4515.1173279831055,2537.2752070855795
+5,Prevalence,44697,Derby,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,20146.866426943943,26565.95487305105,14618.086578522269
+5,Prevalence,44708,Dudley,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,24408.58737695552,32188.94254832924,17848.21292921812
+5,Prevalence,44714,Birmingham,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,77484.01737397743,103162.88196030771,56846.209261552125
+5,Prevalence,44698,Derbyshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,66950.77709654918,88453.80674538945,48642.09126459594
+5,Prevalence,44713,Wolverhampton,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,19041.45702015621,25224.72010701066,14111.644252842363
+5,Prevalence,44712,Walsall,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,20517.328639099676,27043.615420835195,15071.425937064085
+5,Prevalence,44710,Telford and Wrekin,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,13022.749109931256,17374.067061161688,9516.792248406638
+5,Prevalence,44715,Sandwell,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,23238.586020682244,31305.63475752342,17101.567616513352
+5,Prevalence,44711,Stoke-on-Trent,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,18800.914260292237,25482.327227393675,13596.34962085425
+5,Prevalence,44705,Shropshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,27958.342690433405,36805.78350159696,20330.354475674467
+5,Prevalence,44709,Coventry,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,23300.00364708321,31062.47165473277,16936.81937849398
+5,Prevalence,44707,Staffordshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,71952.64928321411,94478.54513663091,52243.2345480154
+5,Prevalence,44704,Solihull,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,18957.119223151552,24958.511763358227,13940.658593645448
+5,Prevalence,44703,"Herefordshire, County of",3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,16338.469816025055,21335.17358202606,12085.728532166846
+5,Prevalence,44706,Worcestershire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,49400.013261443455,65408.57883861312,36433.22132685248
+5,Prevalence,44700,Nottingham,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,22568.67267535658,30104.09918916145,16432.490836814126
+5,Prevalence,44701,Leicester,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,24526.441838058683,33104.832293694526,17785.944771759958
+5,Prevalence,44730,Westminster,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,24722.063311874223,32329.17870057817,18369.0566631076
+5,Prevalence,44702,Warwickshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,50022.53135358579,66139.376371855,36382.83080066906
+5,Prevalence,44731,Bromley,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,27107.707774600363,36081.93379440496,20107.66094575767
+5,Prevalence,44727,Richmond upon Thames,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,17075.02126127483,22547.12690475632,12382.48586634942
+5,Prevalence,44717,Central Bedfordshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,22676.684950194405,30016.78031021928,16671.55179592111
+5,Prevalence,44716,Bedford,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,13088.338873479588,17242.910485433815,9578.21905709671
+5,Prevalence,44726,Luton,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,14564.886531521322,19686.664682858904,10654.086951001504
+5,Prevalence,44728,Kensington and Chelsea,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,14584.597293616534,19273.59991505956,10659.626771512783
+5,Prevalence,44725,Peterborough,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,16028.627167709,21462.694304137007,11788.699547935696
+5,Prevalence,44718,Suffolk,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,66504.06865841626,87042.99195847538,49667.83365943704
+5,Prevalence,44729,Barnet,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,29124.959544609374,38624.43066903131,21426.866492560664
+5,Prevalence,44719,Hertfordshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,99713.0107502952,131313.99673373278,73824.09467847153
+5,Prevalence,44722,Thurrock,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,12464.53928287887,16593.52411830242,9117.324442556175
+5,Prevalence,44720,Essex,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,122257.83894638762,159904.4643587548,90009.43562686886
+5,Prevalence,44724,Southend-on-Sea,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,14612.136300185795,19332.155395642407,10680.407186962111
+5,Prevalence,44721,Cambridgeshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,57680.875499467016,75166.07605814654,42497.96042723462
+5,Prevalence,44723,Norfolk,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,77593.52780392049,101255.9017924034,57295.02357874245
+5,Prevalence,44741,Enfield,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,23981.53945764913,31936.77566941931,17668.07506251518
+5,Prevalence,44736,Hillingdon,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,24011.495266674563,31880.69730408742,17431.245673751353
+5,Prevalence,44742,Croydon,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,27810.149664836536,37093.49647614313,20349.49750737769
+5,Prevalence,44740,Harrow,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,20184.68088006521,26540.514667655025,14940.156124406369
+5,Prevalence,44737,Havering,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,20064.5655119182,26459.23042633877,14940.27179622002
+5,Prevalence,44738,Kingston upon Thames,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,13170.98695988288,17544.699512152863,9657.545739255896
+5,Prevalence,44732,Bexley,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,18959.918173743252,25208.249453009368,13913.265727954444
+5,Prevalence,44739,Sutton,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,15740.58940017375,21008.303918624475,11543.956760629782
+5,Prevalence,44735,Brent,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,24005.087222306876,32395.16594414294,17371.791170455763
+5,Prevalence,44733,Redbridge,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,20854.752253237188,27853.687192325426,15278.197193001311
+5,Prevalence,44734,Merton,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,15247.796479744273,20424.377092839484,11066.015978555904
+5,Prevalence,44743,Hammersmith and Fulham,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,15146.88222246574,20315.308715259584,10821.686789237585
+5,Prevalence,44751,Hounslow,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,22152.97841429512,29522.44355821966,16052.990470552537
+5,Prevalence,44745,Greenwich,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,18968.52331059032,25768.611031370216,13695.442018153828
+5,Prevalence,44747,Waltham Forest,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,18901.198301367574,25616.525966138463,13660.062760368686
+5,Prevalence,44744,Ealing,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,26062.275294795807,34954.2595099453,18753.067976080245
+5,Prevalence,44746,Wandsworth,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,23771.764739088638,32434.76822662008,16797.111060785963
+5,Prevalence,44753,Newham,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,20916.717507934427,28804.98587891672,14551.06325206853
+5,Prevalence,44754,Barking and Dagenham,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,12235.74359680591,16571.38541335255,8818.030873644093
+5,Prevalence,44758,Tower Hamlets,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,27807.10495133379,36776.54991463826,19535.429402328824
+5,Prevalence,44756,Hackney,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,32978.15806537839,43110.68833105203,22949.54667288327
+5,Prevalence,44762,Windsor and Maidenhead,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,17074.61340490128,22386.34116510707,12031.427648268666
+5,Prevalence,44750,Lewisham,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,19397.250015548376,26076.686955327063,13859.49744189478
+5,Prevalence,44752,Southwark,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,23828.63699001122,32116.82547348132,16822.453365006084
+5,Prevalence,44759,Wokingham,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,17636.577441564594,23597.75582914644,12335.362525184002
+5,Prevalence,44748,Camden,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,21693.018435648995,28283.271499123985,16261.92458114423
+5,Prevalence,44749,Lambeth,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,23505.457501530967,31732.03522863795,16716.622340207345
+5,Prevalence,44757,Islington,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,23769.51590283601,30754.80337770829,16823.84902676884
+5,Prevalence,44755,Haringey,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,23464.05399156355,31739.12083813029,16234.636062366675
+5,Prevalence,44761,Surrey,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,126640.86153430228,168384.2800695473,88404.88714117387
+5,Prevalence,44763,West Berkshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,18664.08662901751,24570.976821615805,13206.407457386777
+5,Prevalence,44760,Buckinghamshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,54527.18610043717,72952.7828980884,38030.03039603633
+5,Prevalence,44779,Dorset,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,39275.097781019234,51690.60567115362,28944.258767364
+5,Prevalence,44765,Bracknell Forest,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,12038.034097379244,16002.579661613629,8431.542591523847
+5,Prevalence,44770,Brighton and Hove,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,21834.388750430546,28879.818923652743,15865.81999848662
+5,Prevalence,44774,Isle of Wight,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,14508.031841393196,19511.149255581884,10153.402645569937
+5,Prevalence,44777,Slough,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,13198.459845338217,16334.043128035588,10553.828529771996
+5,Prevalence,44773,Portsmouth,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,19102.34257083136,25648.0312563162,13500.13938814738
+5,Prevalence,44776,Southampton,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,20874.30638630741,28004.21612463581,14659.983040525183
+5,Prevalence,44764,Hampshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,147462.7873409928,199044.2467290884,101014.30218895907
+5,Prevalence,44778,South Gloucestershire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,28956.801052015733,38398.36118319872,20547.631105586355
+5,Prevalence,44766,West Sussex,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,88905.09194110462,118584.60440109172,60747.32324393324
+5,Prevalence,44775,Milton Keynes,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,28328.725758099103,37349.31508680066,20018.74490580954
+5,Prevalence,44772,East Sussex,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,55461.98523852311,74822.33156045873,38008.91118658405
+5,Prevalence,44768,Reading,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,15382.706005482558,20291.37509650141,10824.042311840894
+5,Prevalence,44771,Medway,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,24153.16771306737,32722.55484470757,16712.259068355852
+5,Prevalence,44769,Kent,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,152360.2059469112,202650.38919758028,105917.03281468396
+5,Prevalence,44767,Oxfordshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,69617.70481595777,92931.35999991206,48794.21215617379
+5,Prevalence,44852,Tigray,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,844720.0908535162,1030973.3534950592,643240.5922289148
+5,Prevalence,44792,Plymouth,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,20453.14366783591,27489.228180737093,14974.409124189511
+5,Prevalence,44791,Cornwall,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,56607.90608668163,76533.93936149066,38966.190244278594
+5,Prevalence,44790,Bournemouth,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,18551.265960995708,24703.447707471583,13184.200294129518
+5,Prevalence,44786,Somerset,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,56553.57518121996,76497.89886684189,39632.44380631362
+5,Prevalence,44789,"Bristol, City of",3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,41213.99584613976,54609.86129496129,29079.51707326272
+5,Prevalence,44788,Torbay,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,12912.780295091476,17493.65770099086,8869.12753929069
+5,Prevalence,44785,Gloucestershire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,54621.292039527325,71915.96942734951,40311.31020081251
+5,Prevalence,44787,Swindon,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,23904.85439629601,32163.13483321784,16476.268217960445
+5,Prevalence,44784,Bath and North East Somerset,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,17408.277588607525,23129.880519006467,12274.273001881313
+5,Prevalence,44782,Devon,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,69016.47427132935,90756.95314606006,50948.84201758118
+5,Prevalence,44869,Chahar Mahaal and Bakhtiari,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,136888.18333017878,172970.25561576994,102767.00017408
+5,Prevalence,44783,Poole,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,16176.532166068331,21568.760637832773,11369.933110866325
+5,Prevalence,44781,North Somerset,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,18786.53178344704,24576.38250624004,14086.745582123787
+5,Prevalence,44868,Bushehr,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,150891.6756489398,200569.72233048515,112369.47579772145
+5,Prevalence,44867,West Azarbayejan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,451694.263171947,566233.7522539485,334854.0465755543
+5,Prevalence,44780,Wiltshire,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,49958.65496070804,67234.56073049668,34730.58990890083
+5,Prevalence,44864,Alborz,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,463013.45894970495,578827.8773526523,352275.2533785596
+5,Prevalence,44861,Addis Ababa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,468674.7562160212,612658.388192246,346400.6987611853
+5,Prevalence,44865,Ardebil,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,173720.82430697404,227373.2679520475,130423.83811995016
+5,Prevalence,44866,East Azarbayejan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,608173.3946260707,763672.5704717009,460814.51214285207
+5,Prevalence,44862,Dire Dawa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,81071.01847847523,97690.24826559029,62762.03563768552
+5,Prevalence,44860,Gambella,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,68357.21777207812,83881.40547096031,50920.660623995325
+5,Prevalence,44859,Harari,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,40821.500737947055,49179.29318288905,31648.942394520916
+5,Prevalence,44858,"Southern Nations, Nationalities, and Peoples",3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2529243.785658132,3146185.1620227005,1900180.5196240912
+5,Prevalence,44857,Benishangul-Gumuz,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,125488.9850467191,156448.02420759184,92543.80479530104
+5,Prevalence,44885,Lorestan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,238876.9502292345,300869.26470368967,174814.47630834463
+5,Prevalence,44855,Oromia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,4473146.976863405,5479123.455377263,3341904.637451685
+5,Prevalence,44884,Kurdistan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,220522.09101230957,288580.64999630995,165185.12065542728
+5,Prevalence,44856,Somali,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,737378.6269089225,918164.9913050624,549654.2827615086
+5,Prevalence,44854,Amhara,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,3033555.5866319183,3747788.7022573855,2324515.752366855
+5,Prevalence,44853,Afar,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,185186.63094479308,232418.39772049448,136275.92378245108
+5,Prevalence,44883,Kohgiluyeh and Boyer-Ahmad,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,90748.78341818514,121774.16955013089,66983.33253937257
+5,Prevalence,44882,Khuzestan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,649249.7945400978,819872.0680756384,488288.63187859405
+5,Prevalence,44881,South Khorasan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,107641.97502961788,135599.07266467367,78904.64292839592
+5,Prevalence,44880,Khorasan-e-Razavi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,900074.7678370426,1131882.9927384297,664584.7699716326
+5,Prevalence,44878,Kermanshah,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,286903.1127024114,360915.2674194691,211793.16887253788
+5,Prevalence,44872,Golestan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,254615.79830786065,324264.8701476371,185042.19523966056
+5,Prevalence,44874,Hormozgan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,215268.6651429477,287763.26517807227,156806.76775505755
+5,Prevalence,44879,North Khorasan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,104769.33088055278,137716.80403196352,77563.54614359382
+5,Prevalence,44877,Kerman,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,392139.4491578891,521870.3425622052,289281.2861431021
+5,Prevalence,44870,Fars,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,709304.2329636579,920044.4188664452,537642.9776496546
+5,Prevalence,44875,Ilam,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,79605.11854752587,106171.86068606567,58505.05689936002
+5,Prevalence,44876,Isfahan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,816678.0108270879,1030319.3609850178,607520.899922554
+5,Prevalence,44873,Hamadan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,250969.10880267265,317029.8979475063,183338.21007915813
+5,Prevalence,53432,Trøndelag,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,93254.93750355464,110149.13701650144,76018.2641250536
+5,Prevalence,44871,Gilan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,433105.42910707457,538388.9567259625,331070.47382241907
+5,Prevalence,44891,Sistan and Baluchistan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,257470.81127690317,331296.09536054736,186042.58892092275
+5,Prevalence,44894,Zanjan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,145455.65745611477,189680.06563703925,109147.30418152084
+5,Prevalence,44893,Yazd,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,150527.04774703382,195683.786059744,113370.21599519029
+5,Prevalence,44892,Tehran,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2399456.5448104385,2971774.842527087,1834468.384349691
+5,Prevalence,44887,Mazandaran,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,574150.4644970864,724345.0939052938,437392.3765781421
+5,Prevalence,44890,Semnan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,109189.52826108893,136686.40368832392,80554.73633734061
+5,Prevalence,44888,Qazvin,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,184407.9754087514,243731.19977159103,137101.20414932945
+5,Prevalence,44886,Markazi,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,214019.91977981583,269308.2903021125,158260.67758539668
+5,Prevalence,44889,Qom,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,193689.43918103125,243164.75002914015,143855.52259918902
+5,Prevalence,60137,Troms og Finnmark,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,66010.94555473026,74158.86044862212,57552.058323570025
+5,Prevalence,60135,Innlandet,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,81369.98060485195,95319.2978506348,66805.62327947581
+5,Prevalence,60136,Viken,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,253413.2989524763,298036.95643812104,206692.8798327386
+5,Prevalence,60134,Vestfold og Telemark,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,88620.63569738848,104130.6715507347,72677.15297865699
+5,Prevalence,60133,Agder,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,60955.36290169218,72239.60295836627,49665.64452093122
+5,Prevalence,53621,Sindh,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,10991253.972592406,12428625.071394414,9527231.462510873
+5,Prevalence,53620,Punjab,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,20480960.27368976,24138166.340408944,16320601.91608575
+5,Prevalence,60132,Vestland,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,129511.35653714194,153047.13209552184,105331.64104603411
+5,Prevalence,53619,Khyber Pakhtunkhwa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,5939322.137606361,7110945.523737617,4732031.0672872905
+5,Prevalence,53618,Islamabad Capital Territory,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,452393.57607783633,534344.9122043571,368462.8973226072
+5,Prevalence,53615,Azad Jammu & Kashmir,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,791678.3707211127,929478.2689455868,642834.6351520249
+5,Prevalence,53617,Gilgit-Baltistan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,284983.2824298288,342389.25339848205,223767.25013012445
+5,Prevalence,95066,Italy Center,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1870493.408304939,2318601.839530921,1447580.938784784
+5,Prevalence,95067,Italy South,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1939539.705559512,2479667.1088317605,1469046.8755985163
+5,Prevalence,95068,Italy Islands,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,941574.0802704906,1189391.1585681003,717712.3038801174
+5,Prevalence,53616,Balochistan,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1897795.402934664,2290182.386715244,1481639.638552185
+5,Prevalence,95064,Italy North-West,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2534814.874315842,3140690.734331785,1945883.4615323625
+5,Prevalence,94366,Sahel Region,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,28918054.24553587,33704229.64015074,24561023.137669858
+5,Prevalence,95065,Italy North-East,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1860384.529493617,2299053.942041028,1433132.4798668846
+5,Prevalence,94217,Gulf Cooperation Council,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,7614253.589566437,10399210.78110412,5421481.092291605
+5,Prevalence,95471,Health System Grouping Levels,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1066205849.8813072,1233952615.7112331,895972768.5602827
+5,Prevalence,95079,Brazil Northeast,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,7981267.15895914,10039011.82851094,5975181.943979154
+5,Prevalence,95080,Brazil Central-West,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2537018.20693511,3154339.8511415604,1925409.4051300164
+5,Prevalence,95082,Brazil Southeast,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,14009898.674603792,16633105.061632574,11369778.15800356
+5,Prevalence,95470,Minimal Health System,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,25433928.961021937,30542026.318005897,20667928.26716999
+5,Prevalence,95081,Brazil South,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,4870404.134190422,5638023.238176763,4117605.144714464
+5,Prevalence,94365,Central Africa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,13394854.99230916,16195730.015641656,10788660.89058951
+5,Prevalence,94215,Organization of Islamic Cooperation,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,233279845.0402216,271411126.1135352,194553690.01876464
+5,Prevalence,95468,Basic Health System,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,430278291.0247759,503792409.4192858,359583884.2582754
+5,Prevalence,94216,Association of Southeast Asian Nations,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,73210343.151541,86448108.44274372,60602261.14165428
+5,Prevalence,95469,Limited Health System,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,393578990.8781977,456122372.5071361,326479323.3754178
+5,Prevalence,95467,Advanced Health System,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,216914639.017312,259554572.23360956,175039795.84665266
+5,Prevalence,95078,Brazil North,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,2358534.5124808666,2853973.4332436305,1842635.3834954167

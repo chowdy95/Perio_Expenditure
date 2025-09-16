@@ -1,0 +1,9 @@
+measure_id,measure_name,location_id,location_name,sex_id,sex_name,age_id,age_name,cause_id,cause_name,metric_id,metric_name,year,val,upper,lower
+5,Prevalence,4,"Southeast Asia, East Asia, and Oceania",3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,301103997.60157233,355769094.7196895,248681440.73226956
+5,Prevalence,64,High-income,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,151681708.91426423,179049064.96941215,122811454.48585176
+5,Prevalence,31,"Central Europe, Eastern Europe, and Central Asia",3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,57497012.64771173,71821054.7960777,44610397.10146046
+5,Prevalence,103,Latin America and Caribbean,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,85327652.45602283,99739379.7211329,71337113.21891585
+5,Prevalence,158,South Asia,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,313142938.9102758,362379652.2672551,260920583.1743265
+5,Prevalence,137,North Africa and Middle East,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,69332502.55798236,86046285.40209188,54652561.54199995
+5,Prevalence,95471,Health System Grouping Levels,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,1066205849.8813072,1233952615.7112331,895972768.5602827
+5,Prevalence,166,Sub-Saharan Africa,3,Both,22,All ages,683,Periodontal diseases,1,Number,2021,88867931.39205062,105026553.2929093,73305040.12067759
