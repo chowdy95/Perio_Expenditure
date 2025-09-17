@@ -1761,12 +1761,12 @@ write_csv(global_procedure, "outputs_2050/global_procedure.csv")
 
 # ------------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------------
-# 1. Bind all rows for forecast
+# 1. Bind all rows for forecast for perio expenditure/population charts
 # ------------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------
-# 1. Load Packages and Data
+# 1. For short selected output (including GBD regions, superregions and countries)
 # ------------------------------------------------------------------------
 
 library(tidyverse)
@@ -1800,3 +1800,142 @@ full_forecast_wide <- full_forecast %>%
 
 write_csv(full_forecast, "outputs_forecast/expenditure_summary_forecast.csv")
 write_csv(full_forecast_wide, "outputs_forecast/expenditure_summary_forecast_wide.csv")
+
+
+# ------------------------------------------------------------------------
+# 2. For assembling full output including various dental utilisation scenarios
+# ------------------------------------------------------------------------
+
+library(tidyverse)
+
+long_summary_2021 <- read_csv("outputs/final_selected_output.csv") %>%
+  mutate(Year = 2021)
+long_summary_2025 <- read_csv("outputs_2025/final_selected_output.csv") %>%
+  mutate(Year = 2025)
+long_summary_2030 <- read_csv("outputs_2030/final_selected_output.csv") %>%
+  mutate(Year = 2030)
+long_summary_2035 <- read_csv("outputs_2035/final_selected_output.csv") %>%
+  mutate(Year = 2035)
+long_summary_2040 <- read_csv("outputs_2040/final_selected_output.csv") %>%
+  mutate(Year = 2040)
+long_summary_2045 <- read_csv("outputs_2045/final_selected_output.csv") %>%
+  mutate(Year = 2045)
+long_summary_2050 <- read_csv("outputs_2050/final_selected_output.csv") %>%
+  mutate(Year = 2050)
+
+long_full_forecast <- bind_rows(long_summary_2021, long_summary_2025, long_summary_2030, long_summary_2035, long_summary_2040,
+                           long_summary_2045, long_summary_2050)
+
+long_full_forecast_wide <- full_forecast %>%
+  pivot_wider (
+    names_from = Year,
+    values_from = c(selected_Mean_total_billions, selected_SD_total_billions,
+                    selected_Mean_perio_billions, selected_SD_perio_billions,
+                    selected_Mean_replace_billions, selected_SD_replace_billions)
+  ) %>%
+  relocate(starts_with("selected"), .after = Superregion)
+
+ write_csv(full_forecast, "outputs_forecast/base_scenario.csv")
+# write_csv(full_forecast_wide, "outputs_forecast/long_expenditure_summary_forecast_wide.csv")
+
+# ------------------------------------------------------------------------
+# 2. For assembling full output including various dental utilisation scenarios
+# ------------------------------------------------------------------------
+
+mid_scenario <- long_full_forecast %>%
+  filter(Year > 2025) %>%
+  mutate(
+    selected_Mean_total_billions = case_when(
+      selected_model == "high" ~ Mean_total_billions_high,
+      selected_model == "mid"  ~ Mean_total_billions_mid,
+      selected_model == "low"  ~ Mean_total_billions_mid,
+      TRUE                     ~ NA_real_
+    ),
+    selected_SD_total_billions = case_when(
+      selected_model == "high" ~ SD_total_billions_high,
+      selected_model == "mid" ~ SD_total_billions_mid,
+      selected_model == "low" ~ SD_total_billions_mid,
+      TRUE ~ NA_real_
+    ),
+    selected_Mean_perio_billions = case_when(
+      selected_model == "high" ~ Mean_perio_billions_high,
+      selected_model == "mid" ~ Mean_perio_billions_mid,
+      selected_model == "low" ~ Mean_perio_billions_mid,
+      TRUE ~ NA_real_
+    ),
+    selected_SD_perio_billions = case_when(
+      selected_model == "high" ~ SD_perio_billions_high,
+      selected_model == "mid" ~ SD_perio_billions_mid,
+      selected_model == "low" ~ SD_perio_billions_mid,
+      TRUE ~ NA_real_
+    ),
+    selected_Mean_replace_billions = case_when(
+      selected_model == "high" ~ Mean_replace_billions_high,
+      selected_model == "mid" ~ Mean_replace_billions_mid,
+      selected_model == "low" ~ Mean_replace_billions_mid,
+      TRUE ~ NA_real_
+    ),
+    selected_SD_replace_billions = case_when(
+      selected_model == "high" ~ SD_replace_billions_high,
+      selected_model == "mid" ~ SD_replace_billions_mid,
+      selected_model == "low" ~ SD_replace_billions_mid,
+      TRUE ~ NA_real_
+    )
+  ) %>%
+  bind_rows(long_summary_2021, long_summary_2025) %>%
+  filter(!Country == "Global") 
+
+global_mid_scenario <- mid_scenario%>%
+  group_by(Year) %>%
+  summarise(
+    Country = "Global",
+    selected_Mean_total_billions = sum(selected_Mean_total_billions, na.rm = TRUE),
+    selected_SD_total_billions = sqrt(sum(selected_SD_total_billions^2, na.rm = TRUE)),
+    selected_Mean_perio_billions = sum(selected_Mean_perio_billions, na.rm = TRUE),
+    selected_SD_perio_billions = sqrt(sum(selected_SD_perio_billions^2, na.rm = TRUE)),
+    selected_Mean_replace_billions = sum(selected_Mean_replace_billions, na.rm = TRUE),
+    selected_SD_replace_billions = sqrt(sum(selected_SD_replace_billions^2, na.rm = TRUE)),
+    selected_model = NA_character_,
+    Dent_exp_usd = NA_real_,
+    Dent_exppc_usd = NA_real_,
+    GDP_per_capita_PPP_2021 = NA_real_
+  )
+
+mid_scenario_full <- mid_scenario %>%
+  bind_rows(global_mid_scenario)
+
+write_csv(mid_scenario_full, "outputs_forecast/mid_scenario.csv")
+
+high_scenario <- long_full_forecast %>%
+  filter(Year>2025) %>%
+  mutate(
+    selected_Mean_total_billions = Mean_total_billions_high,
+    selected_SD_total_billions = SD_total_billions_high,
+    selected_Mean_perio_billions = Mean_perio_billions_high,
+    selected_SD_perio_billions = SD_perio_billions_high,
+    selected_Mean_replace_billions = Mean_replace_billions_high,
+    selected_SD_replace_billions = SD_replace_billions_high
+  ) %>%
+  bind_rows(long_summary_2021, long_summary_2025) %>%
+  filter(!Country == "Global") 
+
+global_high_scenario <- high_scenario%>%
+  group_by(Year) %>%
+  summarise(
+    Country = "Global",
+    selected_Mean_total_billions = sum(selected_Mean_total_billions, na.rm = TRUE),
+    selected_SD_total_billions = sqrt(sum(selected_SD_total_billions^2, na.rm = TRUE)),
+    selected_Mean_perio_billions = sum(selected_Mean_perio_billions, na.rm = TRUE),
+    selected_SD_perio_billions = sqrt(sum(selected_SD_perio_billions^2, na.rm = TRUE)),
+    selected_Mean_replace_billions = sum(selected_Mean_replace_billions, na.rm = TRUE),
+    selected_SD_replace_billions = sqrt(sum(selected_SD_replace_billions^2, na.rm = TRUE)),
+    selected_model = NA_character_,
+    Dent_exp_usd = NA_real_,
+    Dent_exppc_usd = NA_real_,
+    GDP_per_capita_PPP_2021 = NA_real_
+  )
+
+high_scenario_full <- high_scenario %>%
+  bind_rows(global_high_scenario)
+
+write_csv(high_scenario_full, "outputs_forecast/high_scenario.csv")

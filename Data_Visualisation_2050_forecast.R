@@ -59,8 +59,6 @@ plot_superregion_pop <- ggplot(data = superregion_df, aes(x = Year, y = count, g
               alpha = 0.1) +
   scale_fill_discrete(guide = "none") 
 
-plot_superregion_pop
-
 # ggsave("outputs_forecast/population_by_superegion.pdf", plot_superregion_pop, width = 15, height = 8, dpi = 300)
 
 #-----------------------------------------------------------------------------------------------------------------
@@ -327,7 +325,6 @@ plot_top5_pop_cost <- ggplot(top_5_count_df_joined, aes(x = Year, y = selected_M
   ) +
   guides(fill = "none", alpha = "none")
 
-plot_top5_pop_cost
 
 #Select top 20 countries by perio case counts to assess population changes excluding USA and China
 # 
