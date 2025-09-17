@@ -1562,11 +1562,7 @@ global_row <- prediction_selection %>%
     selected_Mean_perio_billions = sum(selected_Mean_perio_billions, na.rm = TRUE),
     selected_SD_perio_billions = sqrt(sum(selected_SD_perio_billions^2, na.rm = TRUE)),
     selected_Mean_replace_billions = sum(selected_Mean_replace_billions, na.rm = TRUE),
-    selected_SD_replace_billions = sqrt(sum(selected_SD_replace_billions^2, na.rm = TRUE)),
-    selected_model = NA_character_,
-    Dent_exp_usd = NA_real_,
-    Dent_exppc_usd = NA_real_,
-    GDP_per_capita_PPP_2021 = NA_real_
+    selected_SD_replace_billions = sqrt(sum(selected_SD_replace_billions^2, na.rm = TRUE))
   )
 
 # Bind to main
@@ -1807,6 +1803,7 @@ write_csv(full_forecast_wide, "outputs_forecast/expenditure_summary_forecast_wid
 # ------------------------------------------------------------------------
 
 library(tidyverse)
+library(countrycode)
 
 long_summary_2021 <- read_csv("outputs/final_selected_output.csv") %>%
   mutate(Year = 2021)
@@ -1826,17 +1823,51 @@ long_summary_2050 <- read_csv("outputs_2050/final_selected_output.csv") %>%
 long_full_forecast <- bind_rows(long_summary_2021, long_summary_2025, long_summary_2030, long_summary_2035, long_summary_2040,
                            long_summary_2045, long_summary_2050)
 
-long_full_forecast_wide <- full_forecast %>%
-  pivot_wider (
-    names_from = Year,
-    values_from = c(selected_Mean_total_billions, selected_SD_total_billions,
-                    selected_Mean_perio_billions, selected_SD_perio_billions,
-                    selected_Mean_replace_billions, selected_SD_replace_billions)
-  ) %>%
-  relocate(starts_with("selected"), .after = Superregion)
+base_scenario <- long_full_forecast %>%
+  filter(!Country == "Global") %>%
+  mutate(iso3c = countrycode(Country, origin = "country.name", destination = "iso3c")) %>%
+  mutate (Level = 3)
 
- write_csv(full_forecast, "outputs_forecast/base_scenario.csv")
-# write_csv(full_forecast_wide, "outputs_forecast/long_expenditure_summary_forecast_wide.csv")
+hier <- read_csv("data/GBD_location_hierarchy_wide.csv", locale = locale(encoding = "Latin1")) %>% #read GBD hierarchy
+  mutate(iso3c = countrycode(Country, origin = "country.name", destination = "iso3c"))  #matching with ISO code for country names
+
+base_scenario_joined <- hier %>%
+  full_join(base_scenario, by = "iso3c") %>%
+  filter(!is.na(Country.y)) %>%
+  mutate(Country = coalesce(Country.y, Country.x)) %>%
+  select(-Country.x, -Country.y)
+
+global_base_scenario <- base_scenario%>%
+  group_by(Year) %>%
+  summarise(
+    Country = "Global",
+    selected_Mean_total_billions = sum(selected_Mean_total_billions, na.rm = TRUE),
+    selected_SD_total_billions = sqrt(sum(selected_SD_total_billions^2, na.rm = TRUE)),
+    selected_Mean_perio_billions = sum(selected_Mean_perio_billions, na.rm = TRUE),
+    selected_SD_perio_billions = sqrt(sum(selected_SD_perio_billions^2, na.rm = TRUE)),
+    selected_Mean_replace_billions = sum(selected_Mean_replace_billions, na.rm = TRUE),
+    selected_SD_replace_billions = sqrt(sum(selected_SD_replace_billions^2, na.rm = TRUE))
+  ) %>%
+  mutate(Level = 0)
+
+superregion_base_scenario <- base_scenario_joined%>%
+  group_by(Year,Superregion) %>%
+  summarise(
+    selected_Mean_total_billions = sum(selected_Mean_total_billions, na.rm = TRUE),
+    selected_SD_total_billions = sqrt(sum(selected_SD_total_billions^2, na.rm = TRUE)),
+    selected_Mean_perio_billions = sum(selected_Mean_perio_billions, na.rm = TRUE),
+    selected_SD_perio_billions = sqrt(sum(selected_SD_perio_billions^2, na.rm = TRUE)),
+    selected_Mean_replace_billions = sum(selected_Mean_replace_billions, na.rm = TRUE),
+    selected_SD_replace_billions = sqrt(sum(selected_SD_replace_billions^2, na.rm = TRUE))
+  ) %>%
+  mutate(Level = 1) %>%
+  mutate(Country = Superregion)
+
+base_scenario_full <- base_scenario_joined %>%
+  bind_rows(global_base_scenario, superregion_base_scenario)
+
+write_csv(base_scenario_full, "outputs_forecast/base_scenario.csv")
+ 
 
 # ------------------------------------------------------------------------
 # 2. For assembling full output including various dental utilisation scenarios
@@ -1882,9 +1913,20 @@ mid_scenario <- long_full_forecast %>%
       TRUE ~ NA_real_
     )
   ) %>%
-  bind_rows(long_summary_2021, long_summary_2025) %>%
-  filter(!Country == "Global") 
+   bind_rows(long_summary_2021, long_summary_2025) %>%
+   filter(!Country == "Global") %>%
+   mutate(iso3c = countrycode(Country, origin = "country.name", destination = "iso3c")) %>%
+   mutate (Level = 3)
+ 
+hier <- read_csv("data/GBD_location_hierarchy_wide.csv", locale = locale(encoding = "Latin1")) %>% #read GBD hierarchy
+  mutate(iso3c = countrycode(Country, origin = "country.name", destination = "iso3c"))  #matching with ISO code for country names
 
+mid_scenario_joined <- hier %>%
+ full_join(mid_scenario, by = "iso3c") %>%
+ filter(!is.na(Country.y)) %>%
+ mutate(Country = coalesce(Country.y, Country.x)) %>%
+ select(-Country.x, -Country.y)
+ 
 global_mid_scenario <- mid_scenario%>%
   group_by(Year) %>%
   summarise(
@@ -1894,15 +1936,25 @@ global_mid_scenario <- mid_scenario%>%
     selected_Mean_perio_billions = sum(selected_Mean_perio_billions, na.rm = TRUE),
     selected_SD_perio_billions = sqrt(sum(selected_SD_perio_billions^2, na.rm = TRUE)),
     selected_Mean_replace_billions = sum(selected_Mean_replace_billions, na.rm = TRUE),
-    selected_SD_replace_billions = sqrt(sum(selected_SD_replace_billions^2, na.rm = TRUE)),
-    selected_model = NA_character_,
-    Dent_exp_usd = NA_real_,
-    Dent_exppc_usd = NA_real_,
-    GDP_per_capita_PPP_2021 = NA_real_
-  )
+    selected_SD_replace_billions = sqrt(sum(selected_SD_replace_billions^2, na.rm = TRUE))
+  ) %>%
+  mutate(Level = 0)
 
-mid_scenario_full <- mid_scenario %>%
-  bind_rows(global_mid_scenario)
+superregion_mid_scenario <- mid_scenario_joined%>%
+  group_by(Year,Superregion) %>%
+  summarise(
+    selected_Mean_total_billions = sum(selected_Mean_total_billions, na.rm = TRUE),
+    selected_SD_total_billions = sqrt(sum(selected_SD_total_billions^2, na.rm = TRUE)),
+    selected_Mean_perio_billions = sum(selected_Mean_perio_billions, na.rm = TRUE),
+    selected_SD_perio_billions = sqrt(sum(selected_SD_perio_billions^2, na.rm = TRUE)),
+    selected_Mean_replace_billions = sum(selected_Mean_replace_billions, na.rm = TRUE),
+    selected_SD_replace_billions = sqrt(sum(selected_SD_replace_billions^2, na.rm = TRUE))
+  ) %>%
+  mutate(Level = 1) %>%
+  mutate(Country = Superregion)
+
+mid_scenario_full <- mid_scenario_joined %>%
+   bind_rows(global_mid_scenario, superregion_mid_scenario)
 
 write_csv(mid_scenario_full, "outputs_forecast/mid_scenario.csv")
 
@@ -1917,9 +1969,33 @@ high_scenario <- long_full_forecast %>%
     selected_SD_replace_billions = SD_replace_billions_high
   ) %>%
   bind_rows(long_summary_2021, long_summary_2025) %>%
-  filter(!Country == "Global") 
+  filter(!Country == "Global") %>%
+  mutate(iso3c = countrycode(Country, origin = "country.name", destination = "iso3c")) %>%
+  mutate (Level = 3)
 
-global_high_scenario <- high_scenario%>%
+hier <- read_csv("data/GBD_location_hierarchy_wide.csv", locale = locale(encoding = "Latin1")) %>% #read GBD hierarchy
+  mutate(iso3c = countrycode(Country, origin = "country.name", destination = "iso3c"))  #matching with ISO code for country names
+
+high_scenario_joined <- hier %>%
+  full_join(high_scenario, by = "iso3c") %>%
+  filter(!is.na(Country.y)) %>%
+  mutate(Country = coalesce(Country.y, Country.x)) %>%
+  select(-Country.x, -Country.y)
+
+superregion_high_scenario <- high_scenario_joined%>%
+  group_by(Year,Superregion) %>%
+  summarise(
+    selected_Mean_total_billions = sum(selected_Mean_total_billions, na.rm = TRUE),
+    selected_SD_total_billions = sqrt(sum(selected_SD_total_billions^2, na.rm = TRUE)),
+    selected_Mean_perio_billions = sum(selected_Mean_perio_billions, na.rm = TRUE),
+    selected_SD_perio_billions = sqrt(sum(selected_SD_perio_billions^2, na.rm = TRUE)),
+    selected_Mean_replace_billions = sum(selected_Mean_replace_billions, na.rm = TRUE),
+    selected_SD_replace_billions = sqrt(sum(selected_SD_replace_billions^2, na.rm = TRUE))
+  ) %>%
+  mutate(Level = 1) %>%
+  mutate(Country = Superregion)
+
+global_high_scenario <- high_scenario %>%
   group_by(Year) %>%
   summarise(
     Country = "Global",
@@ -1928,14 +2004,11 @@ global_high_scenario <- high_scenario%>%
     selected_Mean_perio_billions = sum(selected_Mean_perio_billions, na.rm = TRUE),
     selected_SD_perio_billions = sqrt(sum(selected_SD_perio_billions^2, na.rm = TRUE)),
     selected_Mean_replace_billions = sum(selected_Mean_replace_billions, na.rm = TRUE),
-    selected_SD_replace_billions = sqrt(sum(selected_SD_replace_billions^2, na.rm = TRUE)),
-    selected_model = NA_character_,
-    Dent_exp_usd = NA_real_,
-    Dent_exppc_usd = NA_real_,
-    GDP_per_capita_PPP_2021 = NA_real_
-  )
+    selected_SD_replace_billions = sqrt(sum(selected_SD_replace_billions^2, na.rm = TRUE))
+  ) %>%
+  mutate(Level = 0)
 
 high_scenario_full <- high_scenario %>%
-  bind_rows(global_high_scenario)
+  bind_rows(global_high_scenario, superregion_mid_scenario)
 
 write_csv(high_scenario_full, "outputs_forecast/high_scenario.csv")
