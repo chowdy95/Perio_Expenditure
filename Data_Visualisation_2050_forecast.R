@@ -35,6 +35,9 @@ perio_prevalence_counts_forecast <- read_csv("data/GBD_prev_perio_count_forecast
 
 write_csv(perio_prevalence_counts_forecast, "outputs_forecast/perio_prevalence_count_2021_2050")
 
+perio_prevalence_counts_forecast_countries <- perio_prevalence_counts_forecast %>%
+  filter (Level ==3)
+
 #-----------------------------------------------------------------------------------------------------------------
 
 # Assess prevalence count changes for each superregion
@@ -54,7 +57,9 @@ plot_superregion_pop <- ggplot(data = superregion_df, aes(x = Year, y = count, g
   geom_ribbon(aes(ymin = lower, 
                   ymax = upper, fill = location_name), 
               alpha = 0.1) +
-  scale_fill_discrete(guide = "none")
+  scale_fill_discrete(guide = "none") 
+
+plot_superregion_pop
 
 # ggsave("outputs_forecast/population_by_superegion.pdf", plot_superregion_pop, width = 15, height = 8, dpi = 300)
 
@@ -97,6 +102,7 @@ top_5_count_df <- perio_prevalence_counts_forecast %>%
   inner_join(country_totals, by = "iso3c")
 
 plot_top5_exp <- ggplot(top_5_count_df, aes(x = Year, y = count, group = location_name)) +
+  geom_line (data = perio_prevalence_counts_forecast_countries, aes(x = Year, y = count), alpha = 0.1) +
   geom_line(aes(color = location_name))+
   geom_point() +
   theme_minimal() +
@@ -108,7 +114,7 @@ plot_top5_exp <- ggplot(top_5_count_df, aes(x = Year, y = count, group = locatio
   geom_ribbon(aes(ymin = lower, 
                   ymax = upper, fill = location_name), 
               alpha = 0.1) +
-  scale_fill_discrete(guide = "none")
+  guides(fill = "none", alpha = "none")
 
 # top_20_count_df_ex_China <- top_20_count_df %>%
 #   filter (!location_name == "China")
@@ -139,6 +145,7 @@ top_5_perio_df <- perio_prevalence_counts_forecast %>%
   filter(Level == 3) 
 
 plot_top5_pop <- ggplot(top_5_perio_df, aes(x = Year, y = count, group = location_name)) +
+  geom_line (data = perio_prevalence_counts_forecast_countries, aes(x = Year, y = count), alpha = 0.1) +
   geom_line(aes(color = location_name))+
   geom_point() +
   theme_minimal() +
@@ -149,8 +156,8 @@ plot_top5_pop <- ggplot(top_5_perio_df, aes(x = Year, y = count, group = locatio
   ) +
   geom_ribbon(aes(ymin = lower, 
                   ymax = upper, fill = location_name), 
-              alpha = 0.1) +
-  scale_fill_discrete(guide = "none")
+              alpha = 0.1)   +
+  guides(fill = "none", alpha = "none")
 
 #Select top 20 countries by perio case counts to assess population changes excluding India and China
 # 
@@ -189,6 +196,8 @@ library(countrycode)
 perio_expenditure <- read_csv("outputs_forecast/expenditure_summary_forecast.csv") %>%
   rename(location_name = LocationHeader)
 
+perio_expenditure_countries <- perio_expenditure %>%
+  filter (Level ==3)
 
 #-----------------------------------------------------------------------------------------------------------------
 
@@ -254,6 +263,7 @@ top_5_expenditure_df <- perio_expenditure %>%
   mutate(location_name = fct_rev(location_name))
 
 plot_top5_exp_cost <- ggplot(top_5_expenditure_df, aes(x = Year, y = selected_Mean_total_billions, group = location_name)) +
+  geom_line (data = perio_expenditure_countries, aes(x = Year, y = selected_Mean_total_billions), alpha = 0.1) +
   geom_line(aes(color = location_name))+
   geom_point() +
   geom_ribbon(aes(ymin = selected_Mean_total_billions - selected_SD_total_billions, 
@@ -265,7 +275,7 @@ plot_top5_exp_cost <- ggplot(top_5_expenditure_df, aes(x = Year, y = selected_Me
     y = "Total Periodontitis Expenditure (millions)",
     color = "Country (top 5 in 2025 periodontitis expenditure) "
   ) +
-  scale_fill_discrete(guide = "none")  
+  guides(fill = "none", alpha = "none")
 
 # Select top 20 countries by 2025 excluding China and USA
 # 
@@ -303,6 +313,7 @@ top_5_count_df_joined <- perio_expenditure %>%
 
 
 plot_top5_pop_cost <- ggplot(top_5_count_df_joined, aes(x = Year, y = selected_Mean_total_billions, group = location_name)) +
+  geom_line (data = perio_expenditure_countries, aes(x = Year, y = selected_Mean_total_billions), alpha = 0.1) +
   geom_line(aes(color = location_name))+
   geom_point() +
   geom_ribbon(aes(ymin = selected_Mean_total_billions - selected_SD_total_billions, 
@@ -311,11 +322,12 @@ plot_top5_pop_cost <- ggplot(top_5_count_df_joined, aes(x = Year, y = selected_M
   theme_minimal() +
   theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40)) +
   labs(
-    y = "Prevalence counts (millions)",
+    y = "Total Periodontitis Expenditure (millions)",
     color = "Country (top 5 in periodontitis prevalence counts by 2050)"
   ) +
-  scale_fill_discrete(guide = "none")  
+  guides(fill = "none", alpha = "none")
 
+plot_top5_pop_cost
 
 #Select top 20 countries by perio case counts to assess population changes excluding USA and China
 # 
