@@ -283,7 +283,7 @@ plot_top5_exp_cost <- ggplot(top_5_expenditure_df, aes(x = Year, y = selected_Me
 #   theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40)) +
 #   labs(
 #     y = "Total Periodontitis Expenditure (millions)",
-#     color = "Country (top 20 in 2025 periodontitis expenditure) ex USA, CHN "
+#     color = "Country (top 5 in 2025 periodontitis expenditure) ex USA, CHN "
 #   ) +
 #   scale_fill_discrete(guide = "none")  
 
