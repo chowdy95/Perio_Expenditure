@@ -13,10 +13,9 @@ base_candidates <- c("Extraction", "Consult_simple", "Prophy", "OPG", "PA", "Mai
 
 # Drop UK as its cost structure is too idiosyncratic to extend to other countries
 
-base_procedure_df <- read.csv("outputs/known_countries.csv") %>%
-  dplyr::select(-Country_df2) %>%
-  rename(Country = Country_df1) %>%
-  filter(Country != "United Kingdom")
+base_procedure_df <- read.csv("data/country_input.csv") %>%
+  filter(Country != "United Kingdom") %>%
+  select(-iso3)
 
 
 # Get all procedure names by:
@@ -61,7 +60,7 @@ results_df <- dplyr::bind_rows(results)
 
 print(results_df)
 
-# Maintenance_simp is the best candidate as it has the lowest base_cv and avg_sd_ratio
+# Prophy is the best candidate as it has the lowest base_cv and avg_sd_ratio
 
 
 # ------------------------------------------------------------------------
@@ -73,9 +72,7 @@ library(performance)
 library(see)
 library(fuzzyjoin)
 
-base_procedure_df <- read.csv("outputs/known_countries.csv") %>%
-  dplyr::select(-Country_df2) %>%
-  rename(Country = Country_df1) %>%
+base_procedure_df <- read.csv("data/country_input.csv") %>%
   filter(Country != "United Kingdom")
 
 # -------------------------------
@@ -96,7 +93,7 @@ model_prophy <- ols(log_prophy ~ log_GDP, data = base_procedure_df)
 # Diagnostics for Prophy
 print(model_performance(model_prophy))
 prophy_diag_plot <- plot(check_model(model_prophy)) + ggtitle("Diagnostics: log(Prophy) ~ log(GDP)")
-ggsave(filename = "outputs/Prophy_model_diagnostics.pdf", plot = prophy_diag_plot, width = 8, height = 6)
+ggsave(filename = "output_regression_diagnostics/Prophy_model_diagnostics.pdf", plot = prophy_diag_plot, width = 8, height = 6)
 
 # -------------------------------
 # 2️⃣ Fit Prophy → each Procedure (original scale)
@@ -113,7 +110,7 @@ proc_models <- map(proc_means, function(proc) {
   perf <- model_performance(mod)
   print(perf)
   diag_plot <- plot(check_model(mod)) + ggtitle(paste("Diagnostics:", proc, "~ Prophy"))
-  ggsave(filename = paste0("outputs/", proc, "_diagnostics.pdf"), plot = diag_plot, width = 8, height = 6)
+  ggsave(filename = paste0("output_regression_diagnostics/", proc, "_diagnostics.pdf"), plot = diag_plot, width = 8, height = 6)
   mod
 })
 names(proc_models) <- proc_means
@@ -123,48 +120,8 @@ names(proc_models) <- proc_means
 # 3️⃣ Predict for new countries
 # -------------------------------
 
-
-# Start by data wrangling and cleaning data for predictors
-
-df2 <- read_csv("./data/gdp_ppp_manually_cleaned.csv")
-df1 <- read_csv("./data/gbd_dental_expenditure.csv")
-
-clean_country <- function(x) {
-  x %>%
-    str_to_lower() %>%
-    str_replace_all("[[:punct:]]", "") %>% # remove punctuation
-    str_trim()
-}
-
-df1 <- df1 %>% mutate(Country_clean1 = clean_country(Country))
-df2 <- df2 %>% mutate(Country_clean2 = clean_country(Country))
-
-# Fuzzy join
-result <- stringdist_left_join(
-  df1, df2,
-  by = c("Country_clean1" = "Country_clean2"),
-  max_dist = 1.5
-) %>%
-  dplyr::select(
-    Country_df1 = Country.x,
-    Country_df2 = Country.y,
-    everything(),
-    -Country_clean1, -Country_clean2
-  )
-
-# Keep only matched rows
-predict_countries <- result %>%
-  filter(!is.na(Country_df2)) %>%
-  write_csv("outputs/predict_countries.csv") # THREW ERROR; OBJECT WASN'T CREATED YET
-
-# End of data wrangling
-
-predict_countries <- read_csv("outputs/predict_countries.csv")
-
-predict_countries <- predict_countries %>%
-  mutate(log_GDP = log(GDP_per_capita_PPP_2021)) %>%
-  dplyr::select(-Country_df2) %>%
-  rename(Country = Country_df1)
+predict_countries <- read_csv("data/2021_prevalence_pop_dentexp_GDP.csv") %>%
+  mutate(log_GDP = log(GDP_per_capita_PPP_2021))
 
 # Predict log(Prophy) + SE
 log_prophy_preds <- predict(model_prophy, predict_countries, conf.int = 0.95)
@@ -225,100 +182,39 @@ wide_countries <- proc_preds %>%
   rename(Prophy = prophy_mean, Prophy_sd = prophy_sd)
 
 # Write to CSV
-write_csv(wide_countries, "./data/predictions_from_rms.csv")
-
-
-# ------------------------------------------------------------------------
-# 5. Adding other predictors
-# ------------------------------------------------------------------------
-
-
-df2 <- wide_countries %>%
-  dplyr::select(-log_GDP, -mu_log_prophy, -sigma_log_prophy, -prophy_var)
-
-df1 <- read_csv("./data/gbd_prevalence_population.csv")
-
-# ------------------------------------------------------------------------
-# 2. Pre-clean country names
-# ------------------------------------------------------------------------
-
-clean_country <- function(x) {
-  x %>%
-    str_to_lower() %>%
-    str_replace_all("[[:punct:]]", "") %>% # remove punctuation
-    str_trim()
-}
-
-df1 <- df1 %>% mutate(Country_clean1 = clean_country(Country))
-df2 <- df2 %>% mutate(Country_clean2 = clean_country(Country))
-
-
-# ------------------------------------------------------------------------
-# 3. Fuzzy join by cleaned name, keep original too
-# ------------------------------------------------------------------------
-
-# Fuzzy join
-result <- stringdist_left_join(
-  df1, df2,
-  by = c("Country_clean1" = "Country_clean2"),
-  max_dist = 0.5
-) %>%
-  dplyr::select(
-    Country_df1 = Country.x,
-    Country_df2 = Country.y,
-    everything(),
-    -Country_clean1, -Country_clean2
-  )
-
-# Keep only matched rows
-cleaned_countries <- result %>%
-  filter(!is.na(Country_df2)) %>%
-  rename(Country = Country_df1) %>%
-  dplyr::select(-Country_df2)
-
-# Write to CSV
-write_csv(cleaned_countries, "./data/monte_carlo_input_from_rms.csv")
+write_csv(wide_countries, "./data/monte_carlo_input_from_rms.csv")
 
 # ==============================================================================
 # Optional: cleaning and combining the dataset
 # ==============================================================================
 
-# Load both CSVs
-overwrite_df <- read_csv("./data/country_input.csv", col_types = cols())
 base_df <- read_csv("./data/monte_carlo_input_from_rms.csv", col_types = cols())
 
-# Combine: overwrite countries
-combined_df <- base_df %>%
-  filter(!Country %in% overwrite_df$Country) %>%
+base_df_dent_exp <- base_df %>%
+  select(iso3c, Dent_exp_usd) 
+
+overwrite_df <- read_csv("./data/country_input.csv", col_types = cols()) %>%
+  rename(iso3c = iso3, Dent_exppc_usd = "Dental Expenditure Per Capita") %>%
+  left_join(base_df_dent_exp)
+
+known_country_list <- overwrite_df %>%
+  pull(iso3c)
+
+final_df <- base_df %>%
+  filter(!iso3c %in% known_country_list) %>%
   bind_rows(overwrite_df) %>%
-  arrange(Country)
+  select(-mu_log_prophy, -sigma_log_prophy, -log_GDP, -prophy_var)
 
-# Join back to base_df to restore missing cols
-final_df <- combined_df %>%
-  left_join(base_df, by = "Country", suffix = c("", "_base"))
-
-# Identify which columns are the base fallback
-base_cols <- names(final_df)[grepl("_base$", names(final_df))]
-
-# Coalesce each pair: new value if present, else fallback
-for (col_base in base_cols) {
-  col_orig <- sub("_base$", "", col_base)
-  final_df[[col_orig]] <- coalesce(final_df[[col_orig]], final_df[[col_base]])
-}
-
-# Drop the _base helper columns
-final_df <- final_df %>%
-  dplyr:::select(-all_of(base_cols))
+write_csv(final_df_clean, "./data/combined_country_input_for_analysis.csv") # for future data analysis
 
 final_df_clean <- final_df %>%
   dplyr::select(
-    -Pop_sd,
+    -iso3c,
     -Dent_exp_usd,
     -Dent_exppc_usd,
-    -GDP_per_capita_PPP_2021,
-    -Conversion,
-    -`Dental Expenditure Per Capita`
-  )
+    -(GDP_per_capita_PPP_2021:gdp_ppp_lower),
+    -Conversion
+    )
 
 # Save
 write_csv(final_df_clean, "./data/combined_country_input.csv")
