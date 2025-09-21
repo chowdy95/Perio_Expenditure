@@ -146,7 +146,7 @@ plot_top5_pop <- ggplot(top_5_perio_df, aes(x = Year, y = count, group = locatio
   theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40)) +
   labs(
     y = "Prevalence counts (millions)",
-    color = "Country (top 20 in periodontitis prevalence counts by 2050)"
+    color = "Country (top 5 in periodontitis prevalence counts by 2050)"
   ) +
   geom_ribbon(aes(ymin = lower, 
                   ymax = upper, fill = location_name), 
@@ -335,7 +335,7 @@ plot_top5_pop_cost <- ggplot(top_5_count_df_joined, aes(x = Year, y = selected_M
 #   theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40)) +
 #   labs(
 #     y = "Prevalence counts (millions)",
-#     color = "Country (top 20 in periodontitis prevalence counts) ex USA, CHN"
+#     color = "Country (top 5 in periodontitis prevalence counts) ex USA, CHN"
 #   ) +
 #   scale_fill_discrete(guide = "none")  
 
@@ -416,7 +416,7 @@ plot_global_cost_scenarios <- ggplot(data = global_full_scenarios, aes(x = Year,
   ) +
   guides(fill = "none")
 
-plot_global_cost_scenarios
+# plot_global_cost_scenarios
 
 #-----------------------------------------------------------------------------------------------------------------
 
