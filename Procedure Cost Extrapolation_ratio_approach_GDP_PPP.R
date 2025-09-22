@@ -70,7 +70,6 @@ print(results_df)
 library(rms)
 library(performance)
 library(see)
-library(fuzzyjoin)
 
 base_procedure_df <- read.csv("data/country_input.csv") %>%
   filter(Country != "United Kingdom")
