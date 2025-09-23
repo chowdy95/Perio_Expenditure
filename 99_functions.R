@@ -50,17 +50,27 @@ run_cost_model <- function(
   # Reshape country costs to long format
   # ============================================================================
   message("Reshaping country cost data ...")
+
+  procedures <- c(
+    "Consult_simple", "Consult_perio", "OPG", "PA", "Prophy", "RootDeb", "OHI",
+    "Extraction", "OFD", "GTR", "Single_implant", "Implant_surgery",
+    "Full_fixed", "Denture", "Denture_repair", "Maintenance_simp",
+    "Maintenance_perio"
+  )
+  
+  pattern <- paste0(procedures, collapse = "|")
+  
   countries_long <- countries %>%
     pivot_longer(
-      cols = matches("Consult_simple|Consult_perio|OPG|PA|Prophy|RootDeb|OHI|Extraction|OFD|GTR|Single_implant|Implant_surgery|Full_fixed|Denture|Denture_repair|Maintenance_simp|Maintenance_perio"),
+      cols = matches(paste0(pattern, "_shape|", pattern, "_rate")),
       names_to = "Var",
       values_to = "Value"
     ) %>%
     mutate(
-      Metric = if_else(str_ends(Var, "_sd"), "SD_cost", "Mean_cost"),
-      Procedure = str_remove(Var, "_sd$")
+      Metric    = if_else(str_ends(Var, "_shape"), "Shape", "Rate"),
+      Procedure = str_remove(Var, "_shape$|_rate$")
     ) %>%
-    dplyr::select(Country, Procedure, Metric, Value) %>%
+    select(Country, Procedure, Metric, Value) %>%
     pivot_wider(names_from = Metric, values_from = Value)
   
   # ============================================================================
@@ -319,6 +329,7 @@ run_cost_model <- function(
   # Join procedures and simulate costs
   # ============================================================================
   message("Joining procedure lookups ...")
+  
   sim_procedures <- sim_treatment %>%
     inner_join(procedure_lookup, by = c("Severity", "Treatment"), relationship = "many-to-many") %>%
     left_join(countries_long, by = c("Country", "Procedure"))
@@ -328,32 +339,35 @@ run_cost_model <- function(
   # ============================================================================
   message("Simulating procedure costs (vectorised) ...")
   
-  # Number of rows
-  n <- nrow(sim_procedures)
-  
   # --- 1. Simulate cost per unit ---
-  # If SD_cost is 0 or NA, use Mean_cost; otherwise draw from normal
-  cost_per_unit <- ifelse(
-    is.na(sim_procedures$SD_cost) | sim_procedures$SD_cost == 0,
-    sim_procedures$Mean_cost,
-    rnorm(n, mean = sim_procedures$Mean_cost, sd = sim_procedures$SD_cost)
-  )
+  sim_procedures <- sim_procedures %>%
+    mutate(
+      # fallback mean when Rate is missing or zero
+      mean_cost = Shape / Rate,
+      cost_per_unit = if_else(
+        is.na(Rate) | Rate == 0,
+        mean_cost,
+        rgamma(n(), shape = Shape, rate = Rate)
+      )
+    )
   
   # --- 2. Simulate unit count ---
-  unit_count <- ifelse(
-    is.na(sim_procedures$Number_sd) | sim_procedures$Number_sd == 0,
-    sim_procedures$Number_mean,
-    rnorm(n, mean = sim_procedures$Number_mean, sd = sim_procedures$Number_sd)
-  )
+  sim_procedures <- sim_procedures %>%
+    mutate(
+      unit_count = if_else(
+        is.na(Number_sd) | Number_sd == 0,
+        Number_mean,
+        abs(rnorm(n(), mean = Number_mean, sd = Number_sd))
+      )
+    )
   
   # --- 3. Compute total cost ---
   sim_costed <- sim_procedures %>%
     mutate(
-      cost_per_unit = cost_per_unit,
-      unit_count = unit_count,
       Total_cost = cost_per_unit * unit_count * Patients
     ) %>%
     select(Country, sim, Severity, Treatment, Procedure, Total_cost)
+  
   
   #-------------------------------------------------------------------
   
@@ -427,27 +441,14 @@ run_cost_model <- function(
   #     Mean_total_billions = mean(Total_cost) / 1e9,
   #     SD_total_billions = sd(Total_cost) / 1e9
   #   )
-
-  procedure_combined <- sim_costed %>%
-    summarise(
-      Procedure_cost = sum(Total_cost, na.rm = TRUE),
-      .by = c(Country, Procedure, sim)
-    ) %>%
-    summarise(
-      Mean_total_billions = mean(Procedure_cost) / 1e9,
-      SD_total_billions   = sd(Procedure_cost) / 1e9,
-      .by = c(Country, Procedure)
-    )
-    
-  # procedure_combined <- sim_costed %>% # THIS IS THE FUNCTION CAUSING THE SLOWDOWN. CONSIDER A data.table ALTERNATIVE FOR SPEED
-  #   group_by(Country, Procedure, sim) %>%
-  #   summarise(Procedure_cost = sum(Total_cost, na.rm = TRUE), .groups = "drop") %>%
-  #   group_by(Country, Procedure) %>%
-  #   summarise(
-  #     Mean_total_billions = mean(Procedure_cost) / 1e9,
-  #     SD_total_billions = sd(Procedure_cost) / 1e9,
-  #     .groups = "drop"
-  #   )
+  
+  dt <- as.data.table(sim_costed)
+  
+  procedure_combined2 <- dt[, .(Procedure_cost = sum(Total_cost)), by = .(Country, Procedure, sim)
+  ][, .(
+    Mean_total_billions = mean(Procedure_cost) / 1e9,
+    SD_total_billions   = sd(Procedure_cost) / 1e9
+  ), by = .(Country, Procedure)]
   
   # procedure_combined <- sim_costed %>% 
   #   group_by(Procedure, sim) %>%

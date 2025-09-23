@@ -56,3 +56,5 @@ dental_expenditure <- read_csv("./data/gbd_dental_expenditure.csv") %>%
   rename (Country = location_name)
 
 write_csv(dental_expenditure, "data/2021_prevalence_pop_dentexp_GDP.csv") # For use as an input in Procedure Cost Extrapolation Ratio R file
+
+# See Procedure Cost Extrapolation_ratio_approach_GDP_PPP for further data prep involving prediction of other countries' procedure costs

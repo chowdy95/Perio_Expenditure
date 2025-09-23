@@ -10,6 +10,7 @@ source("./99_functions.R")
 
 library(MCMCpack)
 library(tidyverse)
+library(data.table)
 
 # ==============================================================================
 # Calling the function

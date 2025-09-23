@@ -10,6 +10,7 @@ source("./99_functions.R")
 
 library(MCMCpack)
 library(tidyverse)
+library(data.table)
 
 # ==============================================================================
 # Calling the function for 2025
@@ -33,7 +34,7 @@ severity_split_path <- "./data/severity_split.csv"
 # Where to write outputs
 output_dir <- "outputs_2025"
 
-n_sims = 3000
+n_sims = 1000
 
 # Call the new scenario runner
 run_cost_model_scenarios(
@@ -64,7 +65,7 @@ countries_path <- "./data/combined_country_input_2030.csv"
 # Where to write outputs
 output_dir <- "outputs_2030"
 
-n_sims = 3000
+n_sims = 1000
 
 # Call the new scenario runner
 run_cost_model_scenarios(
@@ -95,7 +96,7 @@ countries_path <- "./data/combined_country_input_2035.csv"
 # Where to write outputs
 output_dir <- "outputs_2035"
 
-n_sims = 3000
+n_sims = 1000
 
 # Call the new scenario runner
 run_cost_model_scenarios(
@@ -125,7 +126,7 @@ countries_path <- "./data/combined_country_input_2040.csv"
 # Where to write outputs
 output_dir <- "outputs_2040"
 
-n_sims = 3000
+n_sims = 1000
 
 # Call the new scenario runner
 run_cost_model_scenarios(
@@ -154,7 +155,7 @@ countries_path <- "./data/combined_country_input_2045.csv"
 # Where to write outputs
 output_dir <- "outputs_2045"
 
-n_sims = 3000
+n_sims = 1000
 
 # Call the new scenario runner
 run_cost_model_scenarios(
@@ -184,7 +185,7 @@ countries_path <- "./data/combined_country_input_2050.csv"
 # Where to write outputs
 output_dir <- "outputs_2050"
 
-n_sims = 3000
+n_sims = 1000
 
 # Call the new scenario runner
 run_cost_model_scenarios(
