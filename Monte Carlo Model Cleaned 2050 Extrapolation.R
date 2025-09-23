@@ -34,7 +34,7 @@ severity_split_path <- "./data/severity_split.csv"
 # Where to write outputs
 output_dir <- "outputs_2025"
 
-n_sims = 10000
+n_sims = 12000
 
 # Call the new scenario runner
 run_cost_model_scenarios(
@@ -134,7 +134,7 @@ run_cost_model_scenarios(
   severity_split_path = severity_split_path,
   n_sims = n_sims,
   output_dir = output_dir,
-  scenarios = c("low", "mid", "high", "WHO_target"), 
+  scenarios = c("low", "mid", "high", "WHO_target"),
   # scenarios = c("low", "mid", "high"), 
   slice_size = 999
 )

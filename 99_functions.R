@@ -473,6 +473,13 @@ run_cost_model <- function(
     # country_sev_combined = country_sev_combined,
     procedure_combined = procedure_combined
   ))
+  
+  rm(
+    countries, severity_split, procedure_lookup, tx_split,
+    countries_long, sim_base, perio_tbl, healthy_tbl, sim_severity,
+    sim_tx_base, sim_treatment, sim_procedures, dt
+  )
+  gc()  # Force garbage collection
 }
 
 # ==============================================================================
