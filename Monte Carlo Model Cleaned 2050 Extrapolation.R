@@ -48,7 +48,7 @@ run_cost_model_scenarios(
   severity_split_path = severity_split_path,
   n_sims = n_sims,
   output_dir = output_dir,
-  scenarios = c("low", "mid", "high", "WHO_target"), 
+  scenarios = c("low", "mid", "high", "WHO_target"),
   # scenarios = c("low", "mid", "high"), 
   slice_size = 999
 )

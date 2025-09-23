@@ -126,11 +126,11 @@ run_cost_model <- function(
       names_to = "Severity",
       values_to = "Frac"
     ) %>%
-    mutate(
+    transmute(
+      Country, sim, Severity, 
       Group = "Perio",
       Patients = Perio_pop * Frac
-    ) %>%
-    select(Country, sim, Group, Severity, Patients)
+    )
   
   # --- 3. Healthy: same approach ---
   n_sev_healthy <- length(healthy_severity)
@@ -363,11 +363,10 @@ run_cost_model <- function(
   
   # --- 3. Compute total cost ---
   sim_costed <- sim_procedures %>%
-    mutate(
-      Total_cost = cost_per_unit * unit_count * Patients
-    ) %>%
-    select(Country, sim, Severity, Treatment, Procedure, Total_cost)
-  
+    transmute(
+      Total_cost = cost_per_unit * unit_count * Patients,
+      Country, sim, Severity, Treatment, Procedure
+    ) 
   
   #-------------------------------------------------------------------
   
@@ -444,7 +443,7 @@ run_cost_model <- function(
   
   dt <- as.data.table(sim_costed)
   
-  procedure_combined2 <- dt[, .(Procedure_cost = sum(Total_cost)), by = .(Country, Procedure, sim)
+  procedure_combined <- dt[, .(Procedure_cost = sum(Total_cost)), by = .(Country, Procedure, sim)
   ][, .(
     Mean_total_billions = mean(Procedure_cost) / 1e9,
     SD_total_billions   = sd(Procedure_cost) / 1e9
