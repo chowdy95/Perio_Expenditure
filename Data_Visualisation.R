@@ -589,6 +589,7 @@ ggsave("outputs/combined_stacked_plot.pdf",
 
 library(tidyverse)
 library(treemapify)
+library(patchwork)
 
 # Load your data
 df <- read_csv("outputs/global_procedure.csv") %>%
@@ -621,7 +622,8 @@ df <- read_csv("outputs/global_procedure.csv") %>%
       Procedure == "Extraction" ~ "Extractions",
       TRUE ~ "Tooth replacement"
     ),
-    global_Mean_total_billions = round(global_Mean_total_billions, 2)
+    global_Mean_total_billions = round(global_Mean_total_billions, 2),
+    global_WHO_Mean_total_billions = round(global_WHO_Mean_total_billions,2)
   )
 
 # Plot
@@ -642,19 +644,46 @@ treemap <- ggplot(df, aes(
     size = 10
   ) +
   scale_fill_brewer(palette = "Pastel1") +
-  ggtitle("Breakdown by procedure and category") +
+  ggtitle("Based on current utilisation (2021)") +
   theme_minimal(base_size = 14) +
   theme(
     legend.position = "bottom",
     plot.title = element_text(color = "grey20", hjust = 0.5, size = 16, face = "bold"),
-    plot.subtitle = element_text(color = "grey20", hjust = 0.5, size = 10, face = "bold"),
+    # plot.subtitle = element_text(color = "grey20", hjust = 0.5, size = 10, face = "bold"),
     plot.margin = margin(t = 20, r = 40, b = 20, l = 40)
   )
 
+treemap_target <- ggplot(df, aes(
+  area = global_WHO_Mean_total_billions,
+  fill = Group,
+  label = paste0(Procedure, "\n", global_WHO_Mean_total_billions, "B"),
+  subgroup = Group
+)) +
+  geom_treemap() +
+  geom_treemap_subgroup_border(color = "white", size = 2) +
+  geom_treemap_text(
+    colour = "grey20",
+    fontface = "plain",
+    family = "sans",
+    place = "centre",
+    reflow = TRUE,
+    size = 10
+  ) +
+  scale_fill_brewer(palette = "Pastel1") +
+  ggtitle("Based on WHO target (2021)") +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(color = "grey20", hjust = 0.5, size = 16, face = "bold"),
+    # plot.subtitle = element_text(color = "grey20", hjust = 0.5, size = 10, face = "bold"),
+    plot.margin = margin(t = 20, r = 40, b = 20, l = 40)
+  )
+
+treemap_combined <- treemap + treemap_target
 
 ggsave("outputs/treemap.pdf",
-  plot = treemap,
-  width = 10, height = 10, dpi = 300
+  plot = treemap_combined,
+  width = 20, height = 10, dpi = 300
 )
 
 #------------------------------------------------------------------------------------------
