@@ -7,6 +7,10 @@
 library(tidyverse)
 library(fuzzyjoin)
 library(countrycode)
+    
+        
+selected_model <- read_csv("outputs/final_selected_output.csv") %>% 
+  select(Country, selected_model)
 
 process_year <- function(year) {
   
@@ -44,7 +48,8 @@ process_year <- function(year) {
     prediction_mid,
     prediction_low,
     prediction_WHO_target,
-    other_predictors
+    other_predictors,
+    selected_model
   )
   
   prediction_combined <- reduce(
@@ -64,13 +69,6 @@ process_year <- function(year) {
                  "Mean_replace_billions", "SD_replace_billions")
   
   prediction_selection <- prediction_combined %>%
-    mutate(
-      selected_model = case_when(
-        Mean_total_billions_high < 0.6 * Dent_exp_usd ~ "high",
-        Mean_total_billions_mid  < 0.6 * Dent_exp_usd ~ "mid",
-        TRUE ~ "low"
-      )
-    ) %>%
     mutate(
       Mean_total_billions = NA_real_,
       Mean_perio_billions  = NA_real_,
@@ -234,13 +232,6 @@ years <- seq(2025, 2050, by = 5)
 walk(years, process_year)
 
 
-
-
-
-
-
-
-
 # ------------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------------
 # 1. Bind all rows for forecast for perio expenditure/population charts
@@ -257,6 +248,7 @@ library(tidyverse)
 # Define years
 years <- c(2021, seq(2025, 2050, by = 5))
 
+
 # Read all files + add Year column
 full_forecast <- map_dfr(years, function(y) {
   path <- if (y == 2021) {
@@ -267,15 +259,11 @@ full_forecast <- map_dfr(years, function(y) {
   read_csv(path) %>% mutate(Year = y)
 })
 
-# Pivot wide
 full_forecast_wide <- full_forecast %>%
-  pivot_wider(
+  pivot_wider (
+    id_cols = c(LocationHeader, Region, Superregion, iso3c, selected_model),
     names_from = Year,
-    values_from = c(
-      selected_Mean_total_billions, selected_SD_total_billions,
-      selected_Mean_perio_billions, selected_SD_perio_billions,
-      selected_Mean_replace_billions, selected_SD_replace_billions
-    )
+    values_from = c(selected_Mean_total_billions:WHO_selected_SD_replace_billions)
   ) %>%
   relocate(starts_with("selected"), .after = Superregion)
 
@@ -284,20 +272,6 @@ if (!dir.exists("outputs_forecast")) dir.create("outputs_forecast", recursive = 
 
 write_csv(full_forecast,       "outputs_forecast/expenditure_summary_forecast.csv")
 write_csv(full_forecast_wide,  "outputs_forecast/expenditure_summary_forecast_wide.csv")
-
-
-full_forecast <- bind_rows(summary_2021, summary_2025, summary_2030, summary_2035, summary_2040,
-                           summary_2045, summary_2050)
-
-full_forecast_wide <- full_forecast %>%
-  pivot_wider (
-    names_from = Year,
-    values_from = c(selected_Mean_total_billions:WHO_selected_SD_replace_billions)
-  ) %>%
-  relocate(starts_with("selected"), .after = Superregion)
-
-write_csv(full_forecast, "outputs_forecast/expenditure_summary_forecast.csv")
-write_csv(full_forecast_wide, "outputs_forecast/expenditure_summary_forecast_wide.csv")
 
 
 # # ------------------------------------------------------------------------
