@@ -51,8 +51,8 @@ df_top60 <- df %>%
 my_plot <- ggplot(df_top20, aes(x = Country, y = Value, fill = Category)) +
   geom_bar(stat = "identity") +
   labs( # NOTE THAT JOURNALS DON'T TYPICALLY LIKE PLOT TITLES OR SUBTITLES
-    #title = "Top 20 countries by periodontal expenditure",
-    #subtitle = "Periodontal spending is geographically concentrated, and substantially driven by preventive care, tooth replacement, and ancillary procedures",
+    # title = "Top 20 countries by periodontal expenditure",
+    # subtitle = "Periodontal spending is geographically concentrated, and substantially driven by preventive care, tooth replacement, and ancillary procedures",
     x = "",
     y = "Mean Cost (Billions USD)",
     fill = "Expenditure Type"
@@ -76,7 +76,7 @@ my_plot
 # NOTE: IT MIGHT BE ILLUSTRATIVE TO ALSO PLOT THE PER CAPITA EXPENDITURE IN A SEPARATE PANEL USING THE patchwork PACKAGE
 # FORMAT IS EASY - FIRST CREATE A RANKED LIST OF TOP 20 PER CAPITA, MAKE AN IDENTICAL PLOT, AND ADD THEM USING GGPLOT SYNTAX
 # E.G. my_plot + my_plot_per_capita + plot_annotation(tag_levels = 'A'), see https://patchwork.data-imaginist.com/articles/guides/annotation.html
-  
+
 ggsave("outputs/oral_health_costs_top20.pdf", my_plot, width = 20, height = 12, dpi = 300)
 
 # Log transforming the x axis to better see the differences in breakdown
@@ -103,9 +103,7 @@ log_transformed_my_plot # INTERESTING CONCEPT BUT NOT SURE IT ADDS MUCH
 # proportion of total dental expenditure
 #------------------------------------------------------------------------------------------
 
-library(ggplot2) # PART OF TIDYVERSE
 library(ggrepel)
-library(dplyr) # PART OF TIDYVERSE
 library(ggpmisc)
 
 country_totals <- read_csv("outputs/short_final_selected_output.csv")
@@ -623,7 +621,7 @@ df <- read_csv("outputs/global_procedure.csv") %>%
       TRUE ~ "Tooth replacement"
     ),
     global_Mean_total_billions = round(global_Mean_total_billions, 2),
-    global_WHO_Mean_total_billions = round(global_WHO_Mean_total_billions,2)
+    global_WHO_Mean_total_billions = round(global_WHO_Mean_total_billions, 2)
   )
 
 # Plot

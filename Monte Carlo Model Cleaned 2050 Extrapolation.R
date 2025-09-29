@@ -5,7 +5,7 @@
 source("./99_functions.R")
 
 # ============================================================================
-# Load packages 
+# Load packages
 # ============================================================================
 
 library(MCMCpack)
@@ -34,14 +34,14 @@ severity_split_path <- "./data/severity_split.csv"
 # Where to write outputs
 output_dir <- "outputs_2025"
 
-n_sims = 12000
+n_sims <- 12000
 
 # Call the new scenario runner
 run_cost_model_scenarios(
   countries_path = countries_path,
   procedure_lookup_high_path = procedure_lookup_high_path,
   procedure_lookup_mid_path = procedure_lookup_mid_path,
-  procedure_lookup_low_path = procedure_lookup_low_path, 
+  procedure_lookup_low_path = procedure_lookup_low_path,
   tx_split_high_path = tx_split_high_path,
   tx_split_mid_path = tx_split_mid_path,
   tx_split_low_path = tx_split_low_path,
@@ -49,7 +49,7 @@ run_cost_model_scenarios(
   n_sims = n_sims,
   output_dir = output_dir,
   scenarios = c("low", "mid", "high", "WHO_target"),
-  # scenarios = c("low", "mid", "high"), 
+  # scenarios = c("low", "mid", "high"),
   slice_size = 999
 )
 
@@ -70,15 +70,15 @@ run_cost_model_scenarios(
   countries_path = countries_path,
   procedure_lookup_high_path = procedure_lookup_high_path,
   procedure_lookup_mid_path = procedure_lookup_mid_path,
-  procedure_lookup_low_path = procedure_lookup_low_path, 
+  procedure_lookup_low_path = procedure_lookup_low_path,
   tx_split_high_path = tx_split_high_path,
   tx_split_mid_path = tx_split_mid_path,
   tx_split_low_path = tx_split_low_path,
   severity_split_path = severity_split_path,
   n_sims = n_sims,
   output_dir = output_dir,
-  scenarios = c("low", "mid", "high", "WHO_target"), 
-  # scenarios = c("low", "mid", "high"), 
+  scenarios = c("low", "mid", "high", "WHO_target"),
+  # scenarios = c("low", "mid", "high"),
   slice_size = 999
 )
 
@@ -99,15 +99,15 @@ run_cost_model_scenarios(
   countries_path = countries_path,
   procedure_lookup_high_path = procedure_lookup_high_path,
   procedure_lookup_mid_path = procedure_lookup_mid_path,
-  procedure_lookup_low_path = procedure_lookup_low_path, 
+  procedure_lookup_low_path = procedure_lookup_low_path,
   tx_split_high_path = tx_split_high_path,
   tx_split_mid_path = tx_split_mid_path,
   tx_split_low_path = tx_split_low_path,
   severity_split_path = severity_split_path,
   n_sims = n_sims,
   output_dir = output_dir,
-  scenarios = c("low", "mid", "high", "WHO_target"), 
-  # scenarios = c("low", "mid", "high"), 
+  scenarios = c("low", "mid", "high", "WHO_target"),
+  # scenarios = c("low", "mid", "high"),
   slice_size = 999
 )
 
@@ -127,7 +127,7 @@ run_cost_model_scenarios(
   countries_path = countries_path,
   procedure_lookup_high_path = procedure_lookup_high_path,
   procedure_lookup_mid_path = procedure_lookup_mid_path,
-  procedure_lookup_low_path = procedure_lookup_low_path, 
+  procedure_lookup_low_path = procedure_lookup_low_path,
   tx_split_high_path = tx_split_high_path,
   tx_split_mid_path = tx_split_mid_path,
   tx_split_low_path = tx_split_low_path,
@@ -135,7 +135,7 @@ run_cost_model_scenarios(
   n_sims = n_sims,
   output_dir = output_dir,
   scenarios = c("low", "mid", "high", "WHO_target"),
-  # scenarios = c("low", "mid", "high"), 
+  # scenarios = c("low", "mid", "high"),
   slice_size = 999
 )
 
@@ -154,15 +154,15 @@ run_cost_model_scenarios(
   countries_path = countries_path,
   procedure_lookup_high_path = procedure_lookup_high_path,
   procedure_lookup_mid_path = procedure_lookup_mid_path,
-  procedure_lookup_low_path = procedure_lookup_low_path, 
+  procedure_lookup_low_path = procedure_lookup_low_path,
   tx_split_high_path = tx_split_high_path,
   tx_split_mid_path = tx_split_mid_path,
   tx_split_low_path = tx_split_low_path,
   severity_split_path = severity_split_path,
   n_sims = n_sims,
   output_dir = output_dir,
-  scenarios = c("low", "mid", "high", "WHO_target"), 
-  # scenarios = c("low", "mid", "high"), 
+  scenarios = c("low", "mid", "high", "WHO_target"),
+  # scenarios = c("low", "mid", "high"),
   slice_size = 999
 )
 
@@ -182,16 +182,14 @@ run_cost_model_scenarios(
   countries_path = countries_path,
   procedure_lookup_high_path = procedure_lookup_high_path,
   procedure_lookup_mid_path = procedure_lookup_mid_path,
-  procedure_lookup_low_path = procedure_lookup_low_path, 
+  procedure_lookup_low_path = procedure_lookup_low_path,
   tx_split_high_path = tx_split_high_path,
   tx_split_mid_path = tx_split_mid_path,
   tx_split_low_path = tx_split_low_path,
   severity_split_path = severity_split_path,
   n_sims = n_sims,
   output_dir = output_dir,
-  scenarios = c("low", "mid", "high", "WHO_target"), 
-  # scenarios = c("low", "mid", "high"), 
+  scenarios = c("low", "mid", "high", "WHO_target"),
+  # scenarios = c("low", "mid", "high"),
   slice_size = 999
 )
-
-

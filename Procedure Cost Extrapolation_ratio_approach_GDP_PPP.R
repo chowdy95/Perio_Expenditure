@@ -190,7 +190,7 @@ write_csv(wide_countries, "./data/monte_carlo_input_from_rms.csv")
 base_df <- read_csv("./data/monte_carlo_input_from_rms.csv", col_types = cols())
 
 base_df_dent_exp <- base_df %>%
-  select(iso3c, Dent_exp_usd) 
+  select(iso3c, Dent_exp_usd)
 
 overwrite_df <- read_csv("./data/country_input.csv", col_types = cols()) %>%
   rename(iso3c = iso3, Dent_exppc_usd = "Dental Expenditure Per Capita") %>%
@@ -216,7 +216,7 @@ procedures_sd <- paste0(procedures, "_sd")
 
 final_df <- final_df %>%
   mutate(across(all_of(procedures), ~ abs(.x))) %>%
-  mutate(across(all_of(procedures), ~ .x * 1.21)) %>% 
+  mutate(across(all_of(procedures), ~ .x * 1.21)) %>%
   mutate(across(all_of(procedures_sd), ~ .x * 1.21))
 # Based on US Bureau of labor statistics, $1 in Jan 2021 has the same buying power as $1.21 in Jan 2025
 # https://www.bls.gov/data/inflation_calculator.htm
@@ -224,18 +224,18 @@ final_df <- final_df %>%
 # Step 2: compute *_shape and *_rate columns explicitly
 for (proc in procedures) {
   mean_vec <- final_df[[proc]]
-  sd_vec   <- abs(final_df[[paste0(proc, "_sd")]])
-  var_vec  <- sd_vec^2
-  denom    <- ifelse(var_vec <= 0 | is.na(var_vec), NA_real_, var_vec)
-  
+  sd_vec <- abs(final_df[[paste0(proc, "_sd")]])
+  var_vec <- sd_vec^2
+  denom <- ifelse(var_vec <= 0 | is.na(var_vec), NA_real_, var_vec)
+
   final_df[[paste0(proc, "_shape")]] <- (mean_vec^2) / denom
-  final_df[[paste0(proc, "_rate")]]  <- mean_vec / denom
-  
+  final_df[[paste0(proc, "_rate")]] <- mean_vec / denom
+
   # safety for invalid values
   final_df[[paste0(proc, "_shape")]][!is.finite(final_df[[paste0(proc, "_shape")]]) |
-                                       final_df[[paste0(proc, "_shape")]] <= 0] <- NA_real_
+    final_df[[paste0(proc, "_shape")]] <= 0] <- NA_real_
   final_df[[paste0(proc, "_rate")]][!is.finite(final_df[[paste0(proc, "_rate")]]) |
-                                      final_df[[paste0(proc, "_rate")]] <= 0] <- NA_real_
+    final_df[[paste0(proc, "_rate")]] <= 0] <- NA_real_
 }
 
 write_csv(final_df, "./data/combined_country_input_for_analysis.csv") # for future data analysis
@@ -247,7 +247,7 @@ final_df_clean <- final_df %>%
     -Dent_exppc_usd,
     -(GDP_per_capita_PPP_2021:gdp_ppp_lower),
     -(Prophy:Maintenance_perio_sd)
-    )
+  )
 
 # Save
 write_csv(final_df_clean, "./data/combined_country_input.csv")

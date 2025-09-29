@@ -5,7 +5,7 @@
 source("./99_functions.R")
 
 # ============================================================================
-# Load packages 
+# Load packages
 # ============================================================================
 
 library(MCMCpack)
@@ -34,7 +34,7 @@ severity_split_path <- "./data/severity_split.csv"
 # Where to write outputs
 output_dir <- "outputs"
 
-n_sims = 12000
+n_sims <- 12000
 
 # Call the new scenario runner
 run_cost_model_scenarios(
@@ -52,4 +52,3 @@ run_cost_model_scenarios(
   # scenarios = c("low", "mid", "high"),
   slice_size = 999
 )
-
