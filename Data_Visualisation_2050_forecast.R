@@ -85,7 +85,7 @@ perio_expenditure_countries <- perio_expenditure %>%
 top_10_expenditure <- perio_expenditure_countries %>%
   filter(Level == 3, Year == 2050) %>%
   arrange(desc(transition_WHO_selected_Mean_total_billions)) %>%
-  slice(1:10) %>%
+  slice(1:5) %>%
   select(iso3c)
 
 top_10_expenditure_df <- perio_expenditure %>%
@@ -118,7 +118,7 @@ plot_top10_exp_cost <- ggplot(top_10_expenditure_df, aes(x = Year, y = selected_
   theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40)) +
   labs(
     y = "Total Periodontitis Expenditure (millions)",
-    color = "Country (top 10 for 2050 periodontitis expenditure based on WHO target) "
+    color = "Country (top 5 for 2050 periodontitis expenditure based on WHO target) "
   ) +
   scale_linetype_manual(
     values = c("Current dental utilisation" = "solid", "WHO target of 80% coverage" = "dashed"),
@@ -126,7 +126,7 @@ plot_top10_exp_cost <- ggplot(top_10_expenditure_df, aes(x = Year, y = selected_
   ) +
   guides(fill = "none", alpha = "none")
 
-# plot_top10_exp_cost
+plot_top10_exp_cost
 
 perio_expenditure_countries <- perio_expenditure_countries %>%
   mutate(
@@ -150,7 +150,7 @@ write_csv(perio_expenditure_countries, "outputs_forecast/expenditure_summary_for
 top_10_exppc <- perio_expenditure_countries %>%
   filter(Level == 3, Year == 2050) %>%
   arrange(desc(WHO_exppc_usd_mean)) %>%
-  slice(1:10) %>%
+  slice(1:5) %>%
   select(iso3c)
 
 top_10_exppc_df <- perio_expenditure_countries %>%
@@ -183,7 +183,7 @@ plot_top10_exppc_cost <- ggplot(top_10_exppc_df, aes(x = Year, y = selected_expp
   theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40)) +
   labs(
     y = "Total Periodontitis Expenditure Per Capita (2025 USD)",
-    color = "Country (top 10 for 2050 expenditure per capita, WHO target) "
+    color = "Country (top 5 for 2050 expenditure per capita, WHO target) "
   ) +
   scale_linetype_manual(
     values = c("Current dental utilisation" = "solid", "WHO target of 80% coverage" = "dashed"),
@@ -193,9 +193,9 @@ plot_top10_exppc_cost <- ggplot(top_10_exppc_df, aes(x = Year, y = selected_expp
 
 plot_top10_exppc_cost
 
-plot_countries_expenditure <- plot_top10_exp_cost + plot_top10_exppc_cost
+plot_countries_expenditure <- plot_top10_exp_cost + plot_top10_exppc_cost + plot_annotation(tag_levels = "A")
 
-ggsave("outputs_forecast/patchwork_countries_expenditure.pdf", plot_countries_expenditure, width = 24, height = 6, dpi = 300)
+ggsave("outputs_forecast/patchwork_countries_expenditure.png", plot_countries_expenditure, width = 24, height = 6, dpi = 300)
 
 
 
@@ -378,11 +378,12 @@ map_base_gap
 
 
 plot_patchwork_map <- (map_base_2021 + map_base_2050 + map_base_2050_WHO + map_base_gap) +
-  plot_layout(ncol = 2, nrow = 2)
+  plot_layout(ncol = 2, nrow = 2) +
+  plot_annotation(tag_levels = "A")
 
 plot_patchwork_map
 
-ggsave("outputs_forecast/world_periodontal_expenditure_map_2021_2025.pdf",
+ggsave("outputs_forecast/world_periodontal_expenditure_map_2021_2025.png",
   plot = plot_patchwork_map,
   width = 24, height = 10, dpi = 300
 )
