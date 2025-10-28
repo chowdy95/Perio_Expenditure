@@ -71,26 +71,83 @@ perio_expenditure_wide <- read_csv("outputs_forecast/expenditure_summary_forecas
 
 superregion_wide <- perio_expenditure_wide %>%
   filter(is.na(Region)) %>%
-  select(-c(Region, Superregion, iso3c, WHO_selected_Mean_total_billions_2021, WHO_selected_SD_total_billions_2021)) %>%
+  select(
+    -c(
+      Region, Superregion, iso3c,
+      WHO_selected_Mean_total_billions_2021,
+      WHO_selected_SD_total_billions_2021
+    )
+  ) %>%
   mutate(
+    # Compute 95% CI bounds for each variable
     base_2021_upper = selected_Mean_total_billions_2021 + 1.96 * selected_SD_total_billions_2021,
     base_2021_lower = selected_Mean_total_billions_2021 - 1.96 * selected_SD_total_billions_2021,
     base_2050_upper = selected_Mean_total_billions_2050 + 1.96 * selected_SD_total_billions_2050,
     base_2050_lower = selected_Mean_total_billions_2050 - 1.96 * selected_SD_total_billions_2050,
-    WHO_2050_upper = WHO_selected_Mean_total_billions_2050 + 1.96 * WHO_selected_SD_total_billions_2050,
-    WHO_2050_lower = WHO_selected_Mean_total_billions_2050 - 1.96 * WHO_selected_SD_total_billions_2050) %>%
+    WHO_2050_upper  = WHO_selected_Mean_total_billions_2050 + 1.96 * WHO_selected_SD_total_billions_2050,
+    WHO_2050_lower  = WHO_selected_Mean_total_billions_2050 - 1.96 * WHO_selected_SD_total_billions_2050
+  ) %>%
+  mutate(across(where(is.numeric), \(x) ifelse(x < 0, 0.01, x))) %>%
+  
+  # === Compute SEs from SDs ===
   mutate(
-    across(where(is.numeric), round, 2),
-    across(where(is.numeric), ~ ifelse(. < 0, 0, .)),
+    se_2021 = selected_SD_total_billions_2021,
+    se_base_2050 = selected_SD_total_billions_2050,
+    se_WHO_2050  = WHO_selected_SD_total_billions_2050
+  ) %>%
+  
+  # === Log-ratio (delta method) for percentage change ===
+  mutate(
+    # Base scenario
+    ratio_base = selected_Mean_total_billions_2050 / selected_Mean_total_billions_2021,
+    log_ratio_base = log(ratio_base),
+    se_log_ratio_base = sqrt((se_base_2050 / selected_Mean_total_billions_2050)^2 +
+                               (se_2021 / selected_Mean_total_billions_2021)^2),
+    log_ratio_base_lower = log_ratio_base - 1.96 * se_log_ratio_base,
+    log_ratio_base_upper = log_ratio_base + 1.96 * se_log_ratio_base,
+    pctchange_base_mean = (exp(log_ratio_base) - 1) * 100,
+    pctchange_base_lower = (exp(log_ratio_base_lower) - 1) * 100,
+    pctchange_base_upper = (exp(log_ratio_base_upper) - 1) * 100,
+    
+    # WHO target scenario
+    ratio_WHO = WHO_selected_Mean_total_billions_2050 / selected_Mean_total_billions_2021,
+    log_ratio_WHO = log(ratio_WHO),
+    se_log_ratio_WHO = sqrt((se_WHO_2050 / WHO_selected_Mean_total_billions_2050)^2 +
+                              (se_2021 / selected_Mean_total_billions_2021)^2),
+    log_ratio_WHO_lower = log_ratio_WHO - 1.96 * se_log_ratio_WHO,
+    log_ratio_WHO_upper = log_ratio_WHO + 1.96 * se_log_ratio_WHO,
+    pctchange_WHO_mean = (exp(log_ratio_WHO) - 1) * 100,
+    pctchange_WHO_lower = (exp(log_ratio_WHO_lower) - 1) * 100,
+    pctchange_WHO_upper = (exp(log_ratio_WHO_upper) - 1) * 100
+  ) %>%
+  
+  # === Round all numeric values to 2 decimals ===
+  mutate(across(where(is.numeric), \(x) round(x, 1))) %>%
+  
+  # === Formatting for table output ===
+  mutate(
     "2021 Expenditure" = paste0(selected_Mean_total_billions_2021, " (", base_2021_lower, "-", base_2021_upper, ")"),
     "2050 Base Expenditure" = paste0(selected_Mean_total_billions_2050, " (", base_2050_lower, "-", base_2050_upper, ")"),
-    "2050 WHO Expenditure" = paste0(WHO_selected_Mean_total_billions_2050, " (", WHO_2050_lower, "-", WHO_2050_upper, ")")
+    "2050 WHO Expenditure" = paste0(WHO_selected_Mean_total_billions_2050, " (", WHO_2050_lower, "-", WHO_2050_upper, ")"),
+    "Total % change 2021–2050 base scenario (95% CI)" =
+      paste0(pctchange_base_mean, "% (",
+             pctchange_base_lower, "–",
+             pctchange_base_upper, "%)"),
+    "Total % change 2021–2050 WHO target (95% CI)" =
+      paste0(pctchange_WHO_mean, "% (",
+             pctchange_WHO_lower, "–",
+             pctchange_WHO_upper, "%)")
   ) %>%
-  select(location_name, "2021 Expenditure":"2050 WHO Expenditure")
+  select(
+    location_name,
+    "2021 Expenditure",
+    "2050 Base Expenditure",
+    "Total % change 2021–2050 base scenario (95% CI)",
+    "2050 WHO Expenditure",
+    "Total % change 2021–2050 WHO target (95% CI)"
+  )
 
 
-
-  
   
 perio_expenditure_countries <- perio_expenditure_wide %>%
   filter (!is.na(iso3c)) %>%
