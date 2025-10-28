@@ -193,9 +193,11 @@ plot_top10_exppc_cost <- ggplot(top_10_exppc_df, aes(x = Year, y = selected_expp
 
 plot_top10_exppc_cost
 
-plot_countries_expenditure <- plot_top10_exp_cost + plot_top10_exppc_cost + plot_annotation(tag_levels = "A")
+plot_countries_expenditure <- plot_top10_exp_cost + plot_top10_exppc_cost + 
+  plot_annotation(tag_levels = "A")  + 
+  plot_layout(ncol = 1, nrow = 2) 
 
-ggsave("outputs_forecast/patchwork_countries_expenditure.png", plot_countries_expenditure, width = 24, height = 6, dpi = 300)
+ggsave("outputs_forecast/patchwork_countries_expenditure.png", plot_countries_expenditure, width = 15, height = 12, dpi = 300)
 
 
 
@@ -254,6 +256,11 @@ map_base_2021 <- ggplot(map_data_2021) +
   )
 
 map_base_2021
+
+ggsave("outputs_forecast/world_periodontal_expenditure_map_2021.png",
+       plot = map_base_2021,
+       width = 24, height = 10, dpi = 300
+)
 
 #-----------------------------------------------------------------------------------------------------------------
 
@@ -377,15 +384,15 @@ map_base_gap
 # Save with suitable dimensions for world map
 
 
-plot_patchwork_map <- (map_base_2021 + map_base_2050 + map_base_2050_WHO + map_base_gap) +
-  plot_layout(ncol = 2, nrow = 2) +
+plot_patchwork_map <- (map_base_2050 + map_base_2050_WHO + map_base_gap) +
+  plot_layout(ncol = 1, nrow = 3) +
   plot_annotation(tag_levels = "A")
 
 plot_patchwork_map
 
 ggsave("outputs_forecast/world_periodontal_expenditure_map_2021_2025.png",
   plot = plot_patchwork_map,
-  width = 24, height = 10, dpi = 300
+  width = 18, height = 20, dpi = 300
 )
 
 
