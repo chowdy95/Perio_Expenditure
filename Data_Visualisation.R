@@ -374,6 +374,65 @@ ggsave("outputs/world_periodontal_expenditure_map.pdf",
 
 
 #------------------------------------------------------------------------------------------
+# Plotting world map with utilisation scenario
+#------------------------------------------------------------------------------------------
+
+# Load libraries
+library(tidyverse)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(countrycode)
+
+# Read your data
+country_totals <- read_csv("outputs/short_final_selected_output.csv")
+
+# Add ISO codes
+country_totals <- country_totals %>%
+  mutate(iso3c = countrycode(Country, origin = "country.name", destination = "iso3c"))
+
+# Ensure 'selected_model' is an ordered factor
+country_totals <- country_totals %>%
+  mutate(selected_model = factor(selected_model,
+                                 levels = c("low", "mid", "high"),
+                                 ordered = TRUE))
+
+# Load world map & crop Antarctica
+world <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf") %>%
+  filter(admin != "Antarctica")
+
+# Join data to map
+map_data <- world %>%
+  left_join(country_totals, by = c("iso_a3_eh" = "iso3c"))
+
+# Plot categorical map
+p <- ggplot(map_data) +
+  geom_sf(aes(fill = selected_model), color = "white", size = 0.1) +
+  scale_fill_manual(
+    values = c("low" = "#3182bd", "mid" = "#fed976", "high" = "#de2d26"),
+    na.value = "grey80",
+    name = "Utilisation scenario"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "right",
+    legend.title = element_text(size = 12, face = "bold"),
+    legend.text = element_text(size = 10),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank()
+  )
+
+# Save
+ggsave("outputs/world_utilisation_scenario_map.pdf",
+       plot = p,
+       width = 12, height = 6, dpi = 300
+)
+
+
+
+
+#------------------------------------------------------------------------------------------
 # Creating a stacked area chart to breakdown cost components between countries (after normalising total)
 #------------------------------------------------------------------------------------------
 
@@ -927,3 +986,294 @@ ggplot(df, aes(x = selected_model, y = GDP_per_capita_PPP_2021, color = selected
     title = "Per-Capita Dental Expenditure by Utilisation Scenario"
   ) +
   theme_minimal()
+
+
+
+#------------------------------------------------------------------------------------------
+# GDP vs Periodontitis Expenditure per Capita (log-log plot, minimalist pastel version)
+#------------------------------------------------------------------------------------------
+
+library(tidyverse)
+
+# Read and prepare data
+plot_data <- read_csv("outputs/short_final_selected_output.csv") %>%
+  filter(!is.na(iso3c)) %>% # exclude aggregates
+  mutate(
+    exp_per_capita = (selected_Mean_total_billions * 1e9) / Pop,
+    selected_model = factor(selected_model, levels = c("low", "mid", "high"), ordered = TRUE)
+  ) %>%
+  filter(!is.na(exp_per_capita), !is.na(GDP_per_capita_PPP_2021), !is.na(Dent_exppc_usd))
+
+# Define color palette (colorblind-friendly blue-yellow-red)
+model_colors <- c("low" = "#3182bd", "mid" = "#fed976", "high" = "#de2d26")
+
+# Plot
+p <- ggplot(plot_data, aes(
+  x = GDP_per_capita_PPP_2021,
+  y = exp_per_capita,
+  color = selected_model,
+  size = Dent_exppc_usd
+)) +
+  geom_point(alpha = 0.9) +
+  scale_color_manual(values = model_colors, name = "Utilisation scenario") +
+  scale_size_continuous(
+    range = c(1, 8),
+    labels = scales::comma_format(accuracy = 1),
+    name = "Dental expenditure\nper capita (USD)"
+  ) +
+  scale_x_log10(
+    labels = scales::comma_format(),
+    name = "GDP per capita (PPP, USD) (log scale)"
+  ) +
+  scale_y_log10(
+    labels = scales::comma_format(accuracy = 1),
+    name = "Periodontitis expenditure per capita (USD) (log scale)"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid = element_blank(),
+    axis.line = element_line(colour = "black", linewidth = 0.3),
+    axis.ticks = element_line(colour = "black", linewidth = 0.3),
+    legend.position = "right",
+    legend.title = element_text(face = "bold", size = 12),
+    legend.text = element_text(size = 10),
+    axis.title = element_text(face = "bold"),
+    plot.margin = margin(10, 10, 10, 10)
+  )
+
+# Save
+ggsave("outputs/gdp_vs_expenditure_percapita.pdf",
+       plot = p,
+       width = 8, height = 6, dpi = 300
+)
+
+
+#------------------------------------------------------------------------------------------
+# SDI vs Periodontitis Expenditure per Capita (log scale, minimalist blue-yellow-red)
+#------------------------------------------------------------------------------------------
+
+library(tidyverse)
+library(countrycode)
+
+#-----------------------------
+# 1. Read and prepare main data
+#-----------------------------
+main_data <- read_csv("outputs/short_final_selected_output.csv") %>%
+  filter(!is.na(iso3c)) %>% # exclude aggregates
+  mutate(
+    exp_per_capita = (selected_Mean_total_billions * 1e9) / Pop,
+    selected_model = factor(selected_model, levels = c("low", "mid", "high"), ordered = TRUE)
+  )
+
+#-----------------------------
+# 2. Read and prepare SDI data
+#-----------------------------
+sdi_data <- read_csv("data/GBD_SDI_quintiles.csv") %>%
+  rename(
+    Country = `Location Name`,
+    SDI = `2023 SDI Index Value`
+  ) %>%
+  mutate(
+    iso3c = countrycode(Country, origin = "country.name", destination = "iso3c")
+  ) %>%
+  filter(!is.na(iso3c)) # keep only valid country matches
+
+#-----------------------------
+# 3. Merge datasets on iso3c
+#-----------------------------
+merged_data <- main_data %>%
+  left_join(sdi_data %>% select(iso3c, SDI), by = "iso3c") %>%
+  filter(!is.na(SDI), !is.na(exp_per_capita), !is.na(Dent_exppc_usd))
+
+#-----------------------------
+# 4. Define color palette (strong, colorblind-friendly)
+#-----------------------------
+model_colors <- c(
+  "low"  = "#3182bd",  # blue
+  "mid"  = "#fed976",  # yellow
+  "high" = "#de2d26"   # red
+)
+
+#-----------------------------
+# 5. Plot
+#-----------------------------
+p <- ggplot(merged_data, aes(
+  x = SDI,
+  y = exp_per_capita,
+  color = selected_model,
+  size = Dent_exppc_usd
+)) +
+  geom_point(alpha = 0.9) +
+  scale_color_manual(values = model_colors, name = "Utilisation scenario") +
+  scale_size_continuous(
+    range = c(1, 8),
+    labels = scales::comma_format(accuracy = 1),
+    name = "Dental expenditure\nper capita (USD)"
+  ) +
+  scale_x_continuous(
+    limits = c(0, 1),
+    breaks = seq(0, 1, 0.2),
+    name = "Socio-demographic Index (SDI)"
+  ) +
+  scale_y_log10(
+    labels = scales::comma_format(accuracy = 1),
+    name = "Periodontitis expenditure per capita (USD) (log scale)"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid = element_blank(),
+    axis.line = element_line(colour = "black", linewidth = 0.3),
+    axis.ticks = element_line(colour = "black", linewidth = 0.3),
+    legend.position = "right",
+    legend.title = element_text(face = "bold", size = 12),
+    legend.text = element_text(size = 10),
+    axis.title = element_text(face = "bold"),
+    plot.margin = margin(10, 10, 10, 10)
+  )
+
+#-----------------------------
+# 6. Save output
+#-----------------------------
+ggsave("outputs/sdi_vs_expenditure_percapita.pdf",
+       plot = p,
+       width = 8, height = 6, dpi = 300
+)
+
+
+
+#------------------------------------------------------------------------------------------
+# Plotting utilisation scenario vs expenditure, sized by SDI
+#------------------------------------------------------------------------------------------
+
+# Load libraries
+library(tidyverse)
+library(countrycode)
+
+# Read datasets
+country_totals <- read_csv("outputs/short_final_selected_output.csv")
+sdi_data <- read_csv("data/GBD_SDI_quintiles.csv")
+
+# Clean and standardize column names
+sdi_data <- sdi_data %>%
+  rename(
+    Country = `Location Name`,
+    SDI = `2023 SDI Index Value`
+  )
+
+# Add ISO codes for matching
+country_totals <- country_totals %>%
+  mutate(iso3c = countrycode(Country, origin = "country.name", destination = "iso3c"))
+
+sdi_data <- sdi_data %>%
+  mutate(iso3c = countrycode(Country, origin = "country.name", destination = "iso3c"))
+
+# Merge and clean
+merged_data <- country_totals %>%
+  left_join(sdi_data %>% select(iso3c, SDI), by = "iso3c") %>%
+  filter(!is.na(iso3c), !is.na(SDI))
+
+# Calculate periodontitis expenditure per capita (USD)
+merged_data <- merged_data %>%
+  mutate(perio_exppc_usd = (selected_Mean_total_billions * 1e9) / Pop)
+
+#------------------------------------------------------------------------------------------
+# Plot
+#------------------------------------------------------------------------------------------
+
+p <- ggplot(merged_data, aes(
+  x = Dent_exppc_usd,
+  y = perio_exppc_usd,
+  color = selected_model,
+  size = SDI
+)) +
+  geom_point(alpha = 0.7) +
+  scale_x_log10(
+    labels = scales::comma_format(scale = 1, suffix = " USD"),
+    name = "Dental Expenditure per Capita (log scale)"
+  ) +
+  scale_y_log10(
+    labels = scales::comma_format(scale = 1, suffix = " USD"),
+    name = "Periodontal Expenditure per Capita (log scale)"
+  ) +
+  scale_color_manual(
+    values = c(  "low"  = "#3182bd",  
+                 "mid"  = "#fed976",  
+                 "high" = "#de2d26"   ),
+    name = "Utilisation Scenario"
+  ) +
+  scale_size_continuous(
+    range = c(0.5, 6),
+    name = "Socio-demographic Index (SDI)"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    panel.grid = element_blank(),
+    legend.position = "right",
+    axis.line = element_line(colour = "black", linewidth = 0.3),
+    axis.ticks = element_line(colour = "black", linewidth = 0.3),
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black"),
+    plot.margin = margin(10, 20, 10, 10)
+  )
+
+#------------------------------------------------------------------------------------------
+# Save output
+#------------------------------------------------------------------------------------------
+ggsave(
+  "outputs/scatter_periodontal_vs_dental_SDI_sized.pdf",
+  plot = p,
+  width = 9,
+  height = 6,
+  dpi = 300
+)
+
+#------------------------------------------------------------------------------------------
+# Same plot but on a continuous axis
+#------------------------------------------------------------------------------------------
+
+p <- ggplot(merged_data, aes(
+  x = Dent_exppc_usd,
+  y = perio_exppc_usd,
+  color = selected_model,
+  size = SDI
+)) +
+  geom_point(alpha = 0.5) +
+  scale_x_continuous(
+    labels = scales::comma_format(scale = 1, suffix = " USD"),
+    name = "Dental Expenditure per Capita"
+  ) +
+  scale_y_continuous(
+    labels = scales::comma_format(scale = 1, suffix = " USD"),
+    name = "Periodontal Expenditure per Capita"
+  ) +
+  scale_color_manual(
+    values = c(  "low"  = "#3182bd",  
+                 "mid"  = "#fed976",  
+                 "high" = "#de2d26"   ),
+    name = "Utilisation Scenario"
+  ) +
+  scale_size_continuous(
+    range = c(0.1, 5),
+    name = "Socio-demographic Index (SDI)"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    panel.grid = element_blank(),
+    legend.position = "right",
+    axis.line = element_line(colour = "black", linewidth = 0.3),
+    axis.ticks = element_line(colour = "black", linewidth = 0.3),
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black"),
+    plot.margin = margin(10, 20, 10, 10)
+  )
+
+#------------------------------------------------------------------------------------------
+# Save output
+#------------------------------------------------------------------------------------------
+ggsave(
+  "outputs/scatter_periodontal_vs_dental_SDI_continuous.pdf",
+  plot = p,
+  width = 9,
+  height = 6,
+  dpi = 300
+)

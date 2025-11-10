@@ -109,7 +109,7 @@ proc_models <- map(proc_means, function(proc) {
   perf <- model_performance(mod)
   print(perf)
   diag_plot <- plot(check_model(mod)) + ggtitle(paste("Diagnostics:", proc, "~ Prophy"))
-  ggsave(filename = paste0("output_regression_diagnostics/", proc, "_diagnostics.pdf"), plot = diag_plot, width = 8, height = 6)
+  ggsave(filename = paste0("output_regression_diagnostics/", proc, "_diagnostics.png"), plot = diag_plot, width = 8, height = 6)
   mod
 })
 names(proc_models) <- proc_means
