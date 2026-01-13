@@ -3,13 +3,20 @@ library(shiny)
 library(tidyverse)
 library(countrycode)
 library(plotly)
+library(rsconnect)
 
 # ---------------------------
 # Data prep (runs once)
 # ---------------------------
+
 country_totals <- read_csv("outputs/short_final_selected_output.csv")
+# country_totals <- read_csv("short_final_selected_output.csv")
+
 sdi_data <- read_csv("data/GBD_SDI_quintiles.csv") %>%
   rename(Country = `Location Name`, SDI = `2023 SDI Index Value`)
+
+# sdi_data <- read_csv("GBD_SDI_quintiles.csv") %>%
+#   rename(Country = `Location Name`, SDI = `2023 SDI Index Value`)
 
 if (!"Country" %in% names(country_totals)) {
   stop("Main CSV must contain a 'Country' column. Rename it or update code.")
@@ -225,3 +232,6 @@ server <- function(input, output, session) {
 # Run the app
 # ---------------------------
 shinyApp(ui, server)
+
+
+rsconnect::deployApp("D:/JT research collaboration/GBD Cost Effectiveness Projections/Perio_Expenditure/Perio_vs_Dental_Expenditure")

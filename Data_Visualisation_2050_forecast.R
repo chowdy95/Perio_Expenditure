@@ -37,7 +37,7 @@ superregion_cost_df <- perio_expenditure %>%
 plot_superregion_cost <- ggplot(data = superregion_cost_df, aes(
   x = Year, y = selected_Mean_total_billions
 )) +
-  geom_line(aes(color = location_name, linetype = "Current dental utilisation"), linewidth = 1.2) +
+  geom_line(aes(color = location_name, linetype = "Base, current-usage scenario"), linewidth = 1.2) +
   geom_ribbon(
     aes(
       ymin = selected_Mean_total_billions - selected_SD_total_billions,
@@ -47,7 +47,7 @@ plot_superregion_cost <- ggplot(data = superregion_cost_df, aes(
   ) +
   geom_line(aes(
     x = Year, y = transition_WHO_selected_Mean_total_billions,
-    color = location_name, linetype = "WHO target of 80% coverage"
+    color = location_name, linetype = "WHO target scenario"
   ), linewidth = 1.2) +
   geom_ribbon(
     aes(
@@ -58,21 +58,32 @@ plot_superregion_cost <- ggplot(data = superregion_cost_df, aes(
   ) +
   theme_minimal() +
   theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40),
-        legend.position = "bottom") +
+        legend.position = "bottom",
+        strip.text = element_text(size=10)) +
   labs(
     y = "Total Periodontitis Expenditure (billions)"
     ) +
   scale_linetype_manual(
-    values = c("Current dental utilisation" = "solid", "WHO target of 80% coverage" = "dashed"),
-    name = "Dental utilisation scenario"
+    values = c("Base, current-usage scenario" = "solid", "WHO target scenario" = "dotted"),
+    name = "Periodontitis expenditure from 2021 to 2050"
   ) +
   scale_fill_discrete(guide = "none") +
   scale_colour_discrete(guide = "none") +
-  facet_wrap(~location_name, scales = "free", ncol = 2)
+  facet_wrap(~location_name, scales = "free", ncol = 2) +
+  guides(
+    linetype = guide_legend(
+      override.aes = list(size = 1.2),     # thickness (optional)
+      keywidth = unit(1.3, "cm")             # length of line in legend
+    )
+  )+
+  geom_hline(yintercept = 0, color = "black", linewidth = 0.6) +   # x-axis
+  geom_vline(xintercept = 2020, 
+             color = "black", linewidth = 0.6)  
 
 plot_superregion_cost
 
-ggsave("outputs_forecast/patchwork_global_superregion.pdf", width = 8, height = 8)
+ggsave("outputs_forecast/patchwork_global_superregion.png", width = 8, height = 11)
+
 
 
 #-----------------------------------------------------------------------------------------------------------------
@@ -94,8 +105,8 @@ top_10_expenditure_df <- perio_expenditure %>%
   mutate(location_name = fct_rev(location_name))
 
 plot_top10_exp_cost <- ggplot(top_10_expenditure_df, aes(x = Year, y = selected_Mean_total_billions, group = location_name)) +
-  geom_line(data = perio_expenditure_countries, aes(x = Year, y = selected_Mean_total_billions, linetype = "Current dental utilisation"), alpha = 0.15) +
-  geom_line(data = top_10_expenditure_df, aes(x = Year, y = selected_Mean_total_billions, color = location_name, linetype = "Current dental utilisation")) +
+  geom_line(data = perio_expenditure_countries, aes(x = Year, y = selected_Mean_total_billions, linetype = "Base, current-usage scenario"), alpha = 0.15) +
+  geom_line(data = top_10_expenditure_df, aes(x = Year, y = selected_Mean_total_billions, color = location_name, linetype = "Base, current-usage scenario")) +
   geom_ribbon(
     aes(
       ymin = selected_Mean_total_billions - selected_SD_total_billions,
@@ -105,7 +116,7 @@ plot_top10_exp_cost <- ggplot(top_10_expenditure_df, aes(x = Year, y = selected_
   ) +
   geom_line(aes(
     x = Year, y = transition_WHO_selected_Mean_total_billions,
-    color = location_name, linetype = "WHO target of 80% coverage"
+    color = location_name, linetype = "WHO target scenario"
   )) +
   geom_ribbon(
     aes(
@@ -121,8 +132,8 @@ plot_top10_exp_cost <- ggplot(top_10_expenditure_df, aes(x = Year, y = selected_
     color = "Country (top 5 for 2050 periodontitis expenditure based on WHO target) "
   ) +
   scale_linetype_manual(
-    values = c("Current dental utilisation" = "solid", "WHO target of 80% coverage" = "dashed"),
-    name = "Dental utilisation scenario"
+    values = c("Base, current-usage scenario" = "solid", "WHO target scenario" = "dashed"),
+    name = "Periodontitis expenditure from 2021 to 2050"
   ) +
   guides(fill = "none", alpha = "none")
 
@@ -159,8 +170,8 @@ top_10_exppc_df <- perio_expenditure_countries %>%
   mutate(location_name = fct_rev(location_name))
 
 plot_top10_exppc_cost <- ggplot(top_10_exppc_df, aes(x = Year, y = selected_exppc_usd_mean, group = location_name)) +
-  geom_line(data = perio_expenditure_countries, aes(x = Year, y = selected_exppc_usd_mean, linetype = "Current dental utilisation"), alpha = 0.15) +
-  geom_line(data = top_10_exppc_df, aes(x = Year, y = selected_exppc_usd_mean, color = location_name, linetype = "Current dental utilisation")) +
+  geom_line(data = perio_expenditure_countries, aes(x = Year, y = selected_exppc_usd_mean, linetype = "Base, current-usage scenario"), alpha = 0.15) +
+  geom_line(data = top_10_exppc_df, aes(x = Year, y = selected_exppc_usd_mean, color = location_name, linetype = "Base, current-usage scenario")) +
   geom_ribbon(
     aes(
       ymin = selected_exppc_usd_mean - selected_exppc_usd_sd,
@@ -170,7 +181,7 @@ plot_top10_exppc_cost <- ggplot(top_10_exppc_df, aes(x = Year, y = selected_expp
   ) +
   geom_line(aes(
     x = Year, y = WHO_exppc_usd_mean,
-    color = location_name, linetype = "WHO target of 80% coverage"
+    color = location_name, linetype = "WHO target scenario"
   )) +
   geom_ribbon(
     aes(
@@ -186,8 +197,8 @@ plot_top10_exppc_cost <- ggplot(top_10_exppc_df, aes(x = Year, y = selected_expp
     color = "Country (top 5 for 2050 expenditure per capita, WHO target) "
   ) +
   scale_linetype_manual(
-    values = c("Current dental utilisation" = "solid", "WHO target of 80% coverage" = "dashed"),
-    name = "Dental utilisation scenario"
+    values = c("Base, current-usage scenario" = "solid", "WHO target scenario" = "dashed"),
+    name = "Periodontitis expenditure from 2021 to 2050"
   ) +
   guides(fill = "none", alpha = "none")
 

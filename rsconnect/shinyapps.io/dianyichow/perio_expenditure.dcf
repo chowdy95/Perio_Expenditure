@@ -1,0 +1,10 @@
+name: perio_expenditure
+title:
+username: dianyichow
+account: dianyichow
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 16025668
+bundleId:
+url: https://dianyichow.shinyapps.io/perio_expenditure/
+version: 1

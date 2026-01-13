@@ -308,12 +308,123 @@ inset_plot <- ggplot(inset_data, aes(x = Dent_exp_usd, y = selected_Mean_total_b
 final_plot <- main_plot +
   inset_element(
     inset_plot,
-    left = 0.65, bottom = 0.05,
-    right = 0.95, top = 0.35
+    left = 0.55, bottom = 0.05,
+    right = 1.10, top = 0.5
   )
 
 # 9. Save
-ggsave("outputs/validation_regression_inset.pdf", final_plot, width = 18, height = 10, dpi = 300)
+ggsave("outputs/validation_regression_inset.png", final_plot, width = 18, height = 10, dpi = 300)
+
+
+#------------------------------------------------------------------------------------------
+# Plotting validation with just periodontitis treatment expenditure
+#------------------------------------------------------------------------------------------
+
+
+library(tidyverse)
+library(ggrepel)
+library(scales)
+
+# ---- 1. Data ----
+df <- tribble(
+  ~Country, ~Exp_A, ~Exp_B,
+  "USA",            5427000000, 10943920000,
+  "Australia",       690769230.8,   860667300,
+  "Botswana",             285000,     2135588,
+  "Brazil",            638601600,   436147900,
+  "Canada",             92823120,   1243831000,
+  "Chile",             23264907.74,   7799430,
+  "Germany",          2624570500,   3414465000,
+  "Japan",            3789961840,   1510370000,
+  "Rwanda",                112000,     88615.04,
+  "South Korea",      687020090,    505905200,
+  "Sweden",           282034883.7,   422806600,
+  "Taiwan",            625000000,    876108800,
+  "Tanzania",                 600,     1968566
+)
+
+# ---- 2. Fit regression ----
+fit <- lm(Exp_B ~ Exp_A, data = df)
+slope <- coef(fit)[2]
+intercept <- coef(fit)[1]
+r2 <- summary(fit)$r.squared
+
+# Format for display
+fmt_billions <- function(x) scales::number(x / 1e9, accuracy = 0.01)
+slope_fmt <- scales::number(slope, accuracy = 0.00001)
+intercept_fmt <- fmt_billions(intercept)
+
+eq_label <- glue::glue("y = {slope_fmt}·x + {intercept_fmt}B\nR² = {round(r2, 3)}")
+
+# ---- 3. Plot ----
+p <- ggplot(df, aes(x = Exp_A, y = Exp_B)) +
+  # Best fit line
+  geom_smooth(method = "lm", se = FALSE, color = "plum2", size = 1) +
+  
+  geom_point(color = "grey40", size = 3) +
+  
+  # Labels
+  geom_text_repel(
+    aes(label = Country),
+    size = 3.2,
+    box.padding = 0.25,
+    point.padding = 0.2,
+    segment.color = "grey70"
+  ) +
+  
+
+  
+  # 1:1 identity dashed line
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "grey50") +
+  
+  # Equation annotation (top-left)
+  annotate(
+    "text",
+    x = min(df$Exp_A, na.rm = TRUE),
+    y = max(df$Exp_B, na.rm = TRUE),
+    hjust = 1,
+    vjust = 0.4,
+    label = eq_label,
+    color = "grey20",
+    size = 4
+  ) +
+  
+  # Axes in billions
+  scale_x_continuous(
+    labels = ~ paste0(number(.x / 1e9, accuracy = 0.1), "B")
+  ) +
+  scale_y_continuous(
+    labels = ~ paste0(number(.x / 1e9, accuracy = 0.1), "B")
+  ) +
+  
+  labs(
+    x = "Predicted Periodontal Treatment Expenditure (Billions USD)",
+    y = "Actual Periodontal Treatment Expenditure (Billions USD)"
+  ) +
+  
+  theme_minimal(base_size = 12) +
+  theme(
+    axis.title = element_text(color = "grey20"),
+    axis.text = element_text(color = "grey20"),
+    panel.grid.minor = element_blank(),
+    legend.position = "none"
+  ) +
+  
+  # coord_fixed 1:1 AND flip
+  coord_fixed(ratio = 1) +
+  coord_flip()
+
+p
+
+# ---- 4. Save ----
+ggsave("outputs/validation_periodontitis_expenditure.png",
+       p, width = 12, height = 8, dpi = 300)
+
+
+
+
+
+
 
 #------------------------------------------------------------------------------------------
 # Plotting world map with direct expenditure
