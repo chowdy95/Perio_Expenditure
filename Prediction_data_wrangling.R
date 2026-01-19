@@ -61,8 +61,8 @@ prediction_selection <- prediction_combined %>%
   # First, pick the selected model based on your logic
   mutate(
     selected_model = case_when(
-      Mean_total_billions_high < 0.6 * Dent_exp_usd ~ "high",
-      Mean_total_billions_mid < 0.6 * Dent_exp_usd ~ "mid",
+      Mean_total_billions_high < 0.75 * Dent_exp_usd ~ "high",
+      Mean_total_billions_mid < 0.75 * Dent_exp_usd ~ "mid",
       TRUE ~ "low"
     )
   ) %>%
