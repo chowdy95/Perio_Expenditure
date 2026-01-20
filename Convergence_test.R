@@ -294,3 +294,87 @@ p +
   geom_line(aes(x = n_sims, y = log(Mean_total_billions))) +
   theme_minimal() +
   scale_x_continuous(limits = c(1000, 12000), breaks = seq(1000, 12000, 1000))
+
+
+
+
+
+# ==============================================================================
+# Convergence diagnostics (2050) — Superregions only
+# ==============================================================================
+
+rm(list = ls())
+
+library(tidyverse)
+library(countrycode)
+
+# ------------------------------------------------------------------------------
+# 1. Load simulation outputs from RDS files
+# ------------------------------------------------------------------------------
+
+output_dir <- "convergence_tests"
+
+df_results <- list.files(
+  path = output_dir,
+  pattern = "\\.rds$",
+  full.names = TRUE
+) %>%
+  map_dfr(readRDS) %>%
+  mutate(n_sims = as.numeric(n_sims))
+
+# ------------------------------------------------------------------------------
+# 2. Load GBD hierarchy
+# ------------------------------------------------------------------------------
+
+hier <- read_csv(
+  "data/GBD_location_hierarchy_wide.csv",
+  locale = locale(encoding = "Latin1")
+) %>%
+  mutate(iso3c = countrycode(Country, "country.name", "iso3c")) %>%
+  select(Country, Superregion)
+
+# ------------------------------------------------------------------------------
+# 3. Aggregate directly to Superregion
+# ------------------------------------------------------------------------------
+
+superregion_results <- df_results %>%
+  left_join(hier, by = "Country") %>%
+  filter(!is.na(Superregion)) %>%
+  group_by(Superregion, n_sims) %>%
+  summarise(
+    Mean_total_billions = sum(Mean_total_billions, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# ------------------------------------------------------------------------------
+# 4. Plot convergence (colour by Superregion)
+# ------------------------------------------------------------------------------
+
+p2 <- ggplot(
+  superregion_results,
+  aes(
+    x = n_sims,
+    y = Mean_total_billions,
+    colour = Superregion,
+    group = Superregion
+  )
+) +
+  geom_line(linewidth = 1, alpha = 0.8) +
+  theme_minimal() +
+  scale_x_continuous(
+    limits = c(1000, 12000),
+    breaks = seq(1000, 12000, 1000)
+  ) +
+  labs(
+    x = "Number of simulations",
+    y = "Mean total dental expenditure (US$ billions)",
+    colour = "Superregion"
+  )
+
+ggsave(
+  "convergence_tests/convergence_plot_superregion.jpg",
+  plot = p2,
+  width = 9,
+  height = 9,
+  dpi = 300
+)
