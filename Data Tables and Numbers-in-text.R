@@ -307,6 +307,13 @@ superregion_wide <- perio_expenditure_wide %>%
 
 write_excel_csv(superregion_wide, "outputs_forecast/superregion_level_expenditure.csv")
 
+
+
+
+#-----------------------------------------------------------------------------------
+# Country level estimates
+#-----------------------------------------------------------------------------------
+
 country_wide <- perio_expenditure_wide %>%
   select(
     -c(
@@ -453,6 +460,8 @@ country_wide <- perio_expenditure_wide %>%
 write_excel_csv(country_wide, "outputs_forecast/country_level_expenditure.csv")
 
 
+
+
 #--------------------------------------------------------
 # Median cost
 #--------------------------------------------------------
@@ -475,3 +484,341 @@ perio_expenditure_2050 <- read_csv("outputs_forecast/expenditure_summary_forecas
 
 perio_expenditure_2021 <- read_csv("outputs_forecast/expenditure_summary_forecast.csv") %>%
   filter(Year ==2021)
+
+
+
+
+
+library(tidyverse)
+library(readr)
+
+# ------------------------------------------------------------------------------
+# 1. Load population inputs
+# ------------------------------------------------------------------------------
+
+# 2050 population (has iso3c; canonical)
+pop_2050 <- read_csv(
+  "data/combined_country_input_2050.csv",
+  show_col_types = FALSE
+) %>%
+  select(Country, iso3c, Pop) %>%
+  rename(Pop_2050 = Pop)
+
+# 2021 population (NO iso3c)
+pop_2021 <- read_csv(
+  "data/combined_country_input.csv",
+  show_col_types = FALSE
+) %>%
+  select(Country, Pop) %>%
+  rename(Pop_2021 = Pop)
+
+# ------------------------------------------------------------------------------
+# 2. Match 2021 → 2050 by Country, then keep iso3c from 2050
+# ------------------------------------------------------------------------------
+
+pop_combined <- pop_2050 %>%
+  left_join(pop_2021, by = "Country") %>%
+  select(-Country)
+
+# ------------------------------------------------------------------------------
+# 3. Attach populations to expenditure outputs
+# ------------------------------------------------------------------------------
+
+country_pc <- perio_expenditure_wide %>%
+  filter(!is.na(iso3c)) %>%
+  left_join(pop_combined, by = "iso3c") %>%
+  mutate(
+    "Dental Utilisation Scenario" = selected_model
+  )
+
+# ------------------------------------------------------------------------------
+# 4. Compute per-capita expenditure (US$ per person)
+# ------------------------------------------------------------------------------
+
+country_pc <- country_pc %>%
+  mutate(
+    # Means
+    pc_2021_mean =
+      selected_Mean_total_billions_2021 * 1e9 / Pop_2021,
+    
+    pc_2050_base_mean =
+      selected_Mean_total_billions_2050 * 1e9 / Pop_2050,
+    
+    pc_2050_WHO_mean =
+      WHO_selected_Mean_total_billions_2050 * 1e9 / Pop_2050,
+    
+    # SDs
+    pc_2021_sd =
+      selected_SD_total_billions_2021 * 1e9 / Pop_2021,
+    
+    pc_2050_base_sd =
+      selected_SD_total_billions_2050 * 1e9 / Pop_2050,
+    
+    pc_2050_WHO_sd =
+      WHO_selected_SD_total_billions_2050 * 1e9 / Pop_2050,
+    
+    # 95% uncertainty intervals
+    pc_2021_lower = pc_2021_mean - 1.96 * pc_2021_sd,
+    pc_2021_upper = pc_2021_mean + 1.96 * pc_2021_sd,
+    
+    pc_2050_base_lower = pc_2050_base_mean - 1.96 * pc_2050_base_sd,
+    pc_2050_base_upper = pc_2050_base_mean + 1.96 * pc_2050_base_sd,
+    
+    pc_2050_WHO_lower = pc_2050_WHO_mean - 1.96 * pc_2050_WHO_sd,
+    pc_2050_WHO_upper = pc_2050_WHO_mean + 1.96 * pc_2050_WHO_sd
+  ) %>%
+  mutate(across(where(is.numeric), ~ ifelse(. < 0, 0.01, .)))
+
+# ------------------------------------------------------------------------------
+# 5. Derive superregion per-capita values (sum first, then divide)
+# ------------------------------------------------------------------------------
+
+superregion_pc <- country_pc %>%
+  group_by(Superregion) %>%
+  summarise(
+    Pop_2021 = sum(Pop_2021, na.rm = TRUE),
+    Pop_2050 = sum(Pop_2050, na.rm = TRUE),
+    
+    total_2021 =
+      sum(selected_Mean_total_billions_2021, na.rm = TRUE),
+    
+    total_2050_base =
+      sum(selected_Mean_total_billions_2050, na.rm = TRUE),
+    
+    total_2050_WHO =
+      sum(WHO_selected_Mean_total_billions_2050, na.rm = TRUE),
+    
+    .groups = "drop"
+  ) %>%
+  mutate(
+    pc_2021_mean = total_2021 * 1e9 / Pop_2021,
+    pc_2050_base_mean = total_2050_base * 1e9 / Pop_2050,
+    pc_2050_WHO_mean  = total_2050_WHO * 1e9 / Pop_2050,
+    
+    Location = Superregion,
+    Level = "Superregion"
+  )
+
+# ------------------------------------------------------------------------------
+# 6. Assemble final table with preserved ordering
+# ------------------------------------------------------------------------------
+
+final_pc_table <- bind_rows(
+  # Superregion headers
+  superregion_pc %>%
+    transmute(
+      Location,
+      Region = NA_character_,
+      Superregion = Location,
+      Level,
+      `2021 Per-capita Expenditure (US$)` =
+        sprintf("%.2f", pc_2021_mean),
+      `2050 Base Per-capita Expenditure (US$)` =
+        sprintf("%.2f", pc_2050_base_mean),
+      `2050 WHO Per-capita Expenditure (US$)` =
+        sprintf("%.2f", pc_2050_WHO_mean),
+      `Dental Utilisation Scenario` = NA_character_
+    ),
+  
+  # Countries
+  country_pc %>%
+    transmute(
+      Location = location_name,
+      Region,
+      Superregion,
+      Level = "Country",
+      `2021 Per-capita Expenditure (US$)` =
+        sprintf("%.2f", pc_2021_mean),
+      `2050 Base Per-capita Expenditure (US$)` =
+        sprintf("%.2f", pc_2050_base_mean),
+      `2050 WHO Per-capita Expenditure (US$)` =
+        sprintf("%.2f", pc_2050_WHO_mean),
+      `Dental Utilisation Scenario`
+    )
+) %>%
+  arrange(
+    Superregion,
+    factor(Level, levels = c("Superregion", "Country")),
+    Location
+  )
+
+# ------------------------------------------------------------------------------
+# 7. Export
+# ------------------------------------------------------------------------------
+
+write_excel_csv(
+  final_pc_table,
+  "outputs_forecast/per_capita_expenditure_country_superregion.csv"
+)
+
+
+
+
+library(tidyverse)
+library(readr)
+
+# ============================================================
+# 1. Read published country-level table (ordering spine)
+# ============================================================
+
+ordering_spine <- read_csv(
+  "outputs_forecast/country_level_expenditure.csv",
+  show_col_types = FALSE
+) %>%
+  select(location_name, Region, Superregion)
+
+# ============================================================
+# 2. Read population data
+# ============================================================
+
+# 2021 population (no iso3c)
+pop_2021 <- read_csv(
+  "data/combined_country_input.csv",
+  show_col_types = FALSE
+) %>%
+  select(Country, Pop) %>%
+  rename(
+    location_name = Country,
+    Pop_2021 = Pop
+  )
+
+# 2050 population (has iso3c)
+pop_2050 <- read_csv(
+  "data/combined_country_input_2050.csv",
+  show_col_types = FALSE
+) %>%
+  select(Country, iso3c, Pop) %>%
+  rename(
+    location_name = Country,
+    Pop_2050 = Pop
+  )
+
+# ============================================================
+# 3. Read model outputs (absolute expenditure)
+# ============================================================
+
+perio_expenditure_wide <- read_csv("outputs_forecast/expenditure_summary_forecast_wide.csv") %>%
+  rename(location_name = LocationHeader) %>%
+  select(location_name, ends_with("2021") & contains ("selected"), ends_with("2050") & contains ("selected"), Region, Superregion, iso3c, selected_model)
+
+
+# ============================================================
+# 4. Attach population to model outputs
+# ============================================================
+
+perio_with_pop <- perio_expenditure_wide %>%
+  select(-iso3c) %>% 
+  left_join(pop_2050, by = "location_name") %>%     # get iso3c + Pop_2050
+  left_join(pop_2021, by = "location_name")         # get Pop_2021
+
+# ============================================================
+# 5. Compute per-capita values (US$ per person)
+#     NOTE: costs are in BILLIONS
+# ============================================================
+
+country_pc <- perio_with_pop %>%
+  filter(!is.na(iso3c)) %>%   # countries only
+  mutate(
+    pc_2021_mean =
+      selected_Mean_total_billions_2021 * 1e9 / Pop_2021,
+    
+    pc_2050_base_mean =
+      selected_Mean_total_billions_2050 * 1e9 / Pop_2050,
+    
+    pc_2050_WHO_mean =
+      WHO_selected_Mean_total_billions_2050 * 1e9 / Pop_2050
+  ) %>%
+  select(
+    location_name,
+    Region,
+    Superregion,
+    pc_2021_mean,
+    pc_2050_base_mean,
+    pc_2050_WHO_mean
+  )
+
+# ============================================================
+# 6. Aggregate to superregions (population-weighted)
+# ============================================================
+
+superregion_pc <- perio_with_pop %>%
+  filter(!is.na(iso3c)) %>%
+  group_by(Superregion) %>%
+  summarise(
+    Pop_2021 = sum(Pop_2021, na.rm = TRUE),
+    Pop_2050 = sum(Pop_2050, na.rm = TRUE),
+    
+    pc_2021_mean =
+      sum(selected_Mean_total_billions_2021 * 1e9, na.rm = TRUE) / Pop_2021,
+    
+    pc_2050_base_mean =
+      sum(selected_Mean_total_billions_2050 * 1e9, na.rm = TRUE) / Pop_2050,
+    
+    pc_2050_WHO_mean =
+      sum(WHO_selected_Mean_total_billions_2050 * 1e9, na.rm = TRUE) / Pop_2050,
+    .groups = "drop"
+  ) %>%
+  mutate(
+    location_name = Superregion,
+    Region = NA_character_
+  ) %>%
+  select(
+    location_name,
+    Region,
+    Superregion,
+    pc_2021_mean,
+    pc_2050_base_mean,
+    pc_2050_WHO_mean
+  )
+
+# ============================================================
+# 7. Combine country + superregion per-capita results
+# ============================================================
+
+pc_values <- bind_rows(superregion_pc, country_pc)
+
+# ============================================================
+# 8. Join onto original ordering (CRITICAL STEP)
+# ============================================================
+
+final_pc_table <- ordering_spine %>%
+  left_join(
+    pc_values,
+    by = c("location_name", "Region", "Superregion")
+  )
+
+# ============================================================
+# 9. Format for output
+# ============================================================
+
+final_pc_table <- final_pc_table %>%
+  mutate(
+    `2021 Per-capita Expenditure (US$)` =
+      ifelse(is.na(pc_2021_mean), NA,
+             sprintf("%.2f", pc_2021_mean)),
+    
+    `2050 Base Per-capita Expenditure (US$)` =
+      ifelse(is.na(pc_2050_base_mean), NA,
+             sprintf("%.2f", pc_2050_base_mean)),
+    
+    `2050 WHO Per-capita Expenditure (US$)` =
+      ifelse(is.na(pc_2050_WHO_mean), NA,
+             sprintf("%.2f", pc_2050_WHO_mean))
+  ) %>%
+  select(
+    location_name,
+    Region,
+    Superregion,
+    `2021 Per-capita Expenditure (US$)`,
+    `2050 Base Per-capita Expenditure (US$)`,
+    `2050 WHO Per-capita Expenditure (US$)`
+  )
+
+# ============================================================
+# 10. Export
+# ============================================================
+
+write_excel_csv(
+  final_pc_table,
+  "outputs_forecast/country_level_per_capita_expenditure.csv"
+)
