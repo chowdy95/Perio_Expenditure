@@ -61,7 +61,7 @@ bottom_5_exppc_df <- perio_expenditure_countries %>%
 
 perio_expenditure_wide <- read_csv("outputs_forecast/expenditure_summary_forecast_wide.csv") %>%
   rename(location_name = LocationHeader) %>%
-  select(location_name, ends_with("2021") & contains ("selected"), ends_with("2050") & contains ("selected"), Region, Superregion, iso3c)
+  select(location_name, ends_with("2021") & contains ("selected"), ends_with("2050") & contains ("selected"), Region, Superregion, iso3c, Pop, selected_model)
   # mutate(
   #   gap_WHO_mean = WHO_selected_Mean_total_billions_2050 - selected_Mean_total_billions_2021,
   #   gap_base_mean = selected_Mean_total_billions_2050 - selected_Mean_total_billions_2021,
@@ -316,6 +316,9 @@ country_wide <- perio_expenditure_wide %>%
     )
   ) %>%
   mutate(
+    "Dental Utilisation Scenario" = selected_model
+  ) %>%
+  mutate(
     # Compute 95% CI bounds for each variable
     base_2021_upper = selected_Mean_total_billions_2021 + 1.96 * selected_SD_total_billions_2021,
     base_2021_lower = selected_Mean_total_billions_2021 - 1.96 * selected_SD_total_billions_2021,
@@ -443,7 +446,8 @@ country_wide <- perio_expenditure_wide %>%
     "2050 Base Expenditure (95% UI)",
     "Total % change 2021–2050 base scenario (95% UI)",
     "2050 WHO Expenditure (95% UI)",
-    "Total % change 2021–2050 WHO target (95% UI)"
+    "Total % change 2021–2050 WHO target (95% UI)",
+    "Dental Utilisation Scenario"
   )
 
 write_excel_csv(country_wide, "outputs_forecast/country_level_expenditure.csv")
