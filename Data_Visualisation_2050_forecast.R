@@ -47,7 +47,7 @@ plot_superregion_cost <- ggplot(data = superregion_cost_df, aes(
   ) +
   geom_line(aes(
     x = Year, y = transition_WHO_selected_Mean_total_billions,
-    color = location_name, linetype = "WHO target scenario"
+    color = location_name, linetype = "WHO-informed expanded coverage scenario"
   ), linewidth = 1.2) +
   geom_ribbon(
     aes(
@@ -64,7 +64,7 @@ plot_superregion_cost <- ggplot(data = superregion_cost_df, aes(
     y = "Total Periodontitis Expenditure (billions)"
     ) +
   scale_linetype_manual(
-    values = c("Base, current-usage scenario" = "solid", "WHO target scenario" = "dotted"),
+    values = c("Base, current-usage scenario" = "solid", "WHO-informed expanded coverage scenario" = "dotted"),
     name = "Periodontitis expenditure from 2021 to 2050"
   ) +
   scale_fill_discrete(guide = "none") +
@@ -82,135 +82,275 @@ plot_superregion_cost <- ggplot(data = superregion_cost_df, aes(
 
 plot_superregion_cost
 
-ggsave("outputs_forecast/patchwork_global_superregion.png", width = 8, height = 11)
+ggsave("outputs_forecast/patchwork_global_superregion.png", width = 10, height = 11)
 
 
 
-#-----------------------------------------------------------------------------------------------------------------
-# Highlighted country plots
-#-----------------------------------------------------------------------------------------------------------------
+# #-----------------------------------------------------------------------------------------------------------------
+# # Highlighted country plots
+# #-----------------------------------------------------------------------------------------------------------------
+# 
+# perio_expenditure_countries <- perio_expenditure %>%
+#   filter(Level == 3)
+# 
+# top_10_expenditure <- perio_expenditure_countries %>%
+#   filter(Level == 3, Year == 2050) %>%
+#   arrange(desc(transition_WHO_selected_Mean_total_billions)) %>%
+#   slice(1:5) %>%
+#   select(iso3c)
+# 
+# top_10_expenditure_df <- perio_expenditure %>%
+#   inner_join(top_10_expenditure, by = "iso3c") %>%
+#   mutate(location_name = fct_reorder(location_name, transition_WHO_selected_Mean_total_billions)) %>%
+#   mutate(location_name = fct_rev(location_name))
+# 
+# plot_top10_exp_cost <- ggplot(top_10_expenditure_df, aes(x = Year, y = selected_Mean_total_billions, group = location_name)) +
+#   geom_line(data = perio_expenditure_countries, aes(x = Year, y = selected_Mean_total_billions, linetype = "Base, current-usage scenario"), alpha = 0.15) +
+#   geom_line(data = top_10_expenditure_df, aes(x = Year, y = selected_Mean_total_billions, color = location_name, linetype = "Base, current-usage scenario")) +
+#   geom_ribbon(
+#     aes(
+#       ymin = selected_Mean_total_billions - selected_SD_total_billions,
+#       ymax = selected_Mean_total_billions + selected_SD_total_billions, fill = location_name
+#     ),
+#     alpha = 0.1
+#   ) +
+#   geom_line(aes(
+#     x = Year, y = transition_WHO_selected_Mean_total_billions,
+#     color = location_name, linetype = "WHO target scenario"
+#   )) +
+#   geom_ribbon(
+#     aes(
+#       ymin = transition_WHO_selected_Mean_total_billions - transition_WHO_selected_SD_total_billions,
+#       ymax = transition_WHO_selected_Mean_total_billions + transition_WHO_selected_SD_total_billions, fill = location_name
+#     ),
+#     alpha = 0.05
+#   ) +
+#   theme_minimal() +
+#   theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40)) +
+#   labs(
+#     y = "Total Periodontitis Expenditure (millions)",
+#     color = "Country (top 5 for 2050 periodontitis expenditure based on WHO target) "
+#   ) +
+#   scale_linetype_manual(
+#     values = c("Base, current-usage scenario" = "solid", "WHO target scenario" = "dashed"),
+#     name = "Periodontitis expenditure from 2021 to 2050"
+#   ) +
+#   guides(fill = "none", alpha = "none")
+# 
+# plot_top10_exp_cost
+# 
+# perio_expenditure_countries <- perio_expenditure_countries %>%
+#   mutate(
+#     # Current scenario per capita in USD
+#     selected_exppc_usd_mean = (selected_Mean_total_billions * 1e9) / Pop,
+#     selected_exppc_usd_sd = sqrt(
+#       (selected_SD_total_billions * 1e9 / Pop)^2 +
+#         (selected_Mean_total_billions * 1e9 * Pop_sd / Pop^2)^2
+#     ),
+# 
+#     # WHO scenario per capita in USD
+#     WHO_exppc_usd_mean = (transition_WHO_selected_Mean_total_billions * 1e9) / Pop,
+#     WHO_exppc_usd_sd = sqrt(
+#       (transition_WHO_selected_SD_total_billions * 1e9 / Pop)^2 +
+#         (transition_WHO_selected_Mean_total_billions * 1e9 * Pop_sd / Pop^2)^2
+#     )
+#   )
+# 
+# write_csv(perio_expenditure_countries, "outputs_forecast/expenditure_summary_forecast_percapita.csv")
+# 
+# top_10_exppc <- perio_expenditure_countries %>%
+#   filter(Level == 3, Year == 2050) %>%
+#   arrange(desc(WHO_exppc_usd_mean)) %>%
+#   slice(1:5) %>%
+#   select(iso3c)
+# 
+# top_10_exppc_df <- perio_expenditure_countries %>%
+#   inner_join(top_10_exppc, by = "iso3c") %>%
+#   mutate(location_name = fct_reorder(location_name, WHO_exppc_usd_mean)) %>%
+#   mutate(location_name = fct_rev(location_name))
+# 
+# plot_top10_exppc_cost <- ggplot(top_10_exppc_df, aes(x = Year, y = selected_exppc_usd_mean, group = location_name)) +
+#   geom_line(data = perio_expenditure_countries, aes(x = Year, y = selected_exppc_usd_mean, linetype = "Base, current-usage scenario"), alpha = 0.15) +
+#   geom_line(data = top_10_exppc_df, aes(x = Year, y = selected_exppc_usd_mean, color = location_name, linetype = "Base, current-usage scenario")) +
+#   geom_ribbon(
+#     aes(
+#       ymin = selected_exppc_usd_mean - selected_exppc_usd_sd,
+#       ymax = selected_exppc_usd_mean + selected_exppc_usd_sd, fill = location_name
+#     ),
+#     alpha = 0.1
+#   ) +
+#   geom_line(aes(
+#     x = Year, y = WHO_exppc_usd_mean,
+#     color = location_name, linetype = "WHO target scenario"
+#   )) +
+#   geom_ribbon(
+#     aes(
+#       ymin = WHO_exppc_usd_mean - WHO_exppc_usd_sd,
+#       ymax = WHO_exppc_usd_mean + WHO_exppc_usd_sd, fill = location_name
+#     ),
+#     alpha = 0.05
+#   ) +
+#   theme_minimal() +
+#   theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40)) +
+#   labs(
+#     y = "Total Periodontitis Expenditure Per Capita (2025 USD)",
+#     color = "Country (top 5 for 2050 expenditure per capita, WHO target) "
+#   ) +
+#   scale_linetype_manual(
+#     values = c("Base, current-usage scenario" = "solid", "WHO target scenario" = "dashed"),
+#     name = "Periodontitis expenditure from 2021 to 2050"
+#   ) +
+#   guides(fill = "none", alpha = "none")
+# 
+# plot_top10_exppc_cost
+# 
+# plot_countries_expenditure <- plot_top10_exp_cost + plot_top10_exppc_cost + 
+#   plot_annotation(tag_levels = "A")  + 
+#   plot_layout(ncol = 1, nrow = 2) 
+# 
+# ggsave("outputs_forecast/patchwork_countries_expenditure.png", plot_countries_expenditure, width = 15, height = 12, dpi = 300)
+# 
+# 
 
+
+library(tidyverse)
+library(patchwork)
+library(forcats)
+
+# ------------------------------------------------------------------------------
+# Filter country-level data (Level 3)
+# ------------------------------------------------------------------------------
 perio_expenditure_countries <- perio_expenditure %>%
   filter(Level == 3)
 
+# ------------------------------------------------------------------------------
+# Compute per-capita expenditure first
+# ------------------------------------------------------------------------------
+perio_expenditure_countries <- perio_expenditure_countries %>%
+  mutate(
+    # Base scenario per capita (USD)
+    selected_exppc_usd_mean = (selected_Mean_total_billions * 1e9) / Pop,
+    selected_exppc_usd_sd   = sqrt(
+      (selected_SD_total_billions * 1e9 / Pop)^2 +
+        (selected_Mean_total_billions * 1e9 * Pop_sd / Pop^2)^2
+    ),
+    # Expanded coverage scenario per capita
+    ExpandedCoverage_exppc_usd_mean = (transition_WHO_selected_Mean_total_billions * 1e9) / Pop,
+    ExpandedCoverage_exppc_usd_sd   = sqrt(
+      (transition_WHO_selected_SD_total_billions * 1e9 / Pop)^2 +
+        (transition_WHO_selected_Mean_total_billions * 1e9 * Pop_sd / Pop^2)^2
+    )
+  )
+
+# ------------------------------------------------------------------------------
+# Top 5 countries for total expenditure (2050)
+# ------------------------------------------------------------------------------
 top_10_expenditure <- perio_expenditure_countries %>%
-  filter(Level == 3, Year == 2050) %>%
+  filter(Year == 2050) %>%
   arrange(desc(transition_WHO_selected_Mean_total_billions)) %>%
   slice(1:5) %>%
   select(iso3c)
 
-top_10_expenditure_df <- perio_expenditure %>%
+top_10_expenditure_df <- perio_expenditure_countries %>%
   inner_join(top_10_expenditure, by = "iso3c") %>%
   mutate(location_name = fct_reorder(location_name, transition_WHO_selected_Mean_total_billions)) %>%
   mutate(location_name = fct_rev(location_name))
 
+# Total expenditure plot
 plot_top10_exp_cost <- ggplot(top_10_expenditure_df, aes(x = Year, y = selected_Mean_total_billions, group = location_name)) +
   geom_line(data = perio_expenditure_countries, aes(x = Year, y = selected_Mean_total_billions, linetype = "Base, current-usage scenario"), alpha = 0.15) +
   geom_line(data = top_10_expenditure_df, aes(x = Year, y = selected_Mean_total_billions, color = location_name, linetype = "Base, current-usage scenario")) +
   geom_ribbon(
     aes(
       ymin = selected_Mean_total_billions - selected_SD_total_billions,
-      ymax = selected_Mean_total_billions + selected_SD_total_billions, fill = location_name
+      ymax = selected_Mean_total_billions + selected_SD_total_billions,
+      fill = location_name
     ),
     alpha = 0.1
   ) +
   geom_line(aes(
     x = Year, y = transition_WHO_selected_Mean_total_billions,
-    color = location_name, linetype = "WHO target scenario"
+    color = location_name, linetype = "Expanded coverage scenario"
   )) +
   geom_ribbon(
     aes(
       ymin = transition_WHO_selected_Mean_total_billions - transition_WHO_selected_SD_total_billions,
-      ymax = transition_WHO_selected_Mean_total_billions + transition_WHO_selected_SD_total_billions, fill = location_name
+      ymax = transition_WHO_selected_Mean_total_billions + transition_WHO_selected_SD_total_billions,
+      fill = location_name
     ),
     alpha = 0.05
   ) +
   theme_minimal() +
   theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40)) +
   labs(
-    y = "Total Periodontitis Expenditure (millions)",
-    color = "Country (top 5 for 2050 periodontitis expenditure based on WHO target) "
+    y = "Total Periodontitis Expenditure (millions USD)",
+    color = "Country (top 5 for 2050 expenditure)"
   ) +
   scale_linetype_manual(
-    values = c("Base, current-usage scenario" = "solid", "WHO target scenario" = "dashed"),
-    name = "Periodontitis expenditure from 2021 to 2050"
+    values = c("Base, current-usage scenario" = "solid", "Expanded coverage scenario" = "dashed"),
+    name = "Scenario (if base = expanded coverage, only base shown)"
   ) +
   guides(fill = "none", alpha = "none")
 
-plot_top10_exp_cost
-
-perio_expenditure_countries <- perio_expenditure_countries %>%
-  mutate(
-    # Current scenario per capita in USD
-    selected_exppc_usd_mean = (selected_Mean_total_billions * 1e9) / Pop,
-    selected_exppc_usd_sd = sqrt(
-      (selected_SD_total_billions * 1e9 / Pop)^2 +
-        (selected_Mean_total_billions * 1e9 * Pop_sd / Pop^2)^2
-    ),
-
-    # WHO scenario per capita in USD
-    WHO_exppc_usd_mean = (transition_WHO_selected_Mean_total_billions * 1e9) / Pop,
-    WHO_exppc_usd_sd = sqrt(
-      (transition_WHO_selected_SD_total_billions * 1e9 / Pop)^2 +
-        (transition_WHO_selected_Mean_total_billions * 1e9 * Pop_sd / Pop^2)^2
-    )
-  )
-
-write_csv(perio_expenditure_countries, "outputs_forecast/expenditure_summary_forecast_percapita.csv")
-
+# ------------------------------------------------------------------------------
+# Top 5 countries for per-capita expenditure (2050)
+# ------------------------------------------------------------------------------
 top_10_exppc <- perio_expenditure_countries %>%
-  filter(Level == 3, Year == 2050) %>%
-  arrange(desc(WHO_exppc_usd_mean)) %>%
+  filter(Year == 2050) %>%
+  arrange(desc(ExpandedCoverage_exppc_usd_mean)) %>%
   slice(1:5) %>%
   select(iso3c)
 
 top_10_exppc_df <- perio_expenditure_countries %>%
   inner_join(top_10_exppc, by = "iso3c") %>%
-  mutate(location_name = fct_reorder(location_name, WHO_exppc_usd_mean)) %>%
+  mutate(location_name = fct_reorder(location_name, ExpandedCoverage_exppc_usd_mean)) %>%
   mutate(location_name = fct_rev(location_name))
 
+# Per-capita expenditure plot
 plot_top10_exppc_cost <- ggplot(top_10_exppc_df, aes(x = Year, y = selected_exppc_usd_mean, group = location_name)) +
   geom_line(data = perio_expenditure_countries, aes(x = Year, y = selected_exppc_usd_mean, linetype = "Base, current-usage scenario"), alpha = 0.15) +
   geom_line(data = top_10_exppc_df, aes(x = Year, y = selected_exppc_usd_mean, color = location_name, linetype = "Base, current-usage scenario")) +
   geom_ribbon(
     aes(
       ymin = selected_exppc_usd_mean - selected_exppc_usd_sd,
-      ymax = selected_exppc_usd_mean + selected_exppc_usd_sd, fill = location_name
+      ymax = selected_exppc_usd_mean + selected_exppc_usd_sd,
+      fill = location_name
     ),
     alpha = 0.1
   ) +
   geom_line(aes(
-    x = Year, y = WHO_exppc_usd_mean,
-    color = location_name, linetype = "WHO target scenario"
+    x = Year, y = ExpandedCoverage_exppc_usd_mean,
+    color = location_name, linetype = "Expanded coverage scenario"
   )) +
   geom_ribbon(
     aes(
-      ymin = WHO_exppc_usd_mean - WHO_exppc_usd_sd,
-      ymax = WHO_exppc_usd_mean + WHO_exppc_usd_sd, fill = location_name
+      ymin = ExpandedCoverage_exppc_usd_mean - ExpandedCoverage_exppc_usd_sd,
+      ymax = ExpandedCoverage_exppc_usd_mean + ExpandedCoverage_exppc_usd_sd,
+      fill = location_name
     ),
     alpha = 0.05
   ) +
   theme_minimal() +
   theme(plot.margin = margin(t = 30, r = 40, b = 20, l = 40)) +
   labs(
-    y = "Total Periodontitis Expenditure Per Capita (2025 USD)",
-    color = "Country (top 5 for 2050 expenditure per capita, WHO target) "
+    y = "Per-capita Periodontitis Expenditure (2025 USD)",
+    color = "Country (top 5 for 2050 per-capita expenditure)"
   ) +
   scale_linetype_manual(
-    values = c("Base, current-usage scenario" = "solid", "WHO target scenario" = "dashed"),
-    name = "Periodontitis expenditure from 2021 to 2050"
+    values = c("Base, current-usage scenario" = "solid", "Expanded coverage scenario" = "dashed"),
+    name = "Scenario (if base = expanded coverage, only base shown)"
   ) +
   guides(fill = "none", alpha = "none")
 
-plot_top10_exppc_cost
+# ------------------------------------------------------------------------------
+# Combine plots with aligned legends
+# ------------------------------------------------------------------------------
+plot_countries_expenditure <- plot_top10_exp_cost + plot_top10_exppc_cost +
+  plot_annotation(tag_levels = "A") +
+  plot_layout(ncol = 1, nrow = 2, guides = "collect") # aligns legends
 
-plot_countries_expenditure <- plot_top10_exp_cost + plot_top10_exppc_cost + 
-  plot_annotation(tag_levels = "A")  + 
-  plot_layout(ncol = 1, nrow = 2) 
-
+# Save
 ggsave("outputs_forecast/patchwork_countries_expenditure.png", plot_countries_expenditure, width = 15, height = 12, dpi = 300)
-
-
 
 
 
@@ -331,7 +471,7 @@ map_base_2050_WHO <- ggplot(map_data_2050) +
     name = "Periodontal Expenditure (Millions USD)"
   ) +
   labs(
-    title = "WHO Target Scenario: Estimated Periodontal Expenditure by Country (2050)",
+    title = "WHO-Informed Expanded Coveraget Scenario: Estimated Periodontal Expenditure by Country (2050)",
     subtitle = "Countries with no data shown in grey"
   ) +
   theme_minimal() +
@@ -377,7 +517,7 @@ map_base_gap <- ggplot(map_data_gap) +
     name = "Periodontal Expenditure (Millions USD)"
   ) +
   labs(
-    title = "Gap between 2021 expenditure and 2050 WHO target",
+    title = "Gap between 2021 expenditure and 2050 Expanded Coverage Scenario",
     subtitle = "Countries with decrease or no change in grey"
   ) +
   theme_minimal() +
