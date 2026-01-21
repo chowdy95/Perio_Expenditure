@@ -342,6 +342,7 @@ superregion_results <- df_results %>%
   filter(!is.na(Superregion)) %>%
   group_by(Superregion, n_sims) %>%
   summarise(
+    MCSE_total_billions = median(SD_total_billions/sqrt(n_sims)),
     Mean_total_billions = sum(Mean_total_billions, na.rm = TRUE),
     .groups = "drop"
   )
@@ -354,7 +355,7 @@ p2 <- ggplot(
   superregion_results,
   aes(
     x = n_sims,
-    y = Mean_total_billions,
+    y = MCSE_total_billions,
     colour = Superregion,
     group = Superregion
   )
@@ -367,14 +368,19 @@ p2 <- ggplot(
   ) +
   labs(
     x = "Number of simulations",
-    y = "Mean total dental expenditure (US$ billions)",
+    y = "Median Monte Carlo Standard Error",
     colour = "Superregion"
-  )
+  ) +
+  theme(legend.position = "inside",
+        legend.position.inside = c(0.7, 0.8),
+        panel.grid.minor = element_blank())
+
+p2
 
 ggsave(
   "convergence_tests/convergence_plot_superregion.jpg",
   plot = p2,
-  width = 9,
-  height = 9,
+  width = 10,
+  height = 7,
   dpi = 300
 )
