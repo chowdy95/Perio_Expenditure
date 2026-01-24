@@ -1,7 +1,7 @@
 ﻿"location_name","Region","Superregion","2021 Per-capita Expenditure (95% UI, US$)","2050 Base Per-capita Expenditure (95% UI, US$)","Total % change 2021–2050 base scenario (95% UI)","2050 WHO Per-capita Expenditure (95% UI, US$)","Total % change 2021–2050 WHO target (95% UI)","Dental Utilisation Scenario"
 "Global",NA,NA,"21.32 (16.97-25.67)","18.36 (14.43-22.29)","-14% (-36–16%)","52.56 (40.86-64.26)","147% (82–233%)",NA
-"Central Europe, Eastern Europe, and Central Asia",NA,"Central Europe, Eastern Europe, and Central Asia","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
-"Central Asia","Central Asia","Central Europe, Eastern Europe, and Central Asia","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"Central Europe, Eastern Europe, and Central Asia",NA,"Central Europe, Eastern Europe, and Central Asia","4.71 (1.6-7.81)","4.34 (1.53-7.15)","-8% (-63–133%)","74.3 (54.35-94.25)","1479% (674–3121%)",NA
+"Central Asia","Central Asia","Central Europe, Eastern Europe, and Central Asia","1.51 (-0.02-3.03)","1.54 (-0.03-3.11)","2% (-76–330%)","50.43 (32.83-68.03)","3248% (1047–9671%)",NA
 "Armenia","Central Asia","Central Europe, Eastern Europe, and Central Asia","9.86 (-4.31-24.04)","10.59 (-5.76-26.94)","7% (-87–785%)","52.16 (8.17-96.14)","429% (0–2698%)","mid"
 "Azerbaijan","Central Asia","Central Europe, Eastern Europe, and Central Asia","0.67 (-1.92-3.25)","0.73 (-2.29-3.75)","10% (-100–31807%)","64.09 (16.94-111.23)","9534% (86–499718%)","low"
 "Georgia","Central Asia","Central Europe, Eastern Europe, and Central Asia","0.59 (-2.24-3.41)","0.61 (-2.03-3.25)","3% (-100–67538%)","53.87 (11.06-96.68)","9070% (-30–1204567%)","low"
@@ -11,7 +11,7 @@
 "Tajikistan","Central Asia","Central Europe, Eastern Europe, and Central Asia","0.23 (-1.54-1.99)","0.22 (-1.3-1.74)","-3% (-100–3052655%)","22.19 (-9.94-54.31)","9644% (-96–25752460%)","low"
 "Turkmenistan","Central Asia","Central Europe, Eastern Europe, and Central Asia","13.02 (-3.71-29.74)","13.91 (-4.59-32.41)","7% (-83–579%)","72.09 (25.34-118.84)","454% (31–2235%)","mid"
 "Uzbekistan","Central Asia","Central Europe, Eastern Europe, and Central Asia","0.45 (-1.72-2.63)","0.47 (-1.71-2.66)","5% (-100–82959%)","43.24 (5.98-80.5)","9477% (-28–1275384%)","low"
-"Central Europe","Central Europe","Central Europe, Eastern Europe, and Central Asia","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"Central Europe","Central Europe","Central Europe, Eastern Europe, and Central Asia","13.19 (3.1-23.28)","13.43 (3.08-23.79)","2% (-66–202%)","90.58 (67.11-114.06)","587% (206–1441%)",NA
 "Albania","Central Europe","Central Europe, Eastern Europe, and Central Asia","0.58 (-1.92-3.07)","0.59 (-1.92-3.11)","3% (-100–44176%)","54.94 (10.7-99.19)","9449% (16–784754%)","low"
 "Bosnia and Herzegovina","Central Europe","Central Europe, Eastern Europe, and Central Asia","11.07 (-5.38-27.51)","11.58 (-5.68-28.84)","5% (-87–758%)","56.28 (11.13-101.42)","408% (-6–2651%)","mid"
 "Bulgaria","Central Europe","Central Europe, Eastern Europe, and Central Asia","0.79 (-2.27-3.86)","0.8 (-2.22-3.81)","0% (-100–22264%)","69.63 (26.48-112.77)","8668% (76–437023%)","low"
@@ -25,7 +25,7 @@
 "Serbia","Central Europe","Central Europe, Eastern Europe, and Central Asia","0.7 (-2.02-3.42)","0.76 (-2.28-3.8)","8% (-100–28373%)","69.04 (20-118.08)","9756% (91–509440%)","low"
 "Slovakia","Central Europe","Central Europe, Eastern Europe, and Central Asia","19.75 (-5.95-45.45)","19.81 (-6.2-45.82)","0% (-84–537%)","97.62 (44.04-151.21)","394% (20–1929%)","mid"
 "Slovenia","Central Europe","Central Europe, Eastern Europe, and Central Asia","25.62 (-8.68-59.93)","24.04 (-8.06-56.14)","-6% (-86–522%)","115.6 (51.33-179.87)","351% (6–1823%)","mid"
-"Eastern Europe","Eastern Europe","Central Europe, Eastern Europe, and Central Asia","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"Eastern Europe","Eastern Europe","Central Europe, Eastern Europe, and Central Asia","1.53 (-1.28-4.33)","1.48 (-1.31-4.26)","-3% (-93–1242%)","81.72 (41.55-121.89)","5247% (700–35648%)",NA
 "Belarus","Eastern Europe","Central Europe, Eastern Europe, and Central Asia","0.87 (-2.52-4.27)","0.85 (-2.46-4.16)","-3% (-100–23867%)","75.9 (25.04-126.75)","8588% (69–446541%)","low"
 "Estonia","Eastern Europe","Central Europe, Eastern Europe, and Central Asia","22.88 (-6.35-52.11)","23.33 (-6.04-52.7)","2% (-83–513%)","113.22 (51.01-175.44)","395% (23–1888%)","mid"
 "Latvia","Eastern Europe","Central Europe, Eastern Europe, and Central Asia","20.89 (-6.99-48.78)","21.22 (-7.77-50.21)","2% (-85–586%)","102.42 (41.62-163.22)","390% (14–2013%)","mid"
@@ -33,24 +33,24 @@
 "Republic of Moldova","Eastern Europe","Central Europe, Eastern Europe, and Central Asia","0.49 (-1.95-2.93)","0.51 (-2.04-3.07)","5% (-100–120079%)","49.73 (1.38-98.08)","10064% (-37–1632739%)","low"
 "Russian Federation","Eastern Europe","Central Europe, Eastern Europe, and Central Asia","1.03 (-2.84-4.9)","1 (-2.68-4.68)","-3% (-99–18446%)","89.46 (35.9-143.02)","8580% (95–387220%)","low"
 "Ukraine","Eastern Europe","Central Europe, Eastern Europe, and Central Asia","0.52 (-1.84-2.87)","0.54 (-2.12-3.19)","4% (-100–85800%)","50.4 (4.5-96.29)","9665% (-6–1017358%)","low"
-"High-income",NA,"High-income","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
-"Australasia","Australasia","High-income","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"High-income",NA,"High-income","118.56 (89.97-147.15)","121.71 (90.97-152.44)","3% (-28–46%)","131.56 (100.71-162.41)","11% (-21–55%)",NA
+"Australasia","Australasia","High-income","148.17 (88.05-208.29)","150.92 (89.09-212.74)","2% (-43–81%)","164.92 (102.53-227.3)","11% (-36–94%)",NA
 "Australia","Australasia","High-income","172.95 (101.06-244.85)","172.35 (100.23-244.48)","0% (-45–80%)","172.35 (100.23-244.48)","0% (-45–80%)","high"
 "New Zealand","Australasia","High-income","24.52 (-6.61-55.64)","24.71 (-7.07-56.49)","1% (-83–514%)","121.13 (55.41-186.84)","394% (24–1865%)","mid"
-"High-income Asia Pacific","High-income Asia Pacific","High-income","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"High-income Asia Pacific","High-income Asia Pacific","High-income","57.63 (37.78-77.48)","56.58 (37.9-75.26)","-2% (-39–58%)","65.87 (46.77-84.98)","14% (-27–79%)",NA
 "Brunei Darussalam","High-income Asia Pacific","High-income","1.92 (-5.08-8.93)","2.12 (-5.19-9.43)","10% (-99–16478%)","181.98 (100.46-263.51)","9354% (142–368866%)","low"
 "Japan","High-income Asia Pacific","High-income","65.52 (37.96-93.08)","64.61 (37.76-91.46)","-1% (-45–78%)","64.61 (37.76-91.46)","-1% (-45–78%)","high"
 "Republic of Korea","High-income Asia Pacific","High-income","40.17 (20.04-60.3)","42.5 (20.07-64.93)","6% (-49–119%)","42.5 (20.07-64.93)","6% (-49–119%)","high"
 "Singapore","High-income Asia Pacific","High-income","43.47 (-8.26-95.2)","44.64 (-9.62-98.89)","3% (-81–463%)","223.04 (124.57-321.52)","413% (44–1725%)","mid"
-"High-income North America","High-income North America","High-income","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"High-income North America","High-income North America","High-income","191.99 (111.5-272.49)","192.52 (110.37-274.67)","0% (-45–82%)","192.55 (110.4-274.7)","0% (-45–82%)",NA
 "Canada","High-income North America","High-income","139.61 (66.8-212.43)","138.75 (66.62-210.88)","-1% (-52–108%)","138.75 (66.62-210.88)","-1% (-52–108%)","high"
 "Greenland","High-income North America","High-income","2.4 (-5.83-10.64)","2.5 (-5.82-10.82)","4% (-99–12271%)","204.09 (112.61-295.57)","8396% (168–269694%)","low"
 "United States of America","High-income North America","High-income","197.92 (108.72-287.12)","199 (107.4-290.61)","1% (-47–91%)","199 (107.4-290.61)","1% (-47–91%)","high"
-"Southern Latin America","Southern Latin America","High-income","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"Southern Latin America","Southern Latin America","High-income","10.7 (-1.97-23.36)","12.43 (-3.89-28.74)","16% (-80–581%)","92.23 (52.54-131.91)","762% (145–2940%)",NA
 "Argentina","Southern Latin America","High-income","13.89 (-4.73-32.52)","15.98 (-7.38-39.34)","15% (-84–736%)","76.54 (23.49-129.59)","451% (22–2392%)","mid"
 "Chile","Southern Latin America","High-income","1.46 (-3.52-6.45)","1.58 (-4-7.17)","8% (-99–14555%)","133.11 (77.1-189.13)","9007% (193–283082%)","low"
 "Uruguay","Southern Latin America","High-income","18.95 (-8.2-46.1)","20.38 (-9.78-50.54)","8% (-86–744%)","96.62 (29.44-163.81)","410% (4–2407%)","mid"
-"Western Europe","Western Europe","High-income","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"Western Europe","Western Europe","High-income","96.82 (78.02-115.63)","97.04 (78.77-115.31)","0% (-24–31%)","103.48 (85.13-121.83)","7% (-18–39%)",NA
 "Andorra","Western Europe","High-income","116.88 (55.2-178.56)","113.54 (52.05-175.04)","-3% (-54–107%)","113.54 (52.05-175.04)","-3% (-54–107%)","high"
 "Austria","Western Europe","High-income","113.13 (55.93-170.33)","111.29 (54.6-167.98)","-2% (-52–102%)","111.29 (54.6-167.98)","-2% (-52–102%)","high"
 "Belgium","Western Europe","High-income","123.48 (54.44-192.51)","121.19 (54.84-187.54)","-2% (-55–115%)","121.19 (54.84-187.54)","-2% (-55–115%)","high"
@@ -75,12 +75,12 @@
 "Sweden","Western Europe","High-income","238.06 (136.13-339.99)","237.13 (138.68-335.57)","0% (-45–81%)","237.13 (138.68-335.57)","0% (-45–81%)","high"
 "Switzerland","Western Europe","High-income","172.93 (95.52-250.35)","170.79 (95.91-245.68)","-1% (-47–85%)","170.79 (95.91-245.68)","-1% (-47–85%)","high"
 "United Kingdom","Western Europe","High-income","59.77 (19.11-100.42)","60.66 (18.73-102.6)","1% (-62–168%)","60.66 (18.73-102.6)","1% (-62–168%)","high"
-"Latin America and Caribbean",NA,"Latin America and Caribbean","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
-"Andean Latin America","Andean Latin America","Latin America and Caribbean","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"Latin America and Caribbean",NA,"Latin America and Caribbean","5.45 (0.88-10.01)","5.05 (1.07-9.04)","-7% (-71–193%)","61.14 (44.32-77.96)","1022% (365–2609%)",NA
+"Andean Latin America","Andean Latin America","Latin America and Caribbean","0.49 (-0.96-1.94)","0.51 (-0.98-2)","3% (-98–6517%)","47.37 (20.76-73.97)","9522% (380–192955%)",NA
 "Bolivia (Plurinational State of)","Andean Latin America","Latin America and Caribbean","0.35 (-1.56-2.26)","0.38 (-1.89-2.65)","9% (-100–356979%)","36.46 (-2.83-75.75)","10347% (-61–2775981%)","low"
 "Ecuador","Andean Latin America","Latin America and Caribbean","0.51 (-2.3-3.31)","0.52 (-1.94-2.99)","3% (-100–151803%)","47.86 (3.48-92.24)","9372% (-66–2657665%)","low"
 "Peru","Andean Latin America","Latin America and Caribbean","0.53 (-1.62-2.69)","0.55 (-1.79-2.89)","3% (-100–36487%)","51.3 (9.58-93.02)","9536% (55–598914%)","low"
-"Caribbean","Caribbean","Latin America and Caribbean","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"Caribbean","Caribbean","Latin America and Caribbean","4.79 (-0.09-9.67)","4.45 (0.22-8.68)","-7% (-77–274%)","54.44 (32.51-76.37)","1036% (280–3297%)",NA
 "Antigua and Barbuda","Caribbean","Latin America and Caribbean","18.04 (-7.44-43.52)","19.78 (-9.29-48.85)","10% (-86–742%)","93.32 (28.49-158.15)","417% (7–2396%)","mid"
 "Bahamas","Caribbean","Latin America and Caribbean","21.97 (-7.48-51.43)","24.58 (-10.13-59.29)","12% (-84–684%)","114.51 (44.52-184.5)","421% (19–2174%)","mid"
 "Barbados","Caribbean","Latin America and Caribbean","14.12 (-8.34-36.59)","14.99 (-9.01-38.98)","6% (-89–914%)","70.56 (10.9-130.22)","400% (-18–2927%)","mid"
@@ -100,7 +100,7 @@
 "Suriname","Caribbean","Latin America and Caribbean","11.76 (-6.53-30.04)","12.41 (-6.88-31.7)","6% (-88–851%)","60.41 (8.53-112.3)","414% (-13–2937%)","mid"
 "Trinidad and Tobago","Caribbean","Latin America and Caribbean","21.25 (-7.99-50.48)","22.74 (-10.1-55.59)","7% (-85–687%)","106.2 (35.58-176.82)","400% (8–2204%)","mid"
 "United States Virgin Islands","Caribbean","Latin America and Caribbean","1.46 (-4.05-6.96)","1.43 (-4.08-6.94)","-2% (-100–21649%)","124.03 (48.53-199.52)","8422% (85–392631%)","low"
-"Central Latin America","Central Latin America","Latin America and Caribbean","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"Central Latin America","Central Latin America","Latin America and Caribbean","2.28 (-0.14-4.7)","2.63 (-0.2-5.46)","16% (-75–424%)","64.61 (33.4-95.83)","2739% (783–9030%)",NA
 "Colombia","Central Latin America","Latin America and Caribbean","0.7 (-2.21-3.6)","0.77 (-2.71-4.25)","11% (-100–50901%)","69.91 (12-127.83)","9932% (43–703457%)","low"
 "Costa Rica","Central Latin America","Latin America and Caribbean","14.93 (-6.71-36.58)","16.76 (-9.32-42.84)","12% (-87–841%)","79.55 (18.36-140.73)","433% (3–2648%)","mid"
 "El Salvador","Central Latin America","Latin America and Caribbean","0.44 (-1.73-2.61)","0.5 (-2.09-3.09)","14% (-100–143577%)","48.49 (0.08-96.9)","10923% (-27–1673098%)","low"
@@ -110,11 +110,11 @@
 "Nicaragua","Central Latin America","Latin America and Caribbean","0.31 (-1.54-2.16)","0.38 (-1.97-2.73)","22% (-100–662609%)","36.87 (-9.7-83.45)","11759% (-73–5193648%)","low"
 "Panama","Central Latin America","Latin America and Caribbean","17.7 (-6.32-41.72)","19.2 (-7-45.41)","8% (-84–643%)","92.64 (33.63-151.66)","423% (17–2243%)","mid"
 "Venezuela (Bolivarian Republic of)","Central Latin America","Latin America and Caribbean","6.12 (-6.99-19.22)","6.33 (-7.56-20.23)","4% (-95–2122%)","30.36 (-15.6-76.31)","396% (-64–6738%)","mid"
-"Tropical Latin America","Tropical Latin America","Latin America and Caribbean","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"Tropical Latin America","Tropical Latin America","Latin America and Caribbean","10.55 (-0.98-22.08)","10.14 (-0.8-21.08)","-4% (-79–346%)","62.81 (40.37-85.26)","495% (89–1779%)",NA
 "Brazil","Tropical Latin America","Latin America and Caribbean","10.88 (-1.03-22.78)","10.51 (-0.86-21.89)","-3% (-79–350%)","63.09 (39.83-86.34)","480% (83–1740%)","mid"
 "Paraguay","Tropical Latin America","Latin America and Caribbean","0.53 (-1.85-2.91)","0.6 (-2.04-3.25)","14% (-100–62188%)","55.87 (8.63-103.11)","10496% (7–1049286%)","low"
-"North Africa and Middle East",NA,"North Africa and Middle East","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
-"North Africa and Middle East","North Africa and Middle East","North Africa and Middle East","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"North Africa and Middle East",NA,"North Africa and Middle East","4.87 (1.59-8.16)","4.36 (1.24-7.48)","-11% (-67–139%)","59.97 (45.66-74.28)","1131% (502–2417%)",NA
+"North Africa and Middle East","North Africa and Middle East","North Africa and Middle East","4.87 (1.59-8.16)","4.36 (1.24-7.48)","-11% (-67–139%)","59.97 (45.66-74.28)","1131% (502–2417%)",NA
 "Afghanistan","North Africa and Middle East","North Africa and Middle East","0.09 (-1.27-1.46)","0.1 (-0.75-0.94)","7% (-100–3360762346%)","11.69 (-19.24-42.61)","12683% (-100–49232627996%)","low"
 "Algeria","North Africa and Middle East","North Africa and Middle East","0.59 (-1.86-3.03)","0.63 (-2.3-3.57)","8% (-100–54278%)","56.92 (11.6-102.24)","9603% (40–673130%)","low"
 "Bahrain","North Africa and Middle East","North Africa and Middle East","27.98 (-7.39-63.35)","30.63 (-8.9-70.16)","9% (-82–567%)","149.63 (73.76-225.5)","435% (37–1988%)","mid"
@@ -136,19 +136,19 @@
 "Türkiye","North Africa and Middle East","North Africa and Middle East","1.08 (-2.88-5.03)","1.11 (-3.06-5.29)","4% (-99–19651%)","98.34 (38.06-158.62)","9041% (120–379505%)","low"
 "United Arab Emirates","North Africa and Middle East","North Africa and Middle East","46.35 (-12.73-105.43)","43.58 (-12.3-99.47)","-6% (-85–473%)","204.88 (105.92-303.83)","342% (13–1628%)","mid"
 "Yemen","North Africa and Middle East","North Africa and Middle East","0.13 (-1.52-1.79)","0.14 (-0.88-1.15)","2% (-100–177804771%)","16.82 (-17.63-51.26)","12417% (-100–3226639520%)","low"
-"South Asia",NA,"South Asia","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
-"South Asia","South Asia","South Asia","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"South Asia",NA,"South Asia","0.47 (-1.75-2.7)","0.53 (-1.77-2.83)","12% (-100–67859%)","51.93 (4.93-98.93)","10898% (-10–1339053%)",NA
+"South Asia","South Asia","South Asia","0.47 (-1.75-2.7)","0.53 (-1.77-2.83)","12% (-100–67859%)","51.93 (4.93-98.93)","10898% (-10–1339053%)",NA
 "Bangladesh","South Asia","South Asia","0.39 (-1.7-2.49)","0.51 (-2.6-3.62)","29% (-100–430809%)","50.86 (-16.63-118.34)","12833% (-47–3143267%)","low"
 "Bhutan","South Asia","South Asia","0.63 (-2.29-3.56)","0.74 (-2.93-4.41)","16% (-100–103223%)","71.79 (0.14-143.45)","11210% (1–1270821%)","low"
 "India","South Asia","South Asia","0.5 (-2.37-3.36)","0.55 (-2.41-3.51)","10% (-100–302369%)","53.08 (-7.34-113.49)","10604% (-70–3839260%)","low"
 "Nepal","South Asia","South Asia","0.24 (-2.07-2.56)","0.29 (-1.89-2.48)","21% (-100–22081780%)","30.94 (-17.03-78.9)","12670% (-99–204405895%)","low"
 "Pakistan","South Asia","South Asia","0.41 (-2.24-3.07)","0.49 (-2.54-3.52)","18% (-100–878282%)","48.76 (-13.66-111.18)","11665% (-83–8157643%)","low"
-"Southeast Asia, East Asia, and Oceania",NA,"Southeast Asia, East Asia, and Oceania","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
-"East Asia","East Asia","Southeast Asia, East Asia, and Oceania","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"Southeast Asia, East Asia, and Oceania",NA,"Southeast Asia, East Asia, and Oceania","13.26 (7.24-19.28)","12.39 (6.41-18.38)","-7% (-52–81%)","31.16 (20.86-41.45)","135% (34–312%)",NA
+"East Asia","East Asia","Southeast Asia, East Asia, and Oceania","19.39 (10.49-28.3)","19.62 (10-29.24)","1% (-48–98%)","19.9 (10.26-29.54)","3% (-47–100%)",NA
 "China","East Asia","Southeast Asia, East Asia, and Oceania","18.59 (9.41-27.77)","18.7 (8.79-28.62)","1% (-51–108%)","18.7 (8.79-28.62)","1% (-51–108%)","high"
 "Democratic People's Republic of Korea","East Asia","Southeast Asia, East Asia, and Oceania","0.12 (-1.43-1.67)","0.13 (-1.07-1.34)","12% (-100–838362489%)","15.84 (-18.06-49.73)","13183% (-100–6968092595%)","low"
 "Taiwan (Province of China)","East Asia","Southeast Asia, East Asia, and Oceania","89.22 (38.4-140.04)","97.13 (40.1-154.16)","9% (-52–147%)","97.13 (40.1-154.16)","9% (-52–147%)","high"
-"Oceania","Oceania","Southeast Asia, East Asia, and Oceania","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"Oceania","Oceania","Southeast Asia, East Asia, and Oceania","2.14 (-2.99-7.27)","2.16 (-3.24-7.57)","1% (-97–3132%)","13.61 (-9.21-36.42)","536% (-66–11777%)",NA
 "American Samoa","Oceania","Southeast Asia, East Asia, and Oceania","0.59 (-1.88-3.06)","0.61 (-2.02-3.24)","4% (-100–42717%)","56.66 (9.43-103.89)","9535% (33–698027%)","low"
 "Cook Islands","Oceania","Southeast Asia, East Asia, and Oceania","0.59 (-2.05-3.23)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)","low"
 "Fiji","Oceania","Southeast Asia, East Asia, and Oceania","4.77 (-3.61-13.15)","5.04 (-3.57-13.64)","6% (-91–1123%)","29.42 (-1.62-60.46)","517% (-21–4684%)","mid"
@@ -167,7 +167,7 @@
 "Tonga","Oceania","Southeast Asia, East Asia, and Oceania","3.19 (-4.05-10.43)","3.19 (-4.1-10.47)","0% (-96–2404%)","19.03 (-10.75-48.81)","497% (-62–9287%)","mid"
 "Tuvalu","Oceania","Southeast Asia, East Asia, and Oceania","2.59 (-4.04-9.21)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)","mid"
 "Vanuatu","Oceania","Southeast Asia, East Asia, and Oceania","0.1 (-1.12-1.32)","0.11 (-1.6-1.82)","6% (-100–39923321791%)","10.23 (-20.16-40.61)","9882% (-100–2182121053%)","low"
-"Southeast Asia","Southeast Asia","Southeast Asia, East Asia, and Oceania","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"Southeast Asia","Southeast Asia","Southeast Asia, East Asia, and Oceania","0.52 (-0.68-1.72)","0.55 (-0.72-1.81)","5% (-96–2642%)","50.53 (27.88-73.18)","9596% (828–101193%)",NA
 "Cambodia","Southeast Asia","Southeast Asia, East Asia, and Oceania","0.23 (-1.31-1.77)","0.27 (-1.57-2.11)","17% (-100–1429474%)","28.02 (-12.09-68.14)","11884% (-86–10104447%)","low"
 "Indonesia","Southeast Asia","Southeast Asia, East Asia, and Oceania","0.63 (-1.99-3.26)","0.67 (-2.25-3.6)","7% (-100–43242%)","63.18 (9.91-116.46)","9888% (45–689635%)","low"
 "Lao People's Democratic Republic","Southeast Asia","Southeast Asia, East Asia, and Oceania","0.27 (-1.17-1.71)","0.31 (-1.4-2.03)","17% (-100–246852%)","29.67 (-3.55-62.9)","10950% (-54–2637701%)","low"
@@ -181,15 +181,15 @@
 "Thailand","Southeast Asia","Southeast Asia, East Asia, and Oceania","0.8 (-2.74-4.34)","0.87 (-2.76-4.5)","9% (-100–48148%)","77.26 (18.74-135.78)","9596% (7–879675%)","low"
 "Timor-Leste","Southeast Asia","Southeast Asia, East Asia, and Oceania","0.19 (-1.17-1.55)","0.19 (-1.01-1.4)","1% (-100–1395890%)","20.22 (-11.69-52.12)","10556% (-93–16419575%)","low"
 "Viet Nam","Southeast Asia","Southeast Asia, East Asia, and Oceania","0.38 (-1.49-2.26)","0.41 (-1.54-2.35)","7% (-100–99817%)","39.03 (1.74-76.32)","10119% (-32–1524634%)","low"
-"Sub-Saharan Africa",NA,"Sub-Saharan Africa","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
-"Central Sub-Saharan Africa","Central Sub-Saharan Africa","Sub-Saharan Africa","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"Sub-Saharan Africa",NA,"Sub-Saharan Africa","0.59 (-0.07-1.26)","0.53 (-0.09-1.16)","-10% (-82–356%)","22.98 (12.99-32.98)","3772% (1058–12846%)",NA
+"Central Sub-Saharan Africa","Central Sub-Saharan Africa","Sub-Saharan Africa","0.15 (-0.85-1.15)","0.16 (-0.87-1.2)","12% (-100–1193143%)","17.18 (-4.18-38.55)","11604% (-88–11853404%)",NA
 "Angola","Central Sub-Saharan Africa","Sub-Saharan Africa","0.28 (-1.45-2.02)","0.31 (-1.34-1.96)","10% (-100–366008%)","30.99 (-5.72-67.7)","10856% (-79–5672206%)","low"
 "Central African Republic","Central Sub-Saharan Africa","Sub-Saharan Africa","0.05 (-0.5-0.6)","0.07 (-0.47-0.6)","30% (-100–54000547%)","9.21 (-21.79-40.21)","17216% (-100–932286561%)","low"
 "Congo","Central Sub-Saharan Africa","Sub-Saharan Africa","0.27 (-1.31-1.84)","0.3 (-1.65-2.26)","15% (-100–724861%)","29.75 (-9.96-69.46)","11126% (-75–4965658%)","low"
 "Democratic Republic of the Congo","Central Sub-Saharan Africa","Sub-Saharan Africa","0.08 (-1.3-1.45)","0.09 (-1.3-1.48)","19% (-100–1878247770913%)","10.4 (-17.75-38.55)","13437% (-100–1021054838087%)","low"
 "Equatorial Guinea","Central Sub-Saharan Africa","Sub-Saharan Africa","0.69 (-2.08-3.45)","0.8 (-2.35-3.96)","17% (-100–32554%)","73.06 (23.4-122.73)","10554% (78–636781%)","low"
 "Gabon","Central Sub-Saharan Africa","Sub-Saharan Africa","0.65 (-2.22-3.51)","0.72 (-2.23-3.67)","10% (-100–46047%)","65.73 (17.61-113.84)","10020% (16–885236%)","low"
-"Eastern Sub-Saharan Africa","Eastern Sub-Saharan Africa","Sub-Saharan Africa","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"Eastern Sub-Saharan Africa","Eastern Sub-Saharan Africa","Sub-Saharan Africa","0.17 (-0.49-0.83)","0.19 (-0.38-0.76)","13% (-99–14623%)","20.92 (6.13-35.72)","12159% (138–630372%)",NA
 "Burundi","Eastern Sub-Saharan Africa","Sub-Saharan Africa","0.06 (-1.06-1.18)","0.08 (-1.49-1.66)","44% (-100–100791364296130%)","8.84 (-14.9-32.59)","15280% (-100–5436232486624%)","low"
 "Comoros","Eastern Sub-Saharan Africa","Sub-Saharan Africa","0.18 (-1.74-2.09)","0.22 (-1.56-2.01)","28% (-100–94626382%)","22.79 (-15.43-61.01)","12897% (-100–811525730%)","low"
 "Djibouti","Eastern Sub-Saharan Africa","Sub-Saharan Africa","0.31 (-1.5-2.11)","0.37 (-1.88-2.63)","21% (-100–546817%)","35.88 (-7.29-79.05)","11539% (-70–4579208%)","low"
@@ -205,14 +205,14 @@
 "Uganda","Eastern Sub-Saharan Africa","Sub-Saharan Africa","0.15 (-2.46-2.76)","0.17 (-1.33-1.67)","11% (-100–24019702614%)","18.04 (-15.39-51.48)","11683% (-100–328958630906%)","low"
 "United Republic of Tanzania","Eastern Sub-Saharan Africa","Sub-Saharan Africa","0.27 (-1.1-1.65)","0.27 (-0.94-1.49)","1% (-100–81161%)","26.22 (3.11-49.32)","9492% (-42–1577529%)","low"
 "Zambia","Eastern Sub-Saharan Africa","Sub-Saharan Africa","0.19 (-1.2-1.59)","0.22 (-1.27-1.71)","13% (-100–2207382%)","23.44 (-12.94-59.82)","11972% (-92–18712347%)","low"
-"Southern Sub-Saharan Africa","Southern Sub-Saharan Africa","Sub-Saharan Africa","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"Southern Sub-Saharan Africa","Southern Sub-Saharan Africa","Sub-Saharan Africa","5.86 (-1.44-13.16)","6.29 (-1.33-13.92)","7% (-81–511%)","35.13 (11.65-58.6)","499% (46–2365%)",NA
 "Botswana","Southern Sub-Saharan Africa","Sub-Saharan Africa","10.57 (-2.66-23.8)","11.08 (-2.05-24.21)","5% (-81–488%)","68.25 (39.42-97.07)","546% (72–2320%)","mid"
 "Eswatini","Southern Sub-Saharan Africa","Sub-Saharan Africa","5.59 (-3.42-14.59)","6.57 (-3.99-17.13)","18% (-88–1045%)","34.89 (1.41-68.36)","524% (-4–3973%)","mid"
 "Lesotho","Southern Sub-Saharan Africa","Sub-Saharan Africa","2.25 (-4.97-9.47)","2.53 (-4.01-9.07)","12% (-98–6790%)","13.28 (-14.21-40.77)","489% (-87–26640%)","mid"
 "Namibia","Southern Sub-Saharan Africa","Sub-Saharan Africa","0.34 (-1.47-2.15)","0.37 (-1.47-2.2)","9% (-100–165085%)","33.79 (1.07-66.51)","9892% (-57–2316372%)","low"
 "South Africa","Southern Sub-Saharan Africa","Sub-Saharan Africa","7.09 (-3.05-17.23)","8.02 (-3.33-19.36)","13% (-85–745%)","43.1 (9.08-77.12)","508% (19–3010%)","mid"
 "Zimbabwe","Southern Sub-Saharan Africa","Sub-Saharan Africa","1.96 (-4.57-8.48)","2.18 (-3.98-8.35)","12% (-99–8699%)","11.67 (-16.67-40.02)","496% (-90–36748%)","mid"
-"Western Sub-Saharan Africa","Western Sub-Saharan Africa","Sub-Saharan Africa","NA (NA-NA)","NA (NA-NA)","NA% (NA–NA%)","NA (NA-NA)","NA% (NA–NA%)",NA
+"Western Sub-Saharan Africa","Western Sub-Saharan Africa","Sub-Saharan Africa","0.22 (-0.52-0.96)","0.25 (-0.66-1.16)","12% (-99–15354%)","24.74 (7.6-41.88)","11018% (274–330594%)",NA
 "Benin","Western Sub-Saharan Africa","Sub-Saharan Africa","0.22 (-1.62-2.06)","0.27 (-1.83-2.37)","23% (-100–10850005%)","27.57 (-16.25-71.38)","12408% (-97–60523510%)","low"
 "Burkina Faso","Western Sub-Saharan Africa","Sub-Saharan Africa","0.2 (-1.47-1.87)","0.24 (-1.95-2.44)","20% (-100–23691376%)","26.4 (-21.41-74.21)","12900% (-97–58827909%)","low"
 "Cabo Verde","Western Sub-Saharan Africa","Sub-Saharan Africa","0.55 (-2.9-4)","0.6 (-2.77-3.97)","9% (-100–469969%)","63.62 (-17.13-144.37)","11395% (-80–6657741%)","low"

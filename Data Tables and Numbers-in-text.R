@@ -487,6 +487,14 @@ perio_expenditure_2021 <- read_csv("outputs_forecast/expenditure_summary_forecas
 
 
 
+
+# ------------------------------------------------------------------------------
+# 1. Per capita tables
+# ------------------------------------------------------------------------------
+
+
+
+
 library(tidyverse)
 library(readr)
 
@@ -530,6 +538,51 @@ perio_with_pop <- perio_with_pop %>%
     Pop_2021 = if_else(location_name == "Global", global_pop$Pop_2021, Pop_2021),
     Pop_2050 = if_else(location_name == "Global", global_pop$Pop_2050, Pop_2050)
   )
+
+# ------------------------------------------------------------------------------
+# 2c. Minimal patch to fix Region and Superregion population (same logic as Global)
+# ------------------------------------------------------------------------------
+
+# --- Superregion population ---
+superregion_pop <- perio_with_pop %>%
+  filter(!is.na(iso3c)) %>%   # countries only
+  group_by(Superregion) %>%
+  summarise(
+    Pop_2021_sr = sum(Pop_2021, na.rm = TRUE),
+    Pop_2050_sr = sum(Pop_2050, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+perio_with_pop <- perio_with_pop %>%
+  left_join(superregion_pop, by = "Superregion") %>%
+  mutate(
+    Pop_2021 = if_else(is.na(iso3c) & is.na(Region) & !is.na(Superregion),
+                       Pop_2021_sr, Pop_2021),
+    Pop_2050 = if_else(is.na(iso3c) & is.na(Region) & !is.na(Superregion),
+                       Pop_2050_sr, Pop_2050)
+  ) %>%
+  select(-Pop_2021_sr, -Pop_2050_sr)
+
+# --- Region population ---
+region_pop <- perio_with_pop %>%
+  filter(!is.na(iso3c)) %>%   # countries only
+  group_by(Region) %>%
+  summarise(
+    Pop_2021_r = sum(Pop_2021, na.rm = TRUE),
+    Pop_2050_r = sum(Pop_2050, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+perio_with_pop <- perio_with_pop %>%
+  left_join(region_pop, by = "Region") %>%
+  mutate(
+    Pop_2021 = if_else(is.na(iso3c) & !is.na(Region),
+                       Pop_2021_r, Pop_2021),
+    Pop_2050 = if_else(is.na(iso3c) & !is.na(Region),
+                       Pop_2050_r, Pop_2050)
+  ) %>%
+  select(-Pop_2021_r, -Pop_2050_r)
+
 
 # ------------------------------------------------------------------------------
 # 3. Compute per-capita expenditures and 95% CI
@@ -586,6 +639,66 @@ perio_percapita <- perio_percapita %>%
   )
 
 # ------------------------------------------------------------------------------
+# 4.5 Re-attach Global / Region / Superregion rows (ugly but safe)
+# ------------------------------------------------------------------------------
+
+# Identify aggregate rows
+aggregate_rows <- perio_with_pop %>%
+  filter(is.na(iso3c)) %>%     # Global, Region, Superregion
+  mutate(
+    Mean_total_percap_2021 = selected_Mean_total_billions_2021 * 1e9 / Pop_2021,
+    Mean_total_percap_2050 = selected_Mean_total_billions_2050 * 1e9 / Pop_2050,
+    Mean_total_percap_WHO  = WHO_selected_Mean_total_billions_2050 * 1e9 / Pop_2050,
+    
+    SD_total_percap_2021 = selected_SD_total_billions_2021 * 1e9 / Pop_2021,
+    SD_total_percap_2050 = selected_SD_total_billions_2050 * 1e9 / Pop_2050,
+    SD_total_percap_WHO  = WHO_selected_SD_total_billions_2050 * 1e9 / Pop_2050,
+    
+    lower_2021 = Mean_total_percap_2021 - 1.96 * SD_total_percap_2021,
+    upper_2021 = Mean_total_percap_2021 + 1.96 * SD_total_percap_2021,
+    
+    lower_2050 = Mean_total_percap_2050 - 1.96 * SD_total_percap_2050,
+    upper_2050 = Mean_total_percap_2050 + 1.96 * SD_total_percap_2050,
+    
+    lower_WHO = Mean_total_percap_WHO - 1.96 * SD_total_percap_WHO,
+    upper_WHO = Mean_total_percap_WHO + 1.96 * SD_total_percap_WHO,
+    
+    # log-ratio % change for aggregates
+    ratio_base = Mean_total_percap_2050 / Mean_total_percap_2021,
+    log_ratio_base = log(ratio_base),
+    se_log_ratio_base = sqrt(
+      (SD_total_percap_2050 / Mean_total_percap_2050)^2 +
+        (SD_total_percap_2021 / Mean_total_percap_2021)^2
+    ),
+    log_ratio_base_lower = log_ratio_base - 1.96 * se_log_ratio_base,
+    log_ratio_base_upper = log_ratio_base + 1.96 * se_log_ratio_base,
+    pctchange_base_mean  = (exp(log_ratio_base) - 1) * 100,
+    pctchange_base_lower = (exp(log_ratio_base_lower) - 1) * 100,
+    pctchange_base_upper = (exp(log_ratio_base_upper) - 1) * 100,
+    
+    ratio_WHO = Mean_total_percap_WHO / Mean_total_percap_2021,
+    log_ratio_WHO = log(ratio_WHO),
+    se_log_ratio_WHO = sqrt(
+      (SD_total_percap_WHO / Mean_total_percap_WHO)^2 +
+        (SD_total_percap_2021 / Mean_total_percap_2021)^2
+    ),
+    log_ratio_WHO_lower = log_ratio_WHO - 1.96 * se_log_ratio_WHO,
+    log_ratio_WHO_upper = log_ratio_WHO + 1.96 * se_log_ratio_WHO,
+    pctchange_WHO_mean  = (exp(log_ratio_WHO) - 1) * 100,
+    pctchange_WHO_lower = (exp(log_ratio_WHO_lower) - 1) * 100,
+    pctchange_WHO_upper = (exp(log_ratio_WHO_upper) - 1) * 100
+    
+  )
+
+# Keep country rows only from per-capita computation
+country_rows <- perio_percapita %>%
+  filter(!is.na(iso3c))
+
+# Bind back together
+perio_percapita <- bind_rows(country_rows, aggregate_rows)
+
+
+# ------------------------------------------------------------------------------
 # 5. Format final table and add Dental Utilisation Scenario
 # ------------------------------------------------------------------------------
 country_wide_percap <- perio_percapita %>%
@@ -623,6 +736,24 @@ country_wide_percap <- perio_percapita %>%
     "Total % change 2021–2050 WHO target (95% UI)",
     "Dental Utilisation Scenario"
   )
+
+# ------------------------------------------------------------------------------
+# 7. Match row order to country_level_expenditure.csv (robust to duplicate names)
+# ------------------------------------------------------------------------------
+
+ordering_ref <- read_csv("outputs_forecast/country_level_expenditure.csv") %>%
+  mutate(.row_order = row_number()) %>%
+  select(location_name, Region, Superregion, .row_order)
+
+country_wide_percap <- country_wide_percap %>%
+  left_join(
+    ordering_ref,
+    by = c("location_name", "Region", "Superregion")
+  ) %>%
+  arrange(.row_order) %>%
+  select(-.row_order)
+
+
 
 # ------------------------------------------------------------------------------
 # 6. Save CSV

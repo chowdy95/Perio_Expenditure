@@ -47,7 +47,7 @@ plot_superregion_cost <- ggplot(data = superregion_cost_df, aes(
   ) +
   geom_line(aes(
     x = Year, y = transition_WHO_selected_Mean_total_billions,
-    color = location_name, linetype = "WHO-informed expanded coverage scenario"
+    color = location_name, linetype = "Stress test expanded coverage scenario"
   ), linewidth = 1.2) +
   geom_ribbon(
     aes(
@@ -64,7 +64,7 @@ plot_superregion_cost <- ggplot(data = superregion_cost_df, aes(
     y = "Total Periodontitis Expenditure (billions)"
     ) +
   scale_linetype_manual(
-    values = c("Base, current-usage scenario" = "solid", "WHO-informed expanded coverage scenario" = "dotted"),
+    values = c("Base, current-usage scenario" = "solid", "Stress test expanded coverage scenario" = "dotted"),
     name = "Periodontitis expenditure from 2021 to 2050"
   ) +
   scale_fill_discrete(guide = "none") +
@@ -471,7 +471,7 @@ map_base_2050_WHO <- ggplot(map_data_2050) +
     name = "Periodontal Expenditure (Millions USD)"
   ) +
   labs(
-    title = "WHO-Informed Expanded Coveraget Scenario: Estimated Periodontal Expenditure by Country (2050)",
+    title = "Stress Test Expanded Coveraget Scenario: Estimated Periodontal Expenditure by Country (2050)",
     subtitle = "Countries with no data shown in grey"
   ) +
   theme_minimal() +
