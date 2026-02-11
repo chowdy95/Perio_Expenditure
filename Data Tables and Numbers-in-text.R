@@ -61,7 +61,7 @@ bottom_5_exppc_df <- perio_expenditure_countries %>%
 
 perio_expenditure_wide <- read_csv("outputs_forecast/expenditure_summary_forecast_wide.csv") %>%
   rename(location_name = LocationHeader) %>%
-  select(location_name, ends_with("2021") & contains ("selected"), ends_with("2050") & contains ("selected"), Region, Superregion, iso3c, Pop, selected_model)
+  select(location_name, ends_with("2021") & contains ("selected"), ends_with("2050") & contains ("selected"), Region, Superregion, iso3c, selected_model)
   # mutate(
   #   gap_WHO_mean = WHO_selected_Mean_total_billions_2050 - selected_Mean_total_billions_2021,
   #   gap_base_mean = selected_Mean_total_billions_2050 - selected_Mean_total_billions_2021,
@@ -488,6 +488,344 @@ perio_expenditure_2021 <- read_csv("outputs_forecast/expenditure_summary_forecas
 
 
 
+
+
+
+#-----------------------------------------------------------------------------------
+# Global and super-region per capita estimates
+#-----------------------------------------------------------------------------------
+
+library(tidyverse)
+library(readr)
+
+# ------------------------------------------------------------------------------
+# 1. Load datasets
+# ------------------------------------------------------------------------------
+
+perio_expenditure_wide <- read_csv("outputs_forecast/expenditure_summary_forecast_wide.csv") %>%
+  rename(location_name = LocationHeader) %>%
+  select(
+    location_name,
+    ends_with("2021") & contains("selected"),
+    ends_with("2050") & contains("selected"),
+    Region, Superregion, iso3c, selected_model
+  )
+
+pop_2050 <- read_csv("data/combined_country_input_2050.csv") %>%
+  select(iso3c, Pop_2050 = Pop)
+
+pop_2021 <- read_csv("data/combined_country_input.csv") %>%
+  select(Country, Pop_2021 = Pop)
+
+# ------------------------------------------------------------------------------
+# 2. Merge population
+# ------------------------------------------------------------------------------
+
+perio_with_pop <- perio_expenditure_wide %>%
+  left_join(pop_2050, by = "iso3c") %>%
+  left_join(pop_2021, by = c("location_name" = "Country"))
+
+# ------------------------------------------------------------------------------
+# 3. Fix Global population
+# ------------------------------------------------------------------------------
+
+global_pop <- perio_with_pop %>%
+  filter(!is.na(iso3c)) %>%
+  summarise(
+    Pop_2021 = sum(Pop_2021, na.rm = TRUE),
+    Pop_2050 = sum(Pop_2050, na.rm = TRUE)
+  )
+
+perio_with_pop <- perio_with_pop %>%
+  mutate(
+    Pop_2021 = if_else(location_name == "Global", global_pop$Pop_2021, Pop_2021),
+    Pop_2050 = if_else(location_name == "Global", global_pop$Pop_2050, Pop_2050)
+  )
+
+# ------------------------------------------------------------------------------
+# 4. Fix Superregion population
+# ------------------------------------------------------------------------------
+
+superregion_pop <- perio_with_pop %>%
+  filter(!is.na(iso3c)) %>%
+  group_by(Superregion) %>%
+  summarise(
+    Pop_2021_sr = sum(Pop_2021, na.rm = TRUE),
+    Pop_2050_sr = sum(Pop_2050, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+perio_with_pop <- perio_with_pop %>%
+  left_join(superregion_pop, by = "Superregion") %>%
+  mutate(
+    Pop_2021 = if_else(is.na(iso3c) & is.na(Region) & !is.na(Superregion),
+                       Pop_2021_sr, Pop_2021),
+    Pop_2050 = if_else(is.na(iso3c) & is.na(Region) & !is.na(Superregion),
+                       Pop_2050_sr, Pop_2050)
+  ) %>%
+  select(-Pop_2021_sr, -Pop_2050_sr)
+
+# ------------------------------------------------------------------------------
+# SUPERREGION + GLOBAL PER CAPITA TABLE
+# ------------------------------------------------------------------------------
+
+superregion_percap <- perio_with_pop %>%
+  filter(is.na(Region)) %>%
+  
+  # ---------------------------------------------------------------------------
+# Convert EVERYTHING to per-capita first
+# ---------------------------------------------------------------------------
+mutate(
+  
+  # ---- TOTAL ----
+  total_pc_2021_mean = selected_Mean_total_billions_2021 * 1e9 / Pop_2021,
+  total_pc_2021_sd   = selected_SD_total_billions_2021 * 1e9 / Pop_2021,
+  
+  total_pc_2050_base_mean = selected_Mean_total_billions_2050 * 1e9 / Pop_2050,
+  total_pc_2050_base_sd   = selected_SD_total_billions_2050 * 1e9 / Pop_2050,
+  
+  total_pc_2050_who_mean  = WHO_selected_Mean_total_billions_2050 * 1e9 / Pop_2050,
+  total_pc_2050_who_sd    = WHO_selected_SD_total_billions_2050 * 1e9 / Pop_2050,
+  
+  # ---- COMPONENTS 2021 ----
+  treat_pc_2021_mean = selected_Mean_perio_billions_2021 * 1e9 / Pop_2021,
+  treat_pc_2021_sd   = selected_SD_perio_billions_2021 * 1e9 / Pop_2021,
+  
+  rehab_pc_2021_mean = selected_Mean_replace_billions_2021 * 1e9 / Pop_2021,
+  rehab_pc_2021_sd   = selected_SD_replace_billions_2021 * 1e9 / Pop_2021,
+  
+  prev_pc_2021_mean =
+    total_pc_2021_mean - treat_pc_2021_mean - rehab_pc_2021_mean,
+  
+  prev_pc_2021_sd = pmax(
+    sqrt(total_pc_2021_sd^2 - treat_pc_2021_sd^2 - rehab_pc_2021_sd^2),
+    0.0001
+  ),
+  
+  # ---- COMPONENTS 2050 BASE ----
+  treat_pc_2050_base_mean = selected_Mean_perio_billions_2050 * 1e9 / Pop_2050,
+  treat_pc_2050_base_sd   = selected_SD_perio_billions_2050 * 1e9 / Pop_2050,
+  
+  rehab_pc_2050_base_mean = selected_Mean_replace_billions_2050 * 1e9 / Pop_2050,
+  rehab_pc_2050_base_sd   = selected_SD_replace_billions_2050 * 1e9 / Pop_2050,
+  
+  prev_pc_2050_base_mean =
+    total_pc_2050_base_mean - treat_pc_2050_base_mean - rehab_pc_2050_base_mean,
+  
+  prev_pc_2050_base_sd = pmax(
+    sqrt(total_pc_2050_base_sd^2 -
+           treat_pc_2050_base_sd^2 -
+           rehab_pc_2050_base_sd^2),
+    0.0001
+  ),
+  
+  # ---- COMPONENTS 2050 WHO ----
+  treat_pc_2050_who_mean = WHO_selected_Mean_perio_billions_2050 * 1e9 / Pop_2050,
+  treat_pc_2050_who_sd   = WHO_selected_SD_perio_billions_2050 * 1e9 / Pop_2050,
+  
+  rehab_pc_2050_who_mean = WHO_selected_Mean_replace_billions_2050 * 1e9 / Pop_2050,
+  rehab_pc_2050_who_sd   = WHO_selected_SD_replace_billions_2050 * 1e9 / Pop_2050,
+  
+  prev_pc_2050_who_mean =
+    total_pc_2050_who_mean - treat_pc_2050_who_mean - rehab_pc_2050_who_mean,
+  
+  prev_pc_2050_who_sd = pmax(
+    sqrt(total_pc_2050_who_sd^2 -
+           treat_pc_2050_who_sd^2 -
+           rehab_pc_2050_who_sd^2),
+    0.0001
+  )
+) %>%
+  
+  # ---------------------------------------------------------------------------
+# 95% UI
+# ---------------------------------------------------------------------------
+mutate(across(ends_with("_mean"), ~ round(., 1))) %>%
+  mutate(across(ends_with("_sd"), ~ round(., 1))) %>%
+  
+  mutate(
+    
+    total_2021_low  = total_pc_2021_mean - 1.96 * total_pc_2021_sd,
+    total_2021_high = total_pc_2021_mean + 1.96 * total_pc_2021_sd,
+    
+    total_2050_base_low  = total_pc_2050_base_mean - 1.96 * total_pc_2050_base_sd,
+    total_2050_base_high = total_pc_2050_base_mean + 1.96 * total_pc_2050_base_sd,
+    
+    total_2050_who_low  = total_pc_2050_who_mean - 1.96 * total_pc_2050_who_sd,
+    total_2050_who_high = total_pc_2050_who_mean + 1.96 * total_pc_2050_who_sd
+  ) %>%
+  
+  # ---------------------------------------------------------------------------
+# % CHANGE WITH UNCERTAINTY
+# ---------------------------------------------------------------------------
+mutate(
+  
+  log_ratio_base =
+    log(total_pc_2050_base_mean / total_pc_2021_mean),
+  
+  se_base = sqrt(
+    (total_pc_2050_base_sd / total_pc_2050_base_mean)^2 +
+      (total_pc_2021_sd / total_pc_2021_mean)^2
+  ),
+  
+  pct_base_mean  = (exp(log_ratio_base) - 1) * 100,
+  pct_base_low   = (exp(log_ratio_base - 1.96 * se_base) - 1) * 100,
+  pct_base_high  = (exp(log_ratio_base + 1.96 * se_base) - 1) * 100,
+  
+  log_ratio_who =
+    log(total_pc_2050_who_mean / total_pc_2021_mean),
+  
+  se_who = sqrt(
+    (total_pc_2050_who_sd / total_pc_2050_who_mean)^2 +
+      (total_pc_2021_sd / total_pc_2021_mean)^2
+  ),
+  
+  pct_who_mean  = (exp(log_ratio_who) - 1) * 100,
+  pct_who_low   = (exp(log_ratio_who - 1.96 * se_who) - 1) * 100,
+  pct_who_high  = (exp(log_ratio_who + 1.96 * se_who) - 1) * 100
+) %>%
+  
+  # ------------------------------------------------------------------------------
+# 95% UI FOR ALL COMPONENTS
+# ------------------------------------------------------------------------------
+
+mutate(
+  
+  # ---- 2021 COMPONENTS ----
+  prev_2021_low  = prev_pc_2021_mean  - 1.96 * prev_pc_2021_sd,
+  prev_2021_high = prev_pc_2021_mean  + 1.96 * prev_pc_2021_sd,
+  
+  treat_2021_low  = treat_pc_2021_mean - 1.96 * treat_pc_2021_sd,
+  treat_2021_high = treat_pc_2021_mean + 1.96 * treat_pc_2021_sd,
+  
+  rehab_2021_low  = rehab_pc_2021_mean - 1.96 * rehab_pc_2021_sd,
+  rehab_2021_high = rehab_pc_2021_mean + 1.96 * rehab_pc_2021_sd,
+  
+  # ---- 2050 BASE COMPONENTS ----
+  prev_2050_base_low  = prev_pc_2050_base_mean - 1.96 * prev_pc_2050_base_sd,
+  prev_2050_base_high = prev_pc_2050_base_mean + 1.96 * prev_pc_2050_base_sd,
+  
+  treat_2050_base_low  = treat_pc_2050_base_mean - 1.96 * treat_pc_2050_base_sd,
+  treat_2050_base_high = treat_pc_2050_base_mean + 1.96 * treat_pc_2050_base_sd,
+  
+  rehab_2050_base_low  = rehab_pc_2050_base_mean - 1.96 * rehab_pc_2050_base_sd,
+  rehab_2050_base_high = rehab_pc_2050_base_mean + 1.96 * rehab_pc_2050_base_sd,
+  
+  # ---- 2050 WHO COMPONENTS ----
+  prev_2050_who_low  = prev_pc_2050_who_mean - 1.96 * prev_pc_2050_who_sd,
+  prev_2050_who_high = prev_pc_2050_who_mean + 1.96 * prev_pc_2050_who_sd,
+  
+  treat_2050_who_low  = treat_pc_2050_who_mean - 1.96 * treat_pc_2050_who_sd,
+  treat_2050_who_high = treat_pc_2050_who_mean + 1.96 * treat_pc_2050_who_sd,
+  
+  rehab_2050_who_low  = rehab_pc_2050_who_mean - 1.96 * rehab_pc_2050_who_sd,
+  rehab_2050_who_high = rehab_pc_2050_who_mean + 1.96 * rehab_pc_2050_who_sd
+) %>%
+
+  
+  # ---------------------------------------------------------------------------
+# FORMATTED TABLE
+# ---------------------------------------------------------------------------
+mutate(
+  
+  "2021 Expenditure" =
+    paste0(total_pc_2021_mean, " (",
+           round(total_2021_low,1), "-", round(total_2021_high,1), ")"),
+  
+  "2021 Preventive Expenditure (95% UI)" =
+    paste0(prev_pc_2021_mean, " (",
+           round(prev_2021_low,1), "-", round(prev_2021_high,1), ")"),
+  
+  "2021 Treatment Expenditure (95% UI)" =
+    paste0(treat_pc_2021_mean, " (",
+           round(treat_2021_low,1), "-", round(treat_2021_high,1), ")"),
+  
+  "2021 Rehabilitation Expenditure (95% UI)" =
+    paste0(rehab_pc_2021_mean, " (",
+           round(rehab_2021_low,1), "-", round(rehab_2021_high,1), ")"),
+  
+  "2050 Base Expenditure" =
+    paste0(total_pc_2050_base_mean, " (",
+           round(total_2050_base_low,1), "-", round(total_2050_base_high,1), ")"),
+  
+  "Total % change 2021–2050 base scenario (95% CI)" =
+    paste0(round(pct_base_mean,1), " (",
+           round(pct_base_low,1), " to ",
+           round(pct_base_high,1), ")"),
+  
+  "2050 Base Preventive Expenditure (95% UI)" =
+    paste0(prev_pc_2050_base_mean, " (",
+           round(prev_2050_base_low,1), "-", round(prev_2050_base_high,1), ")"),
+  
+  "2050 Base Treatment Expenditure (95% UI)" =
+    paste0(treat_pc_2050_base_mean, " (",
+           round(treat_2050_base_low,1), "-", round(treat_2050_base_high,1), ")"),
+  
+  "2050 Base Rehabilitation Expenditure (95% UI)" =
+    paste0(rehab_pc_2050_base_mean, " (",
+           round(rehab_2050_base_low,1), "-", round(rehab_2050_base_high,1), ")"),
+  
+  "2050 WHO Expenditure" =
+    paste0(total_pc_2050_who_mean, " (",
+           round(total_2050_who_low,1), "-", round(total_2050_who_high,1), ")"),
+  
+  "Total % change 2021–2050 WHO target (95% CI)" =
+    paste0(round(pct_who_mean,1), " (",
+           round(pct_who_low,1), " to ",
+           round(pct_who_high,1), ")"),
+  
+  "2050 WHO Preventive Expenditure (95% UI)" =
+    paste0(prev_pc_2050_who_mean, " (",
+           round(prev_2050_who_low,1), "-", round(prev_2050_who_high,1), ")"),
+  
+  "2050 WHO Treatment Expenditure (95% UI)" =
+    paste0(treat_pc_2050_who_mean, " (",
+           round(treat_2050_who_low,1), "-", round(treat_2050_who_high,1), ")"),
+  
+  "2050 WHO Rehabilitation Expenditure (95% UI)" =
+    paste0(rehab_pc_2050_who_mean, " (",
+           round(rehab_2050_who_low,1), "-", round(rehab_2050_who_high,1), ")")
+) %>%
+  
+  select(
+    location_name,
+    "2021 Expenditure",
+    "2021 Preventive Expenditure (95% UI)",
+    "2021 Treatment Expenditure (95% UI)",
+    "2021 Rehabilitation Expenditure (95% UI)",
+    
+    "2050 Base Expenditure",
+    "Total % change 2021–2050 base scenario (95% CI)",
+    
+    "2050 Base Preventive Expenditure (95% UI)",
+    "2050 Base Treatment Expenditure (95% UI)",
+    "2050 Base Rehabilitation Expenditure (95% UI)",
+    
+    "2050 WHO Expenditure",
+    "Total % change 2021–2050 WHO target (95% CI)",
+    
+    "2050 WHO Preventive Expenditure (95% UI)",
+    "2050 WHO Treatment Expenditure (95% UI)",
+    "2050 WHO Rehabilitation Expenditure (95% UI)"
+  )
+
+# ------------------------------------------------------------------------------
+# 6. Save output
+# ------------------------------------------------------------------------------
+
+write_excel_csv(
+  superregion_percap,
+  "outputs_forecast/superregion_level_expenditure_per_capita.csv"
+)
+
+
+
+
+
+
+
+
+
 # ------------------------------------------------------------------------------
 # 1. Per capita tables
 # ------------------------------------------------------------------------------
@@ -759,4 +1097,10 @@ country_wide_percap <- country_wide_percap %>%
 # 6. Save CSV
 # ------------------------------------------------------------------------------
 write_excel_csv(country_wide_percap, "outputs_forecast/country_level_percapita_expenditure.csv")
+
+
+
+
+
+
 

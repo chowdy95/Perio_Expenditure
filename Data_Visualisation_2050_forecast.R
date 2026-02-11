@@ -47,7 +47,7 @@ plot_superregion_cost <- ggplot(data = superregion_cost_df, aes(
   ) +
   geom_line(aes(
     x = Year, y = transition_WHO_selected_Mean_total_billions,
-    color = location_name, linetype = "Stress test expanded coverage scenario"
+    color = location_name, linetype = "Expanded coverage scenario"
   ), linewidth = 1.2) +
   geom_ribbon(
     aes(
@@ -64,7 +64,7 @@ plot_superregion_cost <- ggplot(data = superregion_cost_df, aes(
     y = "Total Periodontitis Expenditure (billions)"
     ) +
   scale_linetype_manual(
-    values = c("Base, current-usage scenario" = "solid", "Stress test expanded coverage scenario" = "dotted"),
+    values = c("Base, current-usage scenario" = "solid", "Expanded coverage scenario" = "dotted"),
     name = "Periodontitis expenditure from 2021 to 2050"
   ) +
   scale_fill_discrete(guide = "none") +
@@ -83,6 +83,7 @@ plot_superregion_cost <- ggplot(data = superregion_cost_df, aes(
 plot_superregion_cost
 
 ggsave("outputs_forecast/patchwork_global_superregion.png", width = 10, height = 11)
+ggsave("outputs_forecast/patchwork_global_superregion.pdf", width = 10, height = 11)
 
 
 
@@ -396,8 +397,7 @@ map_base_2021 <- ggplot(map_data_2021) +
     name = "Periodontal Expenditure (Millions USD)"
   ) +
   labs(
-    title = "Estimated Periodontal Expenditure by Country (2021)",
-    subtitle = "Countries with no data shown in grey"
+    title = "Estimated Periodontal Expenditure by Country (2021)"
   ) +
   theme_minimal() +
   theme(
@@ -408,7 +408,7 @@ map_base_2021 <- ggplot(map_data_2021) +
 
 map_base_2021
 
-ggsave("outputs_forecast/world_periodontal_expenditure_map_2021.png",
+ggsave("outputs_forecast/world_periodontal_expenditure_map_2021.pdf",
        plot = map_base_2021,
        width = 24, height = 10, dpi = 300
 )
@@ -436,8 +436,7 @@ map_base_2050 <- ggplot(map_data_2050) +
     name = "Periodontal Expenditure (Millions USD)"
   ) +
   labs(
-    title = "Base Scenario: Estimated Periodontal Expenditure by Country (2050)",
-    subtitle = "Countries with no data shown in grey"
+    title = "Base Scenario: Estimated Periodontal Expenditure by Country (2050)"
   ) +
   theme_minimal() +
   theme(
@@ -471,8 +470,7 @@ map_base_2050_WHO <- ggplot(map_data_2050) +
     name = "Periodontal Expenditure (Millions USD)"
   ) +
   labs(
-    title = "Stress Test Expanded Coveraget Scenario: Estimated Periodontal Expenditure by Country (2050)",
-    subtitle = "Countries with no data shown in grey"
+    title = "Expanded Coverage Scenario: Estimated Periodontal Expenditure by Country (2050)"
   ) +
   theme_minimal() +
   theme(
@@ -541,7 +539,7 @@ plot_patchwork_map <- (map_base_2050 + map_base_2050_WHO + map_base_gap) +
 
 plot_patchwork_map
 
-ggsave("outputs_forecast/world_periodontal_expenditure_map_2021_2025.png",
+ggsave("outputs_forecast/world_periodontal_expenditure_map_2021_2050.pdf",
   plot = plot_patchwork_map,
   width = 18, height = 20, dpi = 300
 )
